@@ -1,4 +1,4 @@
-__author__ = 'luis'
+
 from django.test import TestCase
 from django.contrib.auth.models import User
 from sgpa.models import Proyecto

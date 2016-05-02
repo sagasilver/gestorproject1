@@ -1,4 +1,4 @@
-__author__ = 'luis'
+
 import unittest
 from django.contrib.auth import SESSION_KEY
 from django.test import Client

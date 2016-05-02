@@ -1,5 +1,4 @@
 
-__author__ = 'luis'
 #! /usr/bin/python
 
 
@@ -14,7 +13,7 @@ from sgpa.models import Permiso
 import os, datetime
 
 
-#Se vacian las tablas
+#vaciamos las tablas proyecto, cliente, usaurio
 def vaciar():
     Proyecto.objects.all().delete()
     Cliente.objects.all().delete()    
@@ -25,10 +24,10 @@ def vaciar():
 
 def cargarCliente():
 
-   """Script de carga de Usuarios al sistema"""
-   cliente1 = Cliente(nombre='NIKE', direccion='ddscdc', telefono='sdfdsfd', observacion='weewfe', estado='ACT')
+   """Los clientes son cargados al sistema"""
+   cliente1 = Cliente(nombre='Grupo Cartes', direccion='ddscdc', telefono='sdfdsfd', observacion='weewfe', estado='ACT')
    cliente1.save()
-   cliente2 = Cliente(nombre='PUMA', direccion='ddscdc', telefono='sdfdsfd', observacion='weewfe', estado='ACT')
+   cliente2 = Cliente(nombre='AJ.Vierci', direccion='ddscdc', telefono='sdfdsfd', observacion='weewfe', estado='ACT')
    cliente2.save()
    
 
@@ -36,14 +35,14 @@ def cargarCliente():
 
 def cargarUsuario():
 
-   """Script de carga de Usuarios al sistema"""
+   """Los usuarios son cargados al sistema"""
    usuario2 = User.objects.create_user(username='administrador',password='123')
    
 
 
 def cargarPermiso():
     """
-        Script de carga de permiso para el sistema.
+         Los Script son cargados directamente.
     """
     permiso1 = Permiso(nombre='crear rol sistema', descripcion ='creae rol sistema', tipo='SISTEMA')
     permiso1.save()

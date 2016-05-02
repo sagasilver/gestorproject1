@@ -1,5 +1,4 @@
 
-__author__ = 'luis'
 #! /usr/bin/python
 
 

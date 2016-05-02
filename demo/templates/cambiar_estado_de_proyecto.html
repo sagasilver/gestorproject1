@@ -1,0 +1,26 @@
+{% extends 'administracion.html' %}
+{% if user.is_active %}
+ {% block titulo %}Cambio de estado de Proyecto{% endblock %}
+{% block privado%}{% endblock%}
+{% block contenido %}
+<div class="histo-detalle" xmlns="http://www.w3.org/1999/html">
+    <a href="/"><font color="#3D9A13"> home </font></a><img src="/static/img/flechaverde.png" width="12" height="10" />
+    <a href="/usuario/adminproyecto"><font color="#3D9A13"> Administrar Proyecto </font></a><img src="/static/img/flechaverde.png" width="12" height="10" />
+    <a href="/usuario/cambiar_estado_de_proyecto/{{proyecto.id}}"><font color="#3D9A13"> Cambiar Estado / {{proyecto}}</font></a>
+</div>
+<nav class="detalle">
+    <h1>Cambiar estado del proyecto {{proyecto}}</h1>>
+    <form method='post' action=''>{% csrf_token %}
+                <table class="max">
+
+                    {{formulario}}
+
+                </table>
+                <button class="button button-action" type="submit" name="Guardar" />Guardar</button>
+                    <a class="button button-caution" href="{% url 'usuario:adminproyecto' %}">Cancelar</a>
+    </form>
+</nav>
+
+
+{% endblock %}
+{% endif%}

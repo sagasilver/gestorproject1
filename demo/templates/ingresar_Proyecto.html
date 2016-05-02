@@ -1,0 +1,33 @@
+{% extends 'administracion.html' %}
+{% block contenido %}
+<div class="histo-detalle">
+    <a href="/"><font color="#3D9A13"> home </font></a><img src="/static/img/flechaverde.png" width="12" height="10" />
+    <a href="/usuario/ingresar_Proyecto/{{codigo}}"><font color="#3D9A13"> Proyectos </font></a>
+</div>
+<nav class="detalle">
+
+        <h1>Proyectos</h1>
+    {%if proyectos %}
+        <div class="content">
+            <table class="max">
+                <thead>
+                <tr>
+                    <th class="thead">Mis proyectos Activos</th>
+                </tr>
+                </thead>
+                {% for proyecto in proyectos %}
+                    <tbody>
+                    <tr>
+                        <td><span><a href='/usuario/datos_Proyecto/{{ proyecto.id }}' class="current" ><img class="lo" src="/static/img/listaproyecto.png" width="15" height="15"/>{{ proyecto.nombre}}</a></span></td>
+
+                    </tr>
+                    </tbody>
+                {%endfor%}
+            </table>
+        </div>
+    {%else%}
+        <font color="red">Usted no tiene ningun proyecto ACTIVO asignado!!</font>
+    {%endif%}
+</nav>
+
+{%endblock%}

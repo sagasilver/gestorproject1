@@ -1,0 +1,21 @@
+{% extends 'Base.html' %}
+{% block encabezado %}
+{% endblock %}
+{% block privado %}{% endblock %}
+{% block contenido %}
+<h2><p><center>Permiso denegado {{volver}}</center></h2></p>
+<p><center> Contactese con el administrador para solucionar el problema.</center> </p>
+{% if raiz == "usuario" %}
+    <li><center><a href="{% url 'usuario:administrar' %}"><i class="icon-chevron-right"></i>Volver</a></center></li>
+{%elif raiz == "proyecto"%}
+    <li><center><a href="{% url 'usuario:adminproyecto' %}"><i class="icon-chevron-right"></i>Volver</a></center></li>
+{%elif raiz == "cliente"%}
+    <li><center><a href="{% url 'usuario:admincliente' %}"><i class="icon-chevron-right"></i>Volver</a></center></li>
+{%elif raiz == "rol"%}
+    <li><center><a href="{% url 'usuario:adminrol' %}"><i class="icon-chevron-right"></i>Volver</a></center></li>
+{%elif raiz == "administracion"%}
+    <li><center><a href="{% url 'usuario:administracion' %}"><i class="icon-chevron-right"></i>Volver</a></center></li>
+{%else%}
+    <li><center><a href="javascript:window.history.back();"><i class="icon-chevron-right"></i>Volver</a></center></li>
+{%endif%}
+{% endblock %}

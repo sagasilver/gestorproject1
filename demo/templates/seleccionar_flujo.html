@@ -1,0 +1,20 @@
+{% extends 'administracion.html' %}
+{% if user.is_active %}
+ {% block titulo %}Seleccionar Flujo{% endblock %}
+{% block contenido %}
+<div class="histo-detalle">
+    <a href="/"><font color="#3D9A13"> home </font></a><img src="/static/img/flechaverde.png" width="12" height="10" />
+    <a href="/usuario/admincliente"><font color="#3D9A13"> Administrar Cliente </font></a><img src="/static/img/flechaverde.png" width="12" height="10" />
+    <a href="/usuario/crearcliente"><font color="#3D9A13"> Nuevo Cliente </font></a>
+</div>
+<nav class="detalle">
+    <h1>Seleccionar Flujo</h1>
+
+        <form action="" method="post">
+        {% csrf_token%}
+        <table class="max">{{formulario}}</table>
+
+        <button class="button button-action" type="submit" name="Guardar" />Guardar</button>
+</form>
+{% endblock %}
+{% endif%}

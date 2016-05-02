@@ -1,0 +1,14 @@
+{% extends 'Base.html' %}
+ {% block titulo %}Usuario desactivado{% endblock %}
+{% block encabezado %}
+{%if not user.is_authenticated%}
+<h1><FONT COLOR="black">SGPA</FONT></h1>
+<h2><FONT COLOR="black">SISTEMA DE GESTION DE PROYECTOS AGILES</FONT></h2>
+{%endif%}
+{% endblock %}
+{% block privado %}{% endblock %}
+{% block contenido %}
+    <h2><p><center>El usuario esta inactivo</center></h2></p>
+    <p><center>Contactarse con el administrador para resolver el problema</center></p>
+<li><center><a href="/"><i class="icon-chevron-right"></i>Volver</a></center></li>
+{% endblock %}

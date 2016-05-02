@@ -1,0 +1,45 @@
+{% extends 'Base.html' %}
+{% block titulo %}Bienvenido{% endblock %}
+
+{% block contenido %}
+<div id='cssmenu'>
+<ul>
+   <li><a href='/'>Home</a></li>
+    <!--{%if "administrar sistema" in permisos %}-->
+   <li class='active'><a href='#'>ADMINISTRACION</a>
+      <ul>
+          <!--{%if "administrar usuario" in permisos %} -->
+          <li><a href="{% url 'usuario:administrar' %}">Administrar Usuario</a></li>
+          <!--{%endif%}-->
+          <!--{%if "administrar proyecto" in permisos %}-->
+          <li><a href="{% url 'usuario:adminproyecto' %}">Administrar Proyecto</a></li>
+          <!--{%endif%}-->
+          <!--{%if "administrar cliente" in permisos %}-->
+          <li><a href="{% url 'usuario:admincliente' %}">Administrar Cliente</a></li>
+          <!--{%endif%}-->
+          <!--{%if "administrar rol" in permisos %}-->
+          <li><a href="#">Administrar Rol</a>
+              <ul>
+                  <!--{%if "administrar rol sistema" in permisos %}-->
+                  <li><a href="{% url 'usuario:adminrolsistema' %}">Rol de Sistema</a></li>
+                  {%endif%}
+                  <!--{%if "administrar rol sistema" in permisos %}-->
+                  <li><a href="{% url 'usuario:adminrolproyecto' %}">Rol de Proyecto</a></li>
+                  <!--{%endif%}-->
+              </ul>
+          </li>
+          <!--{%endif%}-->
+
+      </ul>
+   </li>
+    <!--{%endif%}-->
+   <li class='active'><a href='#'>DESARROLLO</a>
+    <ul>
+          <li><a href='/usuario/ingresar_Proyecto/{{user.id}}'>Proyectos</a></li>
+      </ul>
+    </li>
+</ul>
+</div>
+
+    <p>Bienvenido {{usuario.username}}, la ultima vez que ingreso al sistema fue el {{usuario.last_login}}.</p>
+{% endblock %}

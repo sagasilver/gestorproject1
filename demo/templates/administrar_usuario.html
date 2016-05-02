@@ -1,0 +1,62 @@
+
+{% extends 'administracion.html' %}
+
+{% block contenido %}
+<div class="histo-detalle">
+    <a href="/"><font color="#3D9A13"> home </font> </a><img src="/static/img/flechaverde.png" width="12" height="10" />
+    <a href="/usuario/administrar"> <font color="#3D9A13"> Administrar Usuario</font></a>
+</div>
+<nav class="detalle">
+    {%if usuarios%}
+        <h1>Administrar Usuario</h1>
+        <table class="max">
+            <thead>
+                <tr>
+                    <th class="thead">Nombre de usuario</th>
+                    <th class="thead">Estado</th>
+                    <th width="75px" class="tnuevo"><span class="pushbutton"><a href="{% url 'usuario:crear_usuario' %}" class="current"> <img src="/static/img/nuevousuario3.png" width="25" height="25" /></a></span></th>
+                </tr>
+            </thead>
+            {% for usuario in usuarios %}
+            <tbody>
+                <tr>
+                    <td>{{usuario.username}}</td>
+                    {% if usuario.is_active == True%}
+                    <td>Activo</td>
+                    {% else %}
+                    <td>Inactivo</td>
+                    {% endif %}
+                    <td><ul id="nav">
+                        <li><span class="pushbutton"><a href="#" class="current" ><span><img src="/static/img/botonmenu2.png" alt="detalle"title="ver detalle" width="25" height="25" ></span></a></span>
+                            <div class="subs">
+                                <div class="col">
+                                    <ul>
+                                        <li><a href='/usuario/detalle_usuario/{{usuario.id}}'><img src="/static/img/detalle.png" width="25" height="25"/> Ver</a></li>
+                                        <li><a href='/usuario/modificar_usuario/{{usuario.id}}'><img src="/static/img/editar2.png" width="25" height="25" /> Modificar</a></li>
+                                        <li><a onclick="return pregunta_usuario()" href='/usuario/eliminar_usuario/{{usuario.id}}'><img src="/static/img/eliminar3.png" width="25" height="25"/> Eliminar</a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="col">
+                                    <ul>
+                                        <li><a href='/usuario/cambiar_estado_de_usuario/{{usuario.id}}'><img src="/static/img/cambiarestado.png" width="25" height="25" /> Cambiar Estado</a></li>
+                                        <li><a href='/usuario/asignar_rol_de_sistema/{{usuario.id}}'><img src="/static/img/asignarrol3.png" width="25" height="25" /> Asignar Rol</a></li>
+                                        <li><a href='/usuario/asignar_cliente_a_usuario/{{usuario.id}}'><img src="/static/img/asignarcliente.png" width="25" height="25" /> Asociar Cliente</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul></td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    {%else%}
+    <center><font color="red">No hay Usuarios  registrados, presiona</font> <a href='/usuario/crear_usuario' class="current">Aqui </a><font color="red">para crear uno nuevo</font></center>
+    {%endif%}
+
+</nav>
+
+
+{%endblock%}
+

@@ -1,0 +1,40 @@
+footer, div, h1, h2, ul, li, a {
+margin:5; padding:0;
+}
+body {
+margin: 10;
+padding: 10;
+font-size: 18px;
+font-family: "Courier";
+color: black;
+background: lavender;
+}
+a:link, a:visited {
+color: black;
+text-decoration: none;
+margin:10px;
+}
+header {
+background-color:white;
+color:white;
+}
+nav ul li a{
+text-decoration:none;
+color:white;
+margin:0px;
+}
+.activo {
+font-weight: bold;
+}
+.impar {
+background-color:cornflowerblue;
+}
+.par {
+background-color:cornflowerblue;
+}
+#content-related h3 {
+font-size: 12px;
+color: white;
+margin:5px;
+margin-bottom: 10px;
+}

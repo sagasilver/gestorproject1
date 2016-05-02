@@ -1,0 +1,108 @@
+
+{% extends 'administracion.html' %}
+{% block contenido %}
+<div class="histo-detalle" xmlns="http://www.w3.org/1999/html">
+    <a href="/"><font color="#3D9A13"> home </font></a><img src="/static/img/flechaverde.png" width="12" height="10" />
+    <a href="/usuario/adminproyecto"><font color="#3D9A13"> Administrar Proyecto </font></a>
+</div>
+<nav class="detalle">
+    {%if proyectos%}
+        <h1>Administrar Proyecto</h1>
+        <div class="content">
+            <table class="max">
+                <thead>
+                <tr>
+                    <th class="thead">Nombre del proyecto</th>
+                    <th class="thead">Estado</th>
+                    <th width="75px" class="tnuevo"><span class="pushbutton"><a href="{% url 'usuario:crearproyecto' %}" class="current"> <img src="/static/img/nuevo2.png" width="25" height="25" /></a></span></th>
+                </tr>
+                </thead>
+                {% for proyecto in proyectos %}
+                    <tbody>
+                    <tr>
+                        <td>{{proyecto.nombre}}</td>
+                        <td>{{proyecto.estado}}</td>
+                        <td><ul id="nav">
+                            <li><span class="pushbutton"><a href="#" class="current" ><span><img src="/static/img/botonmenu2.png" alt="detalle"title="ver detalle" width="25" height="25" ></span></a></span>
+                                {%if proyecto.estado == "PENDIENTE"%}
+                                <div class="subs">
+
+                                    <div class="col">
+                                        <ul>
+
+
+                                            <li ><a href='/usuario/detalle_proyecto/{{ proyecto.id }}'><img src="/static/img/detalle.png" width="25" height="25"/> Ver</a></li>
+                                            <li><a href='/usuario/modificar_proyecto/{{ proyecto.id }}'><img src="/static/img/editar2.png" width="25" height="25" /> Modificar</a></li>
+                                            <li><a onclick="return pregunta_usuario()" href='/usuario/eliminar_proyecto/{{ proyecto.id }}'><img src="/static/img/eliminar3.png" width="25" height="25"/> Eliminar</a></li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="col">
+                                        <ul>
+                                            <li><a href='/usuario/cambiar_estado_de_proyecto/{{proyecto.id}}'><img src="/static/img/cambiarestado.png" width="25" height="25" /> Cambiar Estado</a></li>
+                                             <li><a href='/usuario/reasignar_lider/{{proyecto.id}}'><img src="/static/img/reasignar.png" width="25" height="25" /> Reasignar Lider</a></li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                                {%elif proyecto.estado == "ACTIVO"%}
+                                 <div class="subs">
+
+                                    <div class="col">
+                                        <ul>
+
+
+                                            <li ><a href='/usuario/detalle_proyecto/{{ proyecto.id }}'><img src="/static/img/detalle.png" width="25" height="25"/> Ver</a></li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="col">
+                                        <ul>
+                                            <li><a href='/usuario/reasignar_lider/{{proyecto.id}}'><img src="/static/img/reasignar.png" width="25" height="25" /> Reasignar Lider</a></li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                                {%elif proyecto.estado == "ANULADO"%}
+                                 <div class="subs">
+
+                                    <div class="col">
+                                        <ul>
+
+
+                                            <li ><a href='/usuario/detalle_proyecto/{{ proyecto.id }}'><img src="/static/img/detalle.png" width="25" height="25"/> Ver</a></li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                                {%else%}
+                                <div class="subs">
+
+                                    <div class="col">
+                                        <ul>
+
+
+                                            <li ><a href='/usuario/detalle_proyecto/{{ proyecto.id }}'><img src="/static/img/detalle.png" width="25" height="25"/> Ver</a></li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                                {%endif%}
+
+
+
+
+                            </li>
+                        </ul></td>
+                    </tr>
+                    </tbody>
+                {%endfor%}
+            </table>
+        </div>
+    {%else%}
+        <font color="red">No hay proyectos registrados, presiona</font> <a href="{% url 'usuario:crearproyecto' %}" class="current">Aqui </a><font color="red">para crear un proyecto</font>
+    {%endif%}
+</nav>
+
+{%endblock%}
+

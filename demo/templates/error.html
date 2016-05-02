@@ -1,0 +1,16 @@
+{% extends 'Base.html' %}
+{% block encabezado %}
+{% endblock %}
+{% block contenido %}
+<br><br>
+<nav class="atencion">
+    <h1><center><font color="red">ERROR!!!</font></center></h1>
+    <center><font color="red">{{mensaje}}</font></center>
+    <br>
+
+</nav>
+<br>
+<center><a class="button button-highlight " href="javascript:window.history.back();"><i class="icon-chevron-right"></i>Volver</a>
+</center>
+
+{% endblock %}

@@ -1,0 +1,63 @@
+
+{% extends 'administracion.html' %}
+{% if user.is_active %}
+{%block menuVertical%}
+<div id="wrapper">
+
+	<ul class="menu">
+		<li class="item1"><a href="#">Equipo</a>
+			<ul>
+				<li class="subitem1"><a href="/usuario/equipo_trabajo/{{proyecto.id}}">Agregar Miembro</a></li>
+				<li class="subitem2"><a href="#">Ver Equipo </a></li>
+			</ul>
+		</li>
+		<li class="item2"><a href="#">Historia de Usuario</a>
+			<ul>
+				<li class="subitem1"><a href='/usuario/adminhu/{{proyecto.id}}'>Administrar HU </a></li>
+			</ul>
+		</li>
+		<li class="item3"><a href="#">Sprint </a>
+			<ul>
+				<li class="subitem1"><a href="/usuario/activarsprint/{{proyecto.id}}">Crear Sprint</a></li>
+				<li class="subitem2"><a href="/usuario/gestionarsprint/{{proyecto.id}}">Ver Sprint </a></li>
+			</ul>
+		</li>
+        <li class="item3"><a href="#">Flujo</a>
+			<ul>
+				<li class="subitem1"><a href="#">Agregar Flujo</a></li>
+				<li class="subitem2"><a href="#">Ver Flujo </a></li>
+			</ul>
+		</li>
+	</ul>
+
+</div>
+<!--initiate accordion-->
+<script type="text/javascript">
+	$(function() {
+
+	    var menu_ul = $('.menu > li > ul'),
+	           menu_a  = $('.menu > li > a');
+
+	    menu_ul.hide();
+
+	    menu_a.click(function(e) {
+	        e.preventDefault();
+	        if(!$(this).hasClass('active')) {
+	            menu_a.removeClass('active');
+	            menu_ul.filter(':visible').slideUp('normal');
+	            $(this).addClass('active').next().stop(true,true).slideDown('normal');
+	        } else {
+	            $(this).removeClass('active');
+	            $(this).next().stop(true,true).slideUp('normal');
+	        }
+	    });
+
+	});
+</script>
+
+    {% endblock %}
+
+
+{% endif %}
+
+

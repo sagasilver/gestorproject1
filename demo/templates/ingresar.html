@@ -1,0 +1,16 @@
+{% extends 'Base.html' %}
+{% block encabezado %}
+<h1><FONT COLOR="white">SGPA</FONT></h1>
+<h2><FONT COLOR="white" size="15px">GESTION DE PROYECTOS</FONT></h2>
+{% endblock %}
+{% block homeimage %}{% endblock %}
+{% block privado %}{% endblock %}
+{% block contenido %}
+</p>
+<p></p><h2><center>Inicio Sesión</center></h2>
+<p><center>Bienvenido a SGPA, Por favor introduzca los datos requeridos para autenticarse. </center> </p>
+<form id='formulario' method='post' action=''>{% csrf_token %}
+<table class="max">{{formulario}}</table>
+<p><center><input name="Ingresar" style="margin-left: 150px;" class="formbutton" value="Ingresar" type="submit" /></center></p>
+</form>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'administracion.html' %}
+{% block encabezado %}
+{% endblock %}
+{%block titulo%}Detalle{%endblock%}
+{% block contenido %}
+<div class="histo-detalle">
+    <a href="/"><font color="#3D9A13"> home </font></a><img src="/static/img/flechaverde.png" width="12" height="10" />
+    <a href="/usuario/admincliente"><font color="#3D9A13"> Administrar Cliente </font></a><img src="/static/img/flechaverde.png" width="12" height="10" />
+    <a href="/usuario/detalle_cliente/{{cliente.id}}"><font color="#3D9A13"> Detalle / {{cliente}} </font></a>
+</div>
+<nav class="detalle">
+    <h1>DETALLES DE CLIENTE</h1>
+    <table class="max">
+        <tr>
+            <td>Nombre</td>
+            <td><font color="black">{{cliente.nombre}}</font></td>
+        </tr>
+
+        <tr>
+            <td>Estado</td>
+                {% if cliente.estado == "ACTIVO"%}
+                    <td><font color="green">Activo</font></td>
+                {% else %}
+                    <td><font color = "red">Inactivo</font></td>
+                {% endif %}
+        </tr>
+
+        <tr>
+            <td>Email</td>
+            <td><font color="black">{{cliente.correo}}</font></td>
+        </tr>
+
+            <td>Direccion</td>
+            <td><font color="black">{{cliente.direccion}}</font></td>
+
+        <tr>
+            <td>Telefono</td>
+            <td><font color="black">{{cliente.telefono}}</font></td>
+        </tr>
+
+        <tr>
+            <td>Observacion</td>
+            <td><font color="black">{{cliente.observacion}}</font></td>
+        </tr>
+
+        <tr>
+            <td>Usuarios</td>
+
+
+                            <td>
+                                  {% for usuario in usuarios %}
+                                    <ul><li><font color="black">{{usuario}}</font></li></ul>
+                                 {% endfor %}
+                            </td>
+        </tr>
+    </table>
+    <a href="javascript:window.history.back();" class="button-highlight button">Atras</a>
+</nav>
+{% endblock %}

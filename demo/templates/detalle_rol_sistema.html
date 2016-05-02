@@ -1,0 +1,41 @@
+{% extends 'administracion.html' %}
+{% block encabezado %}
+{% endblock %}
+{%block titulo%}Detalle Rol Sistema{%endblock%}
+{% block contenido %}
+<div class="histo-detalle">
+    <a href="/"><font color="#3D9A13"> home </font></a><img src="/static/img/flechaverde.png" width="12" height="10" />
+    <a href="/usuario/adminrolsistema"><font color="#3D9A13"> Rol de Sistema </font></a><img src="/static/img/flechaverde.png" width="12" height="10" />
+    <a href="/usuario/detalle_rol_sistema/{{rol.id}}"><font color="#3D9A13"> Detalle / {{rol}} </font></a>
+</div>
+<nav class="detalle">
+    <h1>DETALLES DE ROL DE SISTEMA</h1>
+    <table class="max">
+        <tr>
+            <td>Nombre</td>
+            <td><font color="black">{{rol.nombre}}</font></td>
+        </tr>
+
+        <tr>
+            <td>Tipo</td>
+            <td><font color="black">{{rol.tipo}}</font></td>
+        </tr>
+
+        <tr>
+            <td>Descripcion</td>
+            <td><font color="black">{{rol.descripcion}}</font></td>
+        </tr>
+        <tr>
+            <td>Permisos</td>
+
+
+                            <td>
+                                  {% for permiso in permisos_rol %}
+                                    <ul><li><font color="black">{{permiso}}</font></li></ul>
+                                 {% endfor %}
+                            </td>
+        </tr>
+    </table>
+    <a href="javascript:window.history.back();" class="button-highlight button">Atras</a>
+</nav>
+{% endblock %}

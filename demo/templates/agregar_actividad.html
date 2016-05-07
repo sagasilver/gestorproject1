@@ -1,0 +1,21 @@
+{% extends 'Base.html' %}
+{% if user.is_active %}
+ {% block titulo %}Agregar Actividad{% endblock %}
+{% block encabezado %}
+{% endblock %}
+{% block privado%}{% endblock%}
+{% block contenido %}
+<form method='post' action=''>{% csrf_token %}
+                <table class="max">
+                    <tr>
+                        <td bgcolor="#799AC0"><font color="white"> <strong>Nombre:</strong></font></td>
+                        <td><input id="nombre" type="text" name="nombre" value=""></td>
+                    </tr>
+                </table>
+                <button type="submit" name="Guardar" />Guardar</button>
+                    <a href="{% url 'usuario:gestionar_flujo' %}"><button type="button">Cancelar</button>
+               </a>
+            </form>
+
+{% endblock %}
+{% endif%}

@@ -1,0 +1,46 @@
+{% extends 'Base.html' %}
+{% if user.is_active %}
+ {% block titulo %}Modificar Cliente{% endblock %}
+{% block contenido %}
+<div class="histo-detalle">
+    <a href="/"><font color="#3D9A13"> home </font></a><img src="/static/img/flechaverde.png" width="12" height="10" />
+    <a href="/usuario/admincliente"><font color="#3D9A13"> Administrar Cliente </font></a><img src="/static/img/flechaverde.png" width="12" height="10" />
+    <a href="/usuario/modificar_cliente/{{cliente.id}}"><font color="#3D9A13"> Modificar / {{cliente}} </font></a>
+</div>
+<nav class="detalle">
+    <h1>Modificar Cliente</h1>
+    <form method='post' action=''>{% csrf_token %}
+                <table class="max">
+                    <tr>
+                        <th>Nombre</th>
+                        <td><input id="nombre" type="text" name="nombre" value={{cliente.nombre}}></td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td><input id="correo" type="text" name="correo" value="{{cliente.correo}}"></td>
+                    </tr>
+                    <tr>
+
+                        <th>Telefono</th>
+                        <td><input id="telefono" type="text" name="telefono" value="{{cliente.telefono}}"></td>
+
+                    </tr>
+                    <tr>
+                        <th>Direccion</th>
+                        <td><input id="direccion" type="text" name="direccion" value="{{cliente.direccion}}"></td>
+                    </tr>
+                    <tr>
+                        <th>Observacion</th>
+                        <td><input id="observacion" type="text" name="observacion" value="{{cliente.observacion}}"></td>
+                    </tr>
+
+
+                </table>
+                <button class="button button-action" type="submit" name="Guardar" />Guardar</button>
+                    <a class="button button-caution" href="{% url 'usuario:admincliente' %}">Cancelar</a>
+            </form>
+</nav>>
+
+
+{% endblock %}
+{% endif%}

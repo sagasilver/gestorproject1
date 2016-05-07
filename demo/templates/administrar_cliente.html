@@ -1,0 +1,57 @@
+
+{% extends 'administracion.html' %}
+{% block contenido %}
+<div class="histo-detalle">
+    <a href="/"><font color="#3D9A13"> home </font></a><img src="/static/img/flechaverde.png" width="12" height="10" />
+    <a href="/usuario/admincliente"><font color="#3D9A13"> Administrar Cliente </font></a>
+</div>
+<nav class="detalle">
+
+        <h1>Administrar Cliente</h1>
+    {%if clientes %}
+        <div class="content">
+            <table class="max">
+                <thead>
+                <tr>
+                    <th class="thead">Cliente</th>
+                    <th class="thead">Estado</th>
+                    <th width="75px" class="tnuevo"><span class="pushbutton"><a href="{% url 'usuario:crearcliente' %}" class="current"> <img src="/static/img/nuevo2.png" width="25" height="25" /></a></span></th>
+                </tr>
+                </thead>
+                {% for cliente in clientes %}
+                    <tbody>
+                    <tr>
+                        <td>{{cliente.nombre}}</td>
+                        <td>{{cliente.estado}}</td>
+                        <td><ul id="nav">
+                            <li><span class="pushbutton"><a href="#" class="current" ><span><img src="/static/img/botonmenu2.png" alt="detalle"title="ver detalle" width="25" height="25" ></span></a></span>
+                                <div class="subs">
+
+                                    <div class="col">
+                                        <ul>
+                                            <li><a href='/usuario/detalle_cliente/{{cliente.id}}'><img src="/static/img/detalle.png" width="25" height="25"/> Ver</a></li>
+                                            <li><a href='/usuario/modificar_cliente/{{ cliente.id }}'><img src="/static/img/editar2.png" width="25" height="25" /> Modificar</a></li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="col">
+                                        <ul>
+                                            <li><a href='/usuario/cambiar_estado_de_cliente/{{cliente.id}}'><img src="/static/img/cambiarestado.png" width="25" height="25" /> Cambiar Estado</a></li>
+                                            <li><a onclick="return pregunta_cliente()" href='/usuario/eliminar_cliente/{{ cliente.id }}'><img src="/static/img/eliminar3.png" width="25" height="25"/> Eliminar</a></li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul></td>
+                    </tr>
+                    </tbody>
+                {%endfor%}
+            </table>
+        </div>
+    {%else%}
+        <font color="red">No hay clientes registrados, presiona</font> <a href="{% url 'usuario:crearcliente' %}" class="current">Aqui </a><font color="red">para crear un cliente</font>
+    {%endif%}
+</nav>
+
+{%endblock%}

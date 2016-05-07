@@ -1,0 +1,20 @@
+{% extends 'Base.html' %}
+{% block encabezado %}
+     <h1  align="center">
+                <img src="/static/img/cooltext181329331460529.png" >
+     </h1>
+
+{% endblock %}
+{% block homeimage %}{% endblock %}
+{% block privado %}{% endblock %}
+{% block contenido %}
+     <h1  align="center">
+                <img src="/static/img/cooltext181336900589018.png" >
+     </h1>
+</p>
+<p><center>Bienvenido a GESTION DE PROYECTOS, Por favor introduzca los datos requeridos para autenticarse. </center> </p>
+<form id='formulario' method='post' action=''>{% csrf_token %}
+<table class="max">{{formulario}}</table>
+<p><center><input name="Ingresar" style="margin-left: 150px;" class="formbutton" value="Ingresar" type="submit" /></center></p>
+</form>
+{% endblock %}

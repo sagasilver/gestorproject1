@@ -1,0 +1,34 @@
+{% extends 'administracion.html' %}
+{% if user.is_active %}
+ {% block titulo %}Modificar Proyecto{% endblock %}
+{% block privado%}{% endblock%}
+{% block contenido %}
+<div class="histo-detalle" xmlns="http://www.w3.org/1999/html">
+    <a href="/"><font color="#3D9A13"> home </font></a><img src="/static/img/flechaverde.png" width="12" height="10" />
+    <a href="/usuario/adminproyecto"><font color="#3D9A13"> Administrar Proyecto </font></a><img src="/static/img/flechaverde.png" width="12" height="10" />
+    <a href="/usuario/modificar_proyecto"><font color="#3D9A13"> Modificar / {{proyecto}}</font></a>
+</div>
+<nav class="detalle">
+    <h1>Modificar Proyecto</h1>
+        <form method='post' action=''>{% csrf_token %}
+                <table class="max">
+                    <tr>
+                        <th>Fecha de Inicio</th>
+                         <td><input id="fechaInicio" type="date" name="fechaInicio" required="True" value={{proyecto.fechaInicio}}></td>
+
+                    </tr>
+
+                    <tr>
+                        <th>Fecha de Finalizacion</th>
+                        <td><input id="fechaFin" type="date" name="fechaFin" required="True" value={{proyecto.fechaFin}}></td>
+                    </tr>
+                    {{formulario}}
+
+                </table>
+                <button class="button button-action" type="submit" name="Guardar" />Guardar</button>
+                    <a class="button button-caution" href="{% url 'usuario:adminproyecto' %}">Cancelar</a>
+    </form>
+</nav>
+
+{% endblock %}
+{% endif%}

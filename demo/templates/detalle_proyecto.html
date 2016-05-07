@@ -1,0 +1,60 @@
+{% extends 'administracion.html' %}
+{% block encabezado %}
+{% endblock %}
+{% block contenido %}
+<div class="histo-detalle" xmlns="http://www.w3.org/1999/html">
+    <a href="/"><font color="#3D9A13"> home </font></a><img src="/static/img/flechaverde.png" width="12" height="10" />
+    <a href="/usuario/adminproyecto"><font color="#3D9A13"> Administrar Proyecto </font></a><img src="/static/img/flechaverde.png" width="12" height="10" />
+    <a href="/usuario/detalle_proyecto"><font color="#3D9A13"> Detalle / {{proyecto}}</font></a>
+</div>
+<nav class="detalle">
+    <h1>DETALLES DE PROYECTO</h1>
+    <table class="max">
+        <tr>
+            <td>Fecha de Inicio</td>
+            <td><font color="black">{{proyecto.fechaInicio}}</font></td>
+        </tr>
+
+        <tr>
+            <td>Fecha de Finalizacion</td>
+            <td><font color="black">{{proyecto.fechaFin}}</font></td>
+        </tr>
+        <tr>
+            <td>Nombre</td>
+            <td><font color="black">{{proyecto.nombre}}</font></td>
+        </tr>
+        <tr>
+            <td>Estado</td>
+                {% if proyecto.estado == "ACTIVO"%}
+                    <td><font color="green">Activo</font></td>
+                {% elif proyecto.estado == "PENDIENTE" %}
+                    <td><font color="orange">Pendiente</font></td>
+                {% elif proyecto.estado == "ANULADO" %}
+                    <td><font color="red"> Anulado</font></td>
+                {% else %}
+                    <td><font color = "blue">Finalizado</font></td>
+                {% endif %}
+
+        </tr>
+            <td>Lider del Proyecto</td>
+            <td><font color="black">{{proyecto.lider}}</font></td>
+
+        <tr>
+            <td>Cliente</td>
+            <td><font color="black">{{cliente}}</font></td>
+        </tr>
+
+        <tr>
+            <td>Equipo de Trabajo</td>
+
+
+                            <td>
+                                  {% for e in equipo %}
+                                    <ul><li><font color="black">{{e}}</font></li></ul>
+                                 {% endfor %}
+                            </td>
+        </tr>
+    </table>
+    <a href="javascript:window.history.back();" class="button-highlight button">Atras</a>
+</nav>
+{% endblock %}

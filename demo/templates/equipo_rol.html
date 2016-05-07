@@ -1,0 +1,25 @@
+{% extends 'Base.html' %}
+{% if user.is_active %}
+{% block encabezado %}
+
+<h1><FONT COLOR="black"> Gestionar Sprint {{diferencia}}</FONT></h1>
+{% endblock %}
+{% block contenido %}
+
+<table class="table table-striped table-bordered">
+
+    {% for u in lista %}
+    <tr>
+        <td><font color = "green">{{u.username}}</font></td>
+        <td><a href="/usuario/asignar_rol_de_proyecto/{{u.id}}/{{ proyecto.id }}" class="current" ><span>Asignar Rol de Proyecto</font></span></a></td>
+
+    </tr>
+
+   {% endfor %}
+</table>
+ <li><center><a href="/usuario/datos_Proyecto/{{ proyecto.id }}"><i class="icon-chevron-right"></i>Volver</a></center></li>
+<table class="table table-striped table-bordered">{% endblock %}
+</table>
+
+{% endif %}
+

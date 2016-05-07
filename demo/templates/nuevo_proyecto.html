@@ -1,0 +1,22 @@
+{% extends 'privado.html' %}
+{% if user.is_active %}
+ {% block titulo %}Nuevo Proyecto{% endblock %}
+{% block privado%}{% endblock%}
+{% block contenido %}
+<br>
+<nav class="detalle">
+    <h1>NUEVO PROYECTO</h1>
+    <table class="max">
+        <form action="{% url 'usuario:crearproyecto' %}" method="post">
+        {% csrf_token%}
+        <table class="max">{{form}}</table>
+
+        <button zclass="button button-action" type="submit" name="Guardar" />Guardar</button>
+        <a class="button button-caution" href="{% url 'usuario:adminproyecto' %}">Cancelar</a>
+</form>
+
+    </table>
+
+{% endblock %}
+{% endif%}
+

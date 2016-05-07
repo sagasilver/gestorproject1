@@ -1,0 +1,37 @@
+{% extends 'administracion.html' %}
+{% block contenido %}
+<br>
+
+<nav class="detalle">
+    <h1>Historia de Usuario</h1>
+<table class="max">
+
+    <tr>
+        <td><strong>Nombre</strong></td>
+        <td><strong>Estado</strong></td>
+        <td><strong>Responsable</strong></td>
+        <td><strong>Flujo</strong></td>
+        <td><strong>Hora Estimada</strong></td>
+        <td><strong>Hora Trabajada</strong></td>
+        <td><strong>Trabajo</strong></td>
+        <td><strong>Descargar Archivo</strong></td>
+    </tr>
+
+  {% for h in hu %}
+
+    <tr>
+        <td><font color="green">{{h.nombre}}</font></td>
+        <td><font color="green">Finalizado</font></td>
+        <td><font color="green">{{h.responsable}}</font></td>
+        <td><font color="green">{{h.flujo}}</font></td>
+        <td><font color="green">{{h.hora}}</font></td>
+        <td><font color="green">{{h.horat}}</font></td>
+        <td><a href='/usuario/ver_trabajo/{{ h.id }}/1'><img src="/static/img/editar2.png" width="25" height="25" /></a></td>
+        <td><center><a href='/usuario/descarga_view/{{ h.id }}'><img src="/static/img/descargar2.png" width="25" height="25"/></a></center></td>
+    </tr>
+  {% endfor %}
+</table>
+<a class="button button-highlight" href="/usuario/datos_Proyecto/{{ proyecto.id }}">Atras</a>
+
+</nav>
+{%endblock%}

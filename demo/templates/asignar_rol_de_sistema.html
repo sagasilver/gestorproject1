@@ -1,0 +1,26 @@
+{% extends 'administracion.html' %}
+{% if user.is_active %}
+ {% block titulo %}Cambio de estado de usuario{% endblock %}
+{% block privado%}{% endblock%}
+{% block contenido %}
+<div class="histo-detalle">
+    <a href="/"><font color="#3D9A13"> home </font></a><img src="/static/img/flechaverde.png" width="12" height="10" />
+    <a href="/usuario/administrar"><font color="#3D9A13"> Administrar Usuario </font></a><img src="/static/img/flechaverde.png" width="12" height="10" />
+    <a href="/usuario/asignar_rol_de_sistema/{{usuario.id}}"><font color="#3D9A13"> Asignar Rol de Sistema / {{usuario}}</font></a>
+</div>
+<nav class="detalle">
+    <h1>Asignacion de rol de sistema para el usuario: {{usuario}}</h1>
+
+    <form method='post' action=''>{% csrf_token %}
+                <table class="max">
+                    {{formulario}}
+
+                </table>
+                <button class="button button-action" type="submit" name="Guardar" />Guardar</button>
+                    <a class="button button-caution" href="{% url 'usuario:administrar' %}">Cancelar</a>
+    </form>
+</nav>
+
+
+{% endblock %}
+{% endif%}

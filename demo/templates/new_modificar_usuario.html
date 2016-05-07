@@ -1,0 +1,29 @@
+{% extends 'administracion.html' %}
+{% if user.is_active %}
+ {% block titulo %}Modificar Usuario{% endblock %}
+{% block privado%}{% endblock%}
+{% block contenido %}
+<div class="histo-detalle">
+    <a href="/"><font color="#3D9A13"> home </font></a><img src="/static/img/flechaverde.png" width="12" height="10" />
+    <a href="/usuario/administrar"><font color="#3D9A13"> Administrar Usuario </font></a><img src="/static/img/flechaverde.png" width="12" height="10" />
+    <a href="/usuario/modificar_usuario/{{usuario.id}}"><font color="#3D9A13"> Modificar / {{usuario}}</font></a>
+</div>
+<nav class="detalle">
+    <h1>Modificar el usuario {{usuario}}
+    <form method='post' action=''>{% csrf_token %}
+                <table class="max">
+                    <tr>
+                        <th>Password:</th>
+                        <td><input id="password" type="password" name="password" value=""></td>
+                    </tr>
+                    {{formulario}}
+
+                </table>
+                <button class="button button-action" type="submit" name="Guardar" />Guardar</button>
+                    <a class="button button-caution" href="{% url 'usuario:administrar' %}">Cancelar</a>
+    </form>
+</nav>
+
+
+{% endblock %}
+{% endif%}

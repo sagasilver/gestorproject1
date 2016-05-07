@@ -1,0 +1,18 @@
+{% extends 'Base.html' %}
+{% if user.is_active %}
+ {% block titulo %}Modificar Rol{% endblock %}
+{% block encabezado %}
+<h1>Usted esta modificando el rol {{rol.nombre}} </h1>
+{% endblock %}
+{% block privado%}{% endblock%}
+{% block contenido %}
+<form method='post' action=''>{% csrf_token %}
+    <table>{{formulario}}</table>
+
+    <button type="submit" name="Guardar" />Guardar</button>
+
+    <a href="{% url 'usuario:adminrol' %}"><button type="button">Cancelar</button>
+
+</form>
+{% endblock %}
+{% endif%}

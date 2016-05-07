@@ -1,0 +1,19 @@
+{% extends 'Base.html' %}
+{% if user.is_active %}
+ {% block titulo %}Nuevo Proyecto{% endblock %}
+{% block encabezado %}
+<h1>Registre un nuevo Rol </h1>
+{% endblock %}
+{% block privado%}{% endblock%}
+{% block contenido %}
+<form method='post' action="{% url 'usuario:crearrol' %}">{% csrf_token %}
+
+	<table class="max">{{form}}</table>
+
+    <button type="submit" name="Guardar" />Guardar<r</form>/button>
+
+    <a href="{% url 'usuario:adminrol' %}"><button type="button">Cancelar</button>
+
+</form>
+{% endblock %}
+{% endif %}

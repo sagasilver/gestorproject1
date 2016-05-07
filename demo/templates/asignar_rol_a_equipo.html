@@ -1,0 +1,21 @@
+{% extends 'administracion.html' %}
+{% if user.is_active %}
+ {% block titulo %}Asignacion de Roles a Equipo{% endblock %}
+{% block privado%}{% endblock%}
+{% block contenido %}
+<br>
+<nav class="detalle">
+    <h1>Asignar Roles</h1>
+
+    <form method='post' action=''>{% csrf_token %}
+                <table class="max">
+                   {{formulario}}
+                </table>
+                <button class="button button-action" type="submit" name="Guardar" />Guardar</button>
+                    <a class="button button-caution" href="{% url 'usuario:administrar' %}">Cancelar</a>
+    </form>
+</nav>
+
+
+{% endblock %}
+{% endif%}

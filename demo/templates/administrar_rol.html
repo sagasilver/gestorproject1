@@ -1,0 +1,34 @@
+
+{% extends 'administracion.html' %}
+{% if user.is_active %}
+{% block contenido %}
+<br>
+<h1><FONT COLOR="black">Administrar Rol</FONT></h1>
+<nav>
+      <ul>
+        <li><a href="{% url 'usuario:crearrol' %}" class="current"><span>nuevo</span></a></li>
+      </ul>
+</nav>
+
+<table class="table table-striped table-bordered">
+
+    <tr>
+        <th>Rol</th>
+
+    </tr>
+    {% for rol in roles %}
+    <tr>
+
+        <td>{{rol.nombre}}</td>
+        <td><span class="pushbutton"><a href='/usuario/modificar_rol/{{ rol.id }}' class="current" ><img src="/static/img/editar2.png"  title="modificar rol" width="50" height="40" ></a></span></td>
+        <td><span class="pushbutton"><a href='/usuario/eliminar_rol/{{ rol.id }}'class="current" ><img src="/static/img/eliminar3.png" title="eliminar rol" width="50" height="40" ></a></span></td>
+    </tr>
+    {% empty %}
+    <tr>
+        No hay roles
+    </tr>
+    {% endfor %}
+</table>
+<table class="table table-striped table-bordered">{% endblock %}
+</table>
+{% endif %}

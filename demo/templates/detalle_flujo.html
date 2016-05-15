@@ -1,0 +1,46 @@
+
+</html>{% extends 'Base.html' %}
+{% block contenido %}
+<br>
+<nav class="detalle">
+    <h1>Detalles del flujo {{flujo}}</h1>
+    <br>
+
+    <div class="scroll"><table border="2px" align="center" class="fl">
+            <th bgcolor="#79F986" align="center" colspan="100">{{flujo.nombre}}
+
+            </th>
+            <tr>
+                <td bgcolor="white" align="center" colspan="100"><font color="black">{{flujo.descripcion}}</font> </td>
+
+            </tr>
+
+            <tr>
+
+                {% for actividad in actividades %}
+                    <td>
+
+                        <center><table border="1px" align="center">
+                            <tr>
+                               <th colspan="100" align="center">{{actividad}}</th>
+                            </tr>
+                            <tr>
+                                <td>TO_DO</td>
+                                <td>DOING</td>
+                                <td>DONE</td>
+                            </tr>
+                        </table>
+                            </center>
+
+
+                    </td>
+                {%empty%}
+                    <td>No hay actividades</td>
+                {%endfor%}
+            </tr>
+
+        </table></div>
+        <br>
+        <a href="javascript:window.history.back();" class="button-highlight button">Atras</a>
+</nav>
+{% endblock %}

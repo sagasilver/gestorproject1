@@ -1,0 +1,20 @@
+{% extends 'Base.html' %}
+{% if user.is_active %}
+ {% block titulo %}Agregar Actividad{% endblock %}
+{% block encabezado %}
+{% endblock %}
+{% block privado%}{% endblock%}
+{% block contenido %}
+<form method='post' action=''>{% csrf_token %}
+                <table class="max">
+                    <tr>
+                       {{formulario}}
+                    </tr>
+                </table>
+                <button type="submit" name="Guardar" />Guardar</button>
+                    <a href='/usuario/datos_Proyecto/{{proyecto.id}}'><button type="button">Cancelar</button>
+               </a>
+            </form>
+
+{% endblock %}
+{% endif%}

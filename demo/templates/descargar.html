@@ -1,0 +1,28 @@
+{% extends 'administracion.html' %}
+{% block encabezado %}
+{% endblock %}
+{%block titulo%}Descargas{%endblock%}
+{% block contenido %}
+<div class="histo-detalle">
+    <a href="/"><font color="#3D9A13"> home </font></a><img src="/static/img/flechaverde.png" width="12" height="10" />
+    <a href="/usuario/admincliente"><font color="#3D9A13"> Administrar Cliente </font></a><img src="/static/img/flechaverde.png" width="12" height="10" />
+    <a href="/usuario/ver_trabajo/{{h.id}}"><font color="#3D9A13"> Ver Trabajo /{{h.nombre}}  </font></a>
+</div>
+<nav class="detalle">
+    <h1>Descargar Archivo</h1>
+    <table class="max">
+        <tr>
+            <td><strong>Nombre</strong></td>
+            <td><strong>Tamaño</strong></td>
+
+        </tr>
+         {% for t in trabajos %}
+        <tr>
+            <td> <a href="/usuario/descargar/{{t.archivo_id}}"><font color="#3D9A13">{{t.filename}}</font></a></td>
+            <td> <font color="#3D9A13">{{t.size}} bytes</font></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="javascript:window.history.back();" class="button-highlight button">Atras</a>
+</nav>
+{% endblock %}

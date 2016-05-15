@@ -1,0 +1,45 @@
+{% extends 'administracion.html' %}
+{% block encabezado %}
+{% endblock %}
+{%block titulo%}Ver Trabajo{%endblock%}
+{% block contenido %}
+<div class="histo-detalle">
+    <a href="/"><font color="#3D9A13"> home </font></a><img src="/static/img/flechaverde.png" width="12" height="10" />
+    <a href="/usuario/admincliente"><font color="#3D9A13"> Administrar Cliente </font></a><img src="/static/img/flechaverde.png" width="12" height="10" />
+    <a href="/usuario/ver_trabajo/{{h.id}}"><font color="#3D9A13"> Ver Trabajo /{{h.nombre}}  </font></a>
+</div>
+<nav class="detalle">
+    <h1>Ver Trabajo</h1>
+    <table class="max">
+        <tr>
+            <td><strong>Nombre</strong></td>
+            <td><strong>Fecha</strong></td>
+            <td><strong>Nota</strong></td>
+            <td><strong>Hora</strong></td>
+            <td><strong>Actor</strong></td>
+            <td><strong>User History</strong></td>
+            <td><strong>Flujo</strong></td>
+            <td><strong>Actividad</strong></td>
+            <td><strong>Estado</strong></td>
+            <td><strong>Sprint</strong></td>
+            <td><strong>Archivo</strong></td>
+        </tr>
+         {% for trabajo in trabajos %}
+        <tr>
+            <td>{{trabajo.nombre}}</td>
+            <td>{{trabajo.fecha}}</td>
+            <td>{{trabajo.nota}}</td>
+            <td>{{trabajo.horas}}</td>
+            <td>{{trabajo.actor}}</td>
+            <td>{{trabajo.hu}}</td>
+            <td>{{trabajo.flujo}}</td>
+            <td>{{trabajo.actividad}}</td>
+            <td>{{trabajo.estado}}</td>
+            <td>{{trabajo.sprint}}</td>
+            <td>{{trabajo.filename}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="javascript:window.history.back();" class="button-highlight button">Atras</a>
+</nav>
+{% endblock %}

@@ -1,0 +1,165 @@
+
+{% extends 'administracion.html' %}
+{% block contenido %}
+<div class="histo-detalle">
+    <a href="/"><font color="#3D9A13"> home </font></a><img src="/static/img/flechaverde.png" width="12" height="10" />
+    <a href="/usuario/ingresar_Proyecto/{{codigo}}"><font color="#3D9A13"> Proyectos </font></a><img src="/static/img/flechaverde.png" width="12" height="10" />
+    <a href="/usuario/datos_Proyecto/{{proyecto.id}}"><font color="#3D9A13"> {{proyecto}} </font></a><img src="/static/img/flechaverde.png" width="12" height="10" />
+    <a href="/usuario/adminhu/{{proyecto.id}}"><font color="#3D9A13"> Administrar Historia de Usuario </font></a>
+</div>
+
+<div id="wrapper">
+
+	<ul class="menu">
+		<li class="item1"><a href="#">Equipo</a>
+			<ul>
+				<li class="subitem1"><a href="/usuario/equipo_trabajo/{{proyecto.id}}">Agregar Miembro</a></li>
+				<li class="subitem1"><a href="/usuario/lista_eliminar_miembro/{{proyecto.id}}">Eliminar Miembro</a></li>
+                <li class="subitem2"><a href="/usuario/detalle_equipo/{{proyecto.id}}">Ver Equipo </a></li>
+			</ul>
+		</li>
+		<li class="item2"><a href="#">Historia de Usuario</a>
+			<ul>
+				<li class="subitem1"><a href='/usuario/adminhu/{{proyecto.id}}'>Administrar HU </a></li>
+			</ul>
+		</li>
+		<li class="item3"><a href="#">Sprint </a>
+			<ul>
+				<li class="subitem1"><a href="/usuario/activarsprint/{{proyecto.id}}">Crear Sprint</a></li>
+				<li class="subitem2"><a href="/usuario/gestionarsprint/{{proyecto.id}}">Ver Sprint </a></li>
+			</ul>
+		</li>
+        <li class="item3"><a href="#">Flujo</a>
+			<ul>
+				<li class="subitem1"><a href="#">Agregar Flujo</a></li>
+				<li class="subitem2"><a href="#">Ver Flujo </a></li>
+			</ul>
+		</li>
+	</ul>
+
+</div>
+<!--initiate accordion-->
+<script type="text/javascript">
+	$(function() {
+
+	    var menu_ul = $('.menu > li > ul'),
+	           menu_a  = $('.menu > li > a');
+
+	    menu_ul.hide();
+
+	    menu_a.click(function(e) {
+	        e.preventDefault();
+	        if(!$(this).hasClass('active')) {
+	            menu_a.removeClass('active');
+	            menu_ul.filter(':visible').slideUp('normal');
+	            $(this).addClass('active').next().stop(true,true).slideDown('normal');
+	        } else {
+	            $(this).removeClass('active');
+	            $(this).next().stop(true,true).slideUp('normal');
+	        }
+	    });
+
+	});
+</script>
+<nav class="detalle">
+    <h1>{{proyecto}}</h1>
+    <hr/>
+    <h1>Administrar Historia de Usuario</h1>
+    {%if hus%}
+        <div class="content">
+            <table class="max">
+                <thead>
+                <tr>
+                    <th class="thead">Nombre del HU</th>
+                    <th class="thead">Estado</th>
+                    <th width="75px" class="tnuevo"><span class="pushbutton"><a href='/usuario/crearhu/{{proyecto.id}}'class="current"> <img src="/static/img/nuevo2.png" width="25" height="25" /></a></span></th>
+                </tr>
+                </thead>
+                {% for h in hus %}
+                    <tbody>
+                    <tr>
+                        <td>{{h.nombre}}</td>
+                        {% if h.estadorevision == "PEN"%}
+                            <td>Pendiente</td>
+                        {% elif h.estadorevision == "APR" %}
+                            <td>Aprobado</td>
+                        {% elif h.estadorevision == "REC" %}
+                            <td>Rechazado</td>
+                        {% endif %}
+                        <td><ul id="nav">
+                            <li><span class="pushbutton"><a href="#" class="current" ><span><img src="/static/img/botonmenu2.png" alt="detalle"title="ver detalle" width="25" height="25" ></span></a></span>
+                                {%if h.estadorevision == "PEN"%}
+                                <div class="subs">
+
+                                    <div class="col">
+                                        <ul>
+
+
+                                            <li ><a href='/usuario/detalle_hu/{{ h.id }}/{{proyecto.id}}'><img src="/static/img/detalle.png" width="25" height="25"/> Ver</a></li>
+                                            <li><a href='/usuario/modificar_hu/{{ h.id }}/{{proyecto.id}}'><img src="/static/img/editar2.png" width="25" height="25" /> Modificar</a></li>
+                                            </ul>
+                                    </div>
+
+                                    <div class="col">
+                                        <ul>
+
+                                             <li><a href='/usuario/historialhu/{{ h.id }}/{{proyecto.id}}'><img src="/static/img/verHistorial.png" width="25" height="25" /> Ver historial</a></li>
+                                            <li><a onclick="return pregunta_hu()" href='/usuario/eliminarhu/{{ h.id }}/{{proyecto.id}}'><img src="/static/img/eliminar3.png" width="25" height="25"/> Eliminar</a></li>
+                                            <li><a href='/usuario/cambiar_estado_de_hu/{{ h.id }}/{{proyecto.id}}'><img src="/static/img/cambiarestado.png" width="25" height="25" /> Cambiar Estado</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                {%elif h.estadorevision == "APR"%}
+                                <div class="subs">
+
+                                    <div class="col">
+                                        <ul>
+
+
+                                            <li ><a href='/usuario/detalle_hu/{{ h.id }}/{{proyecto.id}}'><img src="/static/img/detalle.png" width="25" height="25"/> Ver</a></li>
+                                            <li><a href='/usuario/asignarresponsable/{{ h.id }}/{{proyecto.id}}'><img src="/static/img/reasignar.png" width="25" height="25" /> Asig. Responsable</a></li>
+                                            </ul>
+                                    </div>
+
+                                    <div class="col">
+                                        <ul>
+
+                                            <li><a href='/usuario/historialhu/{{ h.id }}/{{proyecto.id}}'><img src="/static/img/verHistorial.png" width="25" height="25" /> Ver historial</a></li>
+                                            <li><a href='/usuario/modificar_hu/{{ h.id }}/{{proyecto.id}}'><img src="/static/img/editar2.png" width="25" height="25" /> Modificar</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                {%elif h.estadorevision == "REC"%}
+                                                                <div class="subs">
+
+                                    <div class="col">
+                                        <ul>
+
+
+                                            <li ><a href='/usuario/detalle_hu/{{ h.id }}/{{proyecto.id}}'><img src="/static/img/detalle.png" width="25" height="25"/> Ver</a></li>
+                                            <li><a href='/usuario/modificar_hu/{{ h.id }}/{{proyecto.id}}'><img src="/static/img/editar2.png" width="25" height="25" /> Modificar</a></li>
+                                            </ul>
+                                    </div>
+
+                                    <div class="col">
+                                        <ul>
+                                            <li><a href='/usuario/historialhu/{{ h.id }}/{{proyecto.id}}'><img src="/static/img/verHistorial.png" width="25" height="25" /> Ver historial</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                {%endif%}
+                            </li>
+                        </ul></td>
+                    </tr>
+                    </tbody>
+                {%endfor%}
+            </table>
+
+        </div>
+    {%else%}
+    <br><br>
+        <center><font color="red">No hay Historias de Usuario registradas, presiona</font> <a href='/usuario/crearhu/{{proyecto.id}}' class="current">Aqui </a><font color="red">para crear uno nuevo</font></center>
+
+    {%endif%}
+    </nav>
+{%endblock%}

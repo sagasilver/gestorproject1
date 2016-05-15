@@ -1,0 +1,31 @@
+{% extends 'administracion.html' %}
+{% if user.is_active %}
+ {% block titulo %}Nuevo Proyecto{% endblock %}
+{% block privado%}{% endblock%}
+{% block contenido %}
+<div class="histo-detalle" xmlns="http://www.w3.org/1999/html">
+    <a href="/"><font color="#3D9A13"> home </font></a><img src="/static/img/flechaverde.png" width="12" height="10" />
+    <a href="/usuario/adminproyecto"><font color="#3D9A13"> Administrar Proyecto </font></a><img src="/static/img/flechaverde.png" width="12" height="10" />
+    <a href="/usuario/crearproyecto"><font color="#3D9A13"> Nuevo proyecto </font></a>
+</div>
+<br>
+<nav class="detalle">
+    <h1>Agregar Trabajo de un Hu</h1>
+<form method='post' action=''>{% csrf_token %}
+
+		<table class="max">
+            {{formulario}}
+            <tr>
+                        <th>Archivo Adjunto</th>
+                        <td><input id="archivo" type="file" name="archivo"></td>
+            </tr>
+        </table>
+
+           <button class="button button-action" type="submit" name="Guardar" />Guardar</button>
+
+           <a class="button button-caution" href="/usuario/flujo_proyecto/{{proyecto.id}}">Cancelar</a>
+
+</form>
+    </nav>
+{% endblock %}
+{% endif%}

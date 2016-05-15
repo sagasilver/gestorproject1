@@ -1,0 +1,38 @@
+{% extends 'administracion.html' %}
+{% block contenido %}
+<br>
+
+<nav class="detalle">
+    <h1>Sprints</h1>
+<table class="max">
+   <tr>
+        <td><strong>Sprint</strong></td>
+        <td><strong>Duracion en dias</strong></td>
+        <td><strong>Estado</strong></td>
+   </tr>
+
+
+    {% for sprint in sprints %}
+
+    <tr>
+        {%if sprint.estado == "INA"%}
+            <td><a href="/usuario/sprintbacklog/{{sprint.id}}/{{ proyecto.id }}" class="current" ><span>{{sprint.nombre}}</font></span></a></td>
+        {%else%}
+           <td><a href="#" class="current" ><span>{{sprint.nombre}}</font></span></a></td>
+        {%endif%}
+        <td><font color="green">{{sprint.duracion}}</font></td>
+        <td><font color = "green">{{sprint.estado}}</font></td>
+        {%if not hay_activo %}
+        {% if sprint.estado == "INA" %}
+            <td> <a href="/usuario/iniciar/{{sprint.id}}/{{ proyecto.id }}"class="current" ><span><button class="button button-action"><font color = "green">Activar Sprint</font></button></span></a></td>
+        {% endif %}
+        {%endif%}
+
+    </tr>
+
+   {% endfor %}
+</table>
+<a class="button button-highlight" href="/usuario/datos_Proyecto/{{ proyecto.id }}">Atras</a>
+
+</nav>
+{%endblock%}

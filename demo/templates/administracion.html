@@ -1,7 +1,6 @@
 {% extends 'Base.html' %}
 {% block titulo %}Bienvenido{% endblock %}
-
-{% block contenido %}
+{% block menu %}
 <div id='cssmenu'>
 <ul>
    <li><a href='/'>Home</a></li>
@@ -36,10 +35,11 @@
    <li class='active'><a href='#'>DESARROLLO</a>
     <ul>
           <li><a href='/usuario/ingresar_Proyecto/{{user.id}}'>Proyectos</a></li>
-      </ul>
+          <li><a href="{% url 'usuario:gestionar_flujo' %}">Plantilla de flujo</a></li>
+
+    </ul>
     </li>
 </ul>
 </div>
 
-    <p>Bienvenido {{usuario.username}}, la ultima vez que ingreso al sistema fue el {{usuario.last_login}}.</p>
-{%endblock%}
+{% endblock %}

@@ -8,14 +8,39 @@ urlpatterns = patterns('',
      url(r'^detallesprint/(?P<id_sprint>\d+)/(?P<codigo>\d+)/$', 'sgpa.views.detalle_sprint', name="detallesprint"),
      url(r'^equipo_rol/(?P<id_proyecto>\d+)/(?P<id_equipo>\d+)/$', 'sgpa.views.equipo_rol', name="equipo_rol"),
      url(r'^descargar/(?P<archivo_id>\d+)/$', 'sgpa.views.descargar', name="descargar"),
-      url(r'^flujo_proyecto/(?P<id_proyecto>\d+)/$', 'sgpa.views.flujo_proyecto', name="flujo_proyecto"),
+     url(r'^descarga_view/(?P<id_hu>\d+)/$', 'sgpa.views.descarga_view', name="descarga_view"),
+     url(r'^flujo_proyecto/(?P<id_proyecto>\d+)/$', 'sgpa.views.flujo_proyecto', name="flujo_proyecto"),
+     url(r'^agregar_flujo/(?P<id_proyecto>\d+)/$', 'sgpa.views.agregar_flujo', name="agregar_flujo"),
+     url(r'^agregar_trabajo/(?P<id_hu>\d+)/(?P<codigo>\d+)/$', 'sgpa.views.agregar_trabajo', name="agregar_trabajo"),
+     url(r'^avanzar/(?P<id_hu>\d+)/(?P<codigo>\d+)/$', 'sgpa.views.avanzar', name="avanzar"),
+     url(r'^retroceder/(?P<id_hu>\d+)/(?P<codigo>\d+)/$', 'sgpa.views.retroceder', name="retroceder"),
+     url(r'^ver_trabajo/(?P<id_hu>\d+)/$', 'sgpa.views.ver_trabajo_view', name="ver_trabajo"),
 
+     url(r'^seleccionar_flujo/(?P<id_hu>\d+)/(?P<id_sprint>\d+)/(?P<codigo>\d+)/$', 'sgpa.views.seleccionar_flujo', name="seleccionar_flujo"),
+     url(r'^respon/(?P<id_hu>\d+)/(?P<codigo>\d+)/(?P<id_sprint>\d+)/(?P<hus>[^/]+)/$', 'sgpa.views.responsable', name="respon"),
+     url(r'^flujo/(?P<id_hu>\d+)/(?P<codigo>\d+)/(?P<id_sprint>\d+)/(?P<hus>[^/]+)/$', 'sgpa.views.flujo', name="flujo"),
+     url(r'^editar_responsable/(?P<id_hu>\d+)/(?P<id_proyecto>\d+)/(?P<id_sprint>\d+)/$', 'sgpa.views.editar_responsable', name="editar_responsable"),
+     url(r'^editar_flujo/(?P<id_hu>\d+)/(?P<id_proyecto>\d+)/(?P<id_sprint>\d+)/$', 'sgpa.views.editar_flujo', name="editar_flujo"),
+     url(r'^cambiar_flujo/(?P<id_hu>\d+)/(?P<id_proyecto>\d+)/$', 'sgpa.views.cambiar_flujo', name="cambiar_flujo"),
+
+     url(r'^crearhu/(?P<codigo>\d+)/$', 'sgpa.views.nuevo_hu', name="crearhu"),
+     url(r'^gestionarsprint/(?P<codigo>\d+)/$', 'sgpa.views.gestionar_sprint', name="gestionarsprint"),
+     url(r'^activarsprint/(?P<codigo>\d+)/$', 'sgpa.views.activar_sprint', name="activarsprint"),
+     url(r'^sprintbacklog/(?P<id_sprint>\d+)/(?P<codigo>\d+)/$', 'sgpa.views.sprint_backlog', name="sprintbacklog"),
+     url(r'^asignarresponsable/(?P<id_hu>\d+)/(?P<codigo>\d+)/$', 'sgpa.views.asignar_responsable', name="asignarresponsable"),
 
      url(r'^asignarflujosprint/(?P<id_sprint>\d+)/(?P<codigo>\d+)/$', 'sgpa.views.asignar_flujo_sprint', name="asignarflujosprint"),
+     url(r'^iniciar/(?P<id_sprint>\d+)/(?P<codigo>\d+)/$', 'sgpa.views.iniciar', name="iniciar"),
 
+     url(r'^asignarhusprint/(?P<id_proyecto>\d+)/(?P<id_sprint>\d+)/$', 'sgpa.views.asignar_hu_a_sprint', name="asignarhusprint"),
+     url(r'^asignarresponsable/(?P<id_hu>\d+)/(?P<codigo>\d+)/$', 'sgpa.views.asignar_responsable', name="asignarresponsable"),
+     url(r'^historialhu/(?P<id_hu>\d+)/(?P<codigo>\d+)/$', 'sgpa.views.historial_hu', name="historialhu"),
+     url(r'^cambiar_estado_de_hu/(?P<id_hu>\d+)/(?P<codigo>\d+)/$', 'sgpa.views.cambiar_estado_de_hu', name="cambiar_estado_de_hu"),
 
-
-
+     url(r'^adminhu/(?P<codigo>\d+)/$', 'sgpa.views.hu_admin', name="adminhu"),
+     url(r'^detalle_hu/(?P<id_hu>\d+)/(?P<codigo>\d+)/$', 'sgpa.views.detalle_hu_view', name = "detalle_hu"),
+     url(r'^modificar_hu/(?P<id_hu>\d+)/(?P<codigo>\d+)/$', 'sgpa.views.modificar_hu_view', name = "modificar_hu"),
+     url(r'^eliminarhu/(?P<id_hu>\d+)/(?P<codigo>\d+)/$', 'sgpa.views.eliminar_hu', name = "eliminarhu"),
 
 
      url(r'^administrar', 'sgpa.views.usuario_admin', name="administrar"),
@@ -62,10 +87,13 @@ urlpatterns = patterns('',
      url(r'^modificar_cliente/(?P<id_cliente>\d+)/$', 'sgpa.views.modificar_cliente_view', name = "modificar_cliente"),
      url(r'^eliminar_cliente/(?P<codigo>\d+)/$', 'sgpa.views.eliminar_cliente', name = "eliminar_cliente"),
 
-
-
+     url(r'^gestionar_flujo', 'sgpa.views.gestionar_flujo', name="gestionar_flujo"),
+     url(r'^crearflujo', 'sgpa.views.nuevo_flujo', name="crearflujo"),
+     url(r'^detalle_flujo/(?P<id_flujo>\d+)/$', 'sgpa.views.detalle_flujo_view', name = "detalle_flujo"),
+     url(r'^modificar_flujo/(?P<id_flujo>\d+)/$', 'sgpa.views.modificar_flujo', name = "modificar_flujo"),
+     url(r'^eliminar_flujo/(?P<codigo>\d+)/$', 'sgpa.views.eliminar_flujo', name = "eliminar_flujo"),
      url(r'^ingresar_Proyecto/(?P<codigo>\d+)/$', 'sgpa.views.ingresar_Proyecto', name = "ingresar_Proyecto"),
      url(r'^datos_Proyecto/(?P<id_proyecto>\d+)/$', 'sgpa.views.datos_Proyecto', name = "datos_Proyecto"),
-
+     url(r'^agregar_actividad/(?P<flujo_id>\d+)/$', 'sgpa.views.agregar_actividad', name = "agregar_actividad"),
      url(r'^crear_usuario', 'sgpa.views.nuevo_usuario', name="crear_usuario")
 )

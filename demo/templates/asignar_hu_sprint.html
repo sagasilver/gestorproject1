@@ -1,0 +1,19 @@
+{% extends 'Base.html' %}
+{% if user.is_active %}
+{% block titulo %}Asignar Flujo{% endblock %}
+{% block encabezado %}
+<h1> Asigne las Historias de Usuario</h1>
+{% endblock %}
+{% block privado%}{% endblock%}
+{% block contenido %}
+<form method='post' action="">{% csrf_token %}
+
+	<table>{{formulario}}</table>
+
+    <button type="submit" name="Guardar">Guardar</button>
+
+    <a href="/usuario/activarsprint/{{sprint.id}}/{{ proyecto.id }}"><button type="button">Cancelar </button>
+
+</form>
+{% endblock %}
+{% endif %}

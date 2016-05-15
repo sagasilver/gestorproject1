@@ -1,0 +1,139 @@
+</html>{% extends 'Base.html' %}
+{% block contenido %}
+<br>
+<nav class="detalle">
+    <h1>Kanban</h1>
+    <br>
+    {%for flujo in flujos%}
+    <div class="scroll"><table border="2px" align="center" class="fl">
+            <th bgcolor="#79F986" align="center" colspan="100">{{flujo.nombre}}
+            </th>
+            <tr>
+                {% for actividad in flujo.actividades.all %}
+                    <td>
+                        <center><table class="fl" border="1px" align="center">
+                            <tr>
+                               <th colspan="100" align="center">{{actividad}}</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    TO_DO
+                                </td>
+                                <td>
+                                    DOING
+                                </td>
+                                <td>
+                                    DONE
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <table class="fl">
+                                    {% for h in hu %}
+                                        {% if h.actividad_id == actividad.id and h.estadoflujo == "TOD" %}
+                                                    <tr>
+                                                        <td><ul id="nav">
+                                                            <li><a href="#" class="current" ><center>{{h}}</center></a>
+                                                                <div class="subs">
+                                                                    <div class="col">
+                                                                        {% if actividad.orden == 1%}
+                                                                            <ul>
+                                                                                <li ><a href='/usuario/agregar_trabajo/{{ h.id }}/{{proyecto.id}}'><img src="/static/img/detalle.png" width="25" height="25"/>Agregrar Trabajo</a></li>
+                                                                                <li><a href='/usuario/descarga_view/{{ h.id }}'><img src="/static/img/descarga.jpg" width="25" height="25"/> Descargar Archivos</a></li>
+                                                                                <li><a href='/usuario/ver_trabajo/{{ h.id }}'><img src="/static/img/editar2.png" width="25" height="25" /> Ver Historial de trabajo</a></li>
+                                                                                <li><a href='/usuario/avanzar/{{ h.id }}/{{proyecto.id}}'><img src="/static/img/flechaverde.png" width="25" height="25" /> Avanzar HU</a></li>
+                                                                                <li><a href='/usuario/cambiar_flujo/{{ h.id }}/{{proyecto.id}}'><img src="/static/img/cambiar.png" width="25" height="25" /> Cambiar Flujo</a></li>
+                                                                            </ul>
+                                                                        {% else %}
+                                                                            <ul>
+                                                                                <li ><a href='/usuario/agregar_trabajo/{{ h.id }}/{{proyecto.id}}'><img src="/static/img/detalle.png" width="25" height="25"/>Agregrar Trabajo</a></li>
+                                                                                <li><a href='/usuario/descarga_view/{{ h.id }}'><img src="/static/img/descarga.jpg" width="25" height="25"/> Descargar Archivos</a></li>
+                                                                                <li><a href='/usuario/ver_trabajo/{{ h.id }}'><img src="/static/img/editar2.png" width="25" height="25" /> Ver Historial de trabajo</a></li>
+                                                                                <li><a href='/usuario/avanzar/{{ h.id }}/{{proyecto.id}}'><img src="/static/img/flechaverde.png" width="25" height="25" /> Avanzar HU</a></li>
+                                                                                <li><a href='/usuario/retroceder/{{ h.id }}/{{proyecto.id}}'><img src="/static/img/flecha.png" width="25" height="25" /> Retroceder HU</a></li>
+                                                                                <li><a href='/usuario/cambiar_flujo/{{ h.id }}/{{proyecto.id}}'><img src="/static/img/cambiar.png" width="25" height="25" /> Cambiar Flujo</a></li>
+
+                                                                            </ul>
+                                                                        {% endif %}
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        </ul></td>
+                                                    </tr>
+                                        {% endif %}
+                                    {% endfor %}
+                                    </table>
+                                </td>
+                                <td>
+                                <table class="fl">
+                                    {% for h in hu %}
+                                        {% if h.actividad_id == actividad.id and h.estadoflujo == "DOI" %}
+                                                    <tr>
+                                                        <td>
+                                                        <td><ul id="nav">
+                                                            <li><a href="#" class="current" ><center>{{h}}</center></a>
+                                                                <div class="subs">
+                                                                    <div class="col">
+                                                                        <ul>
+                                                                            <li ><a href='/usuario/agregar_trabajo/{{ h.id }}/{{proyecto.id}}'><img src="/static/img/detalle.png" width="25" height="25"/>Agregrar Trabajo</a></li>
+                                                                            <li><a href='/usuario/descarga_view/{{ h.id }}'><img src="/static/img/descarga.jpg" width="25" height="25"/> Descargar Archivos</a></li>
+                                                                            <li><a href='/usuario/ver_trabajo/{{ h.id }}'><img src="/static/img/editar2.png" width="25" height="25" /> Ver Historial de trabajo</a></li>
+                                                                            <li><a href='/usuario/avanzar/{{ h.id }}/{{proyecto.id}}'><img src="/static/img/flechaverde.png" width="25" height="25" /> Avanzar HU</a></li>
+                                                                            <li><a href='/usuario/retroceder/{{ h.id }}/{{proyecto.id}}'><img src="/static/img/flecha.png" width="25" height="25" /> Retroceder HU</a></li>
+                                                                            <li><a href='/usuario/cambiar_flujo/{{ h.id }}/{{proyecto.id}}'><img src="/static/img/cambiar.png" width="25" height="25" /> Cambiar Flujo</a></li>
+
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        </ul></td>
+                                                        </td>
+                                                    </tr>
+                                        {% endif %}
+                                    {% endfor %}
+                                    </table>
+
+                                </td>
+                                <td>
+                                <table class="fl">
+                                    {% for h in hu%}
+                                              {% if h.actividad_id == actividad.id and h.estadoflujo == "DON" %}
+                                                    <tr>
+                                                        <td>
+                                                        <td><ul id="nav">
+                                                            <li><a href="#" class="current" ><center>{{h}}</center></a>
+                                                                <div class="subs">
+                                                                    <div class="col">
+                                                                        <ul>
+                                                                            <li ><a href='/usuario/agregar_trabajo/{{ h.id }}/{{proyecto.id}}'><img src="/static/img/detalle.png" width="25" height="25"/>Agregrar Trabajo</a></li>
+                                                                            <li><a href='/usuario/descarga_view/{{ h.id }}'><img src="/static/img/descarga.jpg" width="25" height="25"/> Descargar Archivos</a></li>
+                                                                            <li><a href='/usuario/ver_trabajo/{{ h.id }}'><img src="/static/img/editar2.png" width="25" height="25" /> Ver Historial de trabajo</a></li>
+                                                                            <li><a href='/usuario/avanzar/{{ h.id }}/{{proyecto.id}}'><img src="/static/img/flechaverde.png" width="25" height="25" /> Avanzar HU</a></li>
+                                                                            <li><a href='/usuario/retroceder/{{ h.id }}/{{proyecto.id}}'><img src="/static/img/flecha.png" width="25" height="25" /> Retroceder HU</a></li>
+                                                                            <li><a href='/usuario/cambiar_flujo/{{ h.id }}/{{proyecto.id}}'><img src="/static/img/cambiar.png" width="25" height="25" /> Cambiar Flujo</a></li>
+
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        </ul></td>
+                                                        </td>
+                                                    </tr>
+                                              {% endif %}
+                                    {% endfor %}
+                                </table>
+                                </td>
+                            </tr>
+                        </table>
+                        </center>
+                    </td>
+                {%empty%}
+                <td>No hay actividades</td>
+                {%endfor%}
+            </tr>
+    </table></div>
+    {%endfor%}
+        <br>
+        <a href="javascript:window.history.back();" class="button-highlight button">Atras</a>
+</nav>
+{% endblock %}

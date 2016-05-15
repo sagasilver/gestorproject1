@@ -1,0 +1,30 @@
+{% extends 'administracion.html' %}
+{% block contenido %}
+<br>
+<nav>
+    <h1>Detalle de Sprint</h1>
+    <table class="max">
+   <tr>
+        <th>Flujos</th>
+        <td>
+            {%for f in flujo %}
+                <ul><li>{{f.nombre}}</li></ul>
+            {%endfor%}
+        </td>
+
+   </tr>
+
+   <tr>
+        <th>Historias de Usuario</th>
+        <td>
+            {%for h in hu%}
+                <ul><li>{{h.nombre}}</li></ul>
+            {%endfor%}
+        </td>
+
+   </tr>
+
+</table>
+    <a href="javascript:window.history.back();" class="button-highlight button">Atras</a>
+</nav>
+{%endblock%}

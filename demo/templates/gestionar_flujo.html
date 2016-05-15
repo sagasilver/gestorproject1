@@ -1,0 +1,52 @@
+
+{% extends 'administracion.html' %}
+{% block contenido %}
+<br>
+<nav>
+      {%if flujos%}
+        <h1>Administrar Flujo</h1>
+        <div class="content">
+            <table class="max">
+                <thead>
+                <tr>
+                    <th class="thead">Flujo</th>
+                    <th class="tnuevo"><span class="pushbutton"><a href="{% url 'usuario:crearflujo' %}" class="current"> <img src="/static/img/nuevo2.png" width="35" height="35" /></a></span></th>
+
+                 </tr>
+                </thead>
+                {% for flujo in flujos %}
+                    <tbody>
+                    <tr>
+                        <td>{{flujo.nombre}}</td>
+                        <td><ul id="nav">
+                            <li><span class="pushbutton"><a href="#" class="current" ><span><img src="/static/img/botonmenu2.png" alt="detalle"title="ver detalle" width="35" height="35" ></span></a></span>
+                                <div class="subs">
+
+                                    <div class="col">
+                                        <ul>
+                                            <li><a href='/usuario/detalle_flujo/{{flujo.id}}'><img src="/static/img/detalle.png" width="25" height="25"/> Ver</a></li>
+
+                                            <li><a onclick="return pregunta_flujo()" href='/usuario/eliminar_flujo/{{flujo.id}}'><img src="/static/img/eliminar3.png" width="25" height="25"/> Eliminar</a></li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="col">
+                                        <ul>
+                                            <li><a href='/usuario/modificar_flujo/{{flujo.id}}'><img src="/static/img/editar2.png" width="25" height="25" /> Modificar</a></li>
+                                            <li><a href='/usuario/agregar_actividad/{{flujo.id}}'><img src="/static/img/cambiarestado.png" width="25" height="25" /> Agregar Actividad</a></li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul></td>
+                    </tr>
+                    </tbody>
+                {%endfor%}
+            </table>
+        </div>
+    {%else%}
+        <font color="red">No hay Flujos registrados, presiona</font> <a href="{% url 'usuario:crearflujo' %}" class="current">Aqui </a><font color="red">para crear uno nuevo</font>
+    {%endif%}
+</nav>
+{%endblock%}

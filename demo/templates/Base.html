@@ -3,13 +3,11 @@
 
 
     <head>
-
-        <meta charset='utf-8'>
-        <title>GESTOR PROJECT {% block titulo %}{% endblock %}</title>
+<meta charset='utf-8'>
+        <title> GESTION DE PROYECTOS{% block titulo %}{% endblock %}</title>
         <meta name="keywords" content="/static/img/go.png" />
         <link rel='stylesheet' href='{{STATIC_URL}}css/style2.css'>
-        <link rel='shortcut icon' href='{{STATIC_URL}}img/icono.png'>
-        <link rel='stylesheet' type="text/css" href='{{STATIC_URL}}css/jquery.jqplot.css'>
+
         {% block style_css %}{% endblock %}
         <script src='{{STATIC_URL}}js/jquery-1.7.2.min.js'></script>
         <script src='{{STATIC_URL}}js/demo.js'></script>
@@ -23,11 +21,7 @@
         <script src='{{STATIC_URL}}js/menuvertical.js'></script>
         <script src='{{STATIC_URL}}js/menuhorizontal.js'></script>
 
-        <script src='{{STATIC_URL}}js/jquery.jqplot.js'></script>
-        <script src='{{STATIC_URL}}js/plugins/jqplot.categoryAxisRenderer.js'></script>
-        <script src='{{STATIC_URL}}js/plugins/jqplot.canvasTextRenderer.js'></script>
-        <script src='{{STATIC_URL}}js/plugins/jqplot.canvasAxisLabelRenderer.js'></script>
-        <script src='{{STATIC_URL}}js/plugins/jqplot.pointLabels.js'></script>
+
 
     </head>
 
@@ -39,7 +33,7 @@
         {% endif %}
             {% if user.is_active %}
             <h1  align="center">
-                <h1><font color="white" size="15px">GESTIONAR PROYECTO </font> </h1>
+                <img src="/static/img/cooltext181329331460529.png" >
             </h1>
             {% endif %}
 
@@ -57,7 +51,6 @@
 
         <section class='contenido'>
             {%block menu%}{%endblock%}
-
             {%block menuVertical%}{%endblock%}
             {% block contenido %}{%endblock%}
 
@@ -65,7 +58,7 @@
         <br><br>
         <footer>
             <div class="footer-bottom">
-
+                <p align="right"><p> Facultad Politécnica - Universidad Nacional de Asunción.<p>2016</p>
             </div>
         </footer>
 

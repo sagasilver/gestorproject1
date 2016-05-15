@@ -1,0 +1,16 @@
+{% extends 'administracion.html' %}
+<h1>Asignar Flujo </h1>
+{% block contenido %}
+<br>
+<nav class="detalle">
+    <h1>Asingar flujo para Hitoria de Usuario</h1>
+<form action='' method="post"> {% csrf_token%}
+        <table class="max">
+            {{formulario}}
+        </table>
+    <button class="button button-action" type="submit" name="Guardar" />Guardar</button>
+    <a class="button button-caution" href= '/usuario/adminhu/{{proyecto.id}}' >Cancelar</a>
+
+</form>
+</nav>
+{% endblock %}

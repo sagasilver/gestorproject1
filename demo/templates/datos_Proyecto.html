@@ -1,3 +1,4 @@
+
 {% extends 'administracion.html' %}
 {% if user.is_active %}
 {% block contenido %}
@@ -17,7 +18,23 @@
 				<li class="subitem2"><a href="/usuario/detalle_equipo/{{proyecto.id}}">Ver Equipo </a></li>
 			</ul>
 		</li>
-
+		<li class="item2"><a href="#">Historia de Usuario</a>
+			<ul>
+				<li class="subitem1"><a href='/usuario/adminhu/{{proyecto.id}}'>Administrar HU </a></li>
+			</ul>
+		</li>
+		<li class="item3"><a href="#">Sprint </a>
+			<ul>
+				<li class="subitem1"><a href="/usuario/activarsprint/{{proyecto.id}}">Crear Sprint</a></li>
+				<li class="subitem2"><a href="/usuario/gestionarsprint/{{proyecto.id}}">Ver Sprint </a></li>
+			</ul>
+		</li>
+        <li class="item3"><a href="#">Flujo</a>
+			<ul>
+				<li class="subitem1"><a href="/usuario/agregar_flujo/{{proyecto.id}}">Agregar Flujo</a></li>
+				<li class="subitem2"><a href="/usuario/flujo_proyecto/{{proyecto.id}}">Ver Kanban </a></li>
+			</ul>
+		</li>
 	</ul>
 
 </div>
@@ -67,9 +84,23 @@
                                 {% endfor %}
                             </td>
         </tr>
-
+        <tr>
+            <td>Historias de Usuario</td>
+                            <td>
+                                {% for h in hu %}
+                                    <ul><li><font color="black">{{h}}</font></li></ul>
+                                {% endfor %}
+                            </td>
+        </tr>
+        <tr>
+            <td>Flujo</td>
+                            <td>
+                                {% for f in flujo %}
+                                    <ul><li><font color="black">{{f}}</font></li></ul>
+                                {% endfor %}
+                            </td>
+        </tr>
     </table>
-    <center><a href="#"><img src="/static/img/eliminar.png" width="20" height="20"/></a><center/>
 </nav>
 
 <!--initiate accordion-->

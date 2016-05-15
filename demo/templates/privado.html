@@ -5,37 +5,39 @@
 <div id='cssmenu'>
 <ul>
    <li><a href='/'>Home</a></li>
-    <!--{%if "administrar sistema" in permisos %}-->
+    {%if "administrar sistema" in permisos %}
    <li class='active'><a href='#'>ADMINISTRACION</a>
       <ul>
-          <!--{%if "administrar usuario" in permisos %} -->
+          {%if "administrar usuario" in permisos %}
           <li><a href="{% url 'usuario:administrar' %}">Administrar Usuario</a></li>
-          <!--{%endif%}-->
-          <!--{%if "administrar proyecto" in permisos %}-->
+          {%endif%}
+          {%if "administrar proyecto" in permisos %}
           <li><a href="{% url 'usuario:adminproyecto' %}">Administrar Proyecto</a></li>
-          <!--{%endif%}-->
-          <!--{%if "administrar cliente" in permisos %}-->
+          {%endif%}
+          {%if "administrar cliente" in permisos %}
           <li><a href="{% url 'usuario:admincliente' %}">Administrar Cliente</a></li>
-          <!--{%endif%}-->
-          <!--{%if "administrar rol" in permisos %}-->
+          {%endif%}
+          {%if "administrar rol" in permisos %}
           <li><a href="#">Administrar Rol</a>
               <ul>
-                  <!--{%if "administrar rol sistema" in permisos %}-->
+                  {%if "administrar rol sistema" in permisos %}
                   <li><a href="{% url 'usuario:adminrolsistema' %}">Rol de Sistema</a></li>
                   {%endif%}
-                  <!--{%if "administrar rol sistema" in permisos %}-->
+                  {%if "administrar rol sistema" in permisos %}
                   <li><a href="{% url 'usuario:adminrolproyecto' %}">Rol de Proyecto</a></li>
-                  <!--{%endif%}-->
+                  {%endif%}
               </ul>
           </li>
-          <!--{%endif%}-->
+          {%endif%}
 
       </ul>
    </li>
-    <!--{%endif%}-->
+    {%endif%}
    <li class='active'><a href='#'>DESARROLLO</a>
     <ul>
           <li><a href='/usuario/ingresar_Proyecto/{{user.id}}'>Proyectos</a></li>
+          <li><a href="{% url 'usuario:gestionar_flujo' %}">Plantilla de flujo</a></li>
+
       </ul>
     </li>
 </ul>

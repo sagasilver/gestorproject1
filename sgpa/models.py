@@ -26,7 +26,7 @@ class Permiso(models.Model):
 
 
 class Actividad(models.Model):
-    nombre = models.CharField(max_length=60, unique=False)
+    nombre = models.CharField(max_length=60)
     estado_1 = models.CharField(max_length=5,default="TO_DO")
     estado_2 = models.CharField(max_length=5, default="DOING")
     estado_3 = models.CharField(max_length=5,default="DONE")
@@ -41,7 +41,6 @@ class Flujo(models.Model):
     nombre = models.CharField(max_length=60, unique=True)
     descripcion = models.CharField(max_length=200, unique=True)
     actividades = models.ManyToManyField(Actividad, related_name='actividades')
-    cantidad = models.IntegerField(default=0)
 
     def __unicode__(self):
         return self.nombre
@@ -142,7 +141,10 @@ class ProyectoFormCambioEstado(ModelForm):
         model = Proyecto
         fields=("estado",)
 
-
+class AgregarFlujoForm(ModelForm):
+    class Meta:
+        model = Proyecto
+        fields = ('flujo',)
 
 
 class ProyectoFormReasignarLider(forms.ModelForm):
@@ -222,7 +224,74 @@ class ClienteFormCambioEstado(forms.ModelForm):
         model = Cliente
         fields = ("estado",)
 
+class Hu(models.Model):
+    ESTADO_CHOICES=(
+        ('PEN','Pendiante'),
+        ('APR','Aprobado'),
+        ('REC','Rechazado')
+    )
+    ESTADODESARROLLO_CHOICES=(
+        ('SUS','Suspender'),
+        ('PRO','Procesar')
+    )
+    ESTADOFLUJO_CHOICES=(
+        ('TOD','To Do'),
+        ('DOI','Doing'),
+        ('DON','Done')
+    )
+    nombre = models.CharField(max_length=32)
+    observacion = models.TextField(max_length=200)
+    valornegocio =  models.IntegerField(default=1)
+    valortecnico = models.IntegerField(default=1)
+    flujo = models.ForeignKey(Flujo, related_name='flujo', null=True)
+    hora = models.PositiveIntegerField(default=1)
+    actividad = models.ForeignKey(Actividad,null=True)
+    responsable= models.ForeignKey(User, related_name='responsable',null=True)
+    proyecto = models.ForeignKey(Proyecto, related_name='proyecto',null=True)
+    estadorevision =  models.CharField(max_length=20,
+                              choices=ESTADO_CHOICES,
+                              default='PEN')
+    estadodesarrolllo = models.CharField(max_length=20,
+                              choices=ESTADODESARROLLO_CHOICES,
+                              default='PRO')
+    estadoflujo = models.CharField(max_length=20,
+                              choices=ESTADOFLUJO_CHOICES,
+                              default='TOD')
+    def __unicode__(self):
+        return self.nombre
 
+
+class Sprint(models.Model):
+    ESTADO_CHOICES=(
+        ('ACT','Activo'),
+        ('INA','Inactivo')
+    )
+    duracion = models.IntegerField(default=1)
+    fechaInicio = models.CharField(max_length=50)
+    fechaFin= models.CharField(max_length=50)
+    nombre = models.CharField(max_length=60, blank=False)
+    estado = models.CharField(max_length=20,blank=False,
+                              choices=ESTADO_CHOICES,
+                              default='INA')
+    hu = models.ManyToManyField(Hu, related_name='hu')
+    proyecto = models.ForeignKey(Proyecto, related_name='project',null=True)
+
+
+    def __unicode__(self):
+        return self.nombre
+
+
+class SprintForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        proyecto = kwargs.pop('proyecto')
+        claves = kwargs.pop('claves')
+        super(SprintForm, self).__init__(*args, **kwargs)
+        self.fields['hu'].queryset = Hu.objects.filter(proyecto = proyecto).filter(estadorevision = 'APR').exclude(id__in = claves  )
+        for field in self.fields:
+            self.fields[field].error_messages = {'required':'Este campo es obligatorio'}
+    class Meta:
+        model = Sprint
+        fields = ('duracion','hu')
 
 
 class Equipo(models.Model):
@@ -254,13 +323,74 @@ class EquipoRolForm(ModelForm):
         fields = ('rol',)
 
 
+class HuForm(forms.ModelForm):
+    class Meta:
+        model= Hu
+        fields = ("nombre","observacion","valornegocio")
+
+class HuModificarForm(forms.ModelForm):
+    class Meta:
+        model= Hu
+        fields = ("nombre","observacion","valornegocio","valortecnico")
+
+class HuFormCambiarEstado(forms.ModelForm):
+    class Meta:
+        model = Hu
+        fields = ("estadorevision",)
+
+class _HuFormFLujo(forms.ModelForm):
+    class Meta:
+        model = Hu
+        fields = ("flujo",)
+
+class HuFormFlujo(_HuFormFLujo):
+    def __init__(self, *args, **kwargs):
+        proyecto = kwargs.pop('proyecto')
+        super(_HuFormFLujo, self).__init__(*args, **kwargs)
+        self.fields['flujo'].queryset = proyecto.flujo.all()
+        for field in self.fields:
+            self.fields[field].error_messages = {'required':'Este campo es obligatorio'}
+
+class HuFormEditarFlujo(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        flujos = kwargs.pop('flujos')
+        super(HuFormEditarFlujo, self).__init__(*args, **kwargs)
+        self.fields['flujo'].queryset = flujos
+        for field in self.fields:
+            self.fields[field].error_messages = {'required':'Este campo es obligatorio'}
+    class Meta:
+        model = Hu
+        fields = ("flujo",)
+
+class HuFormResponsable(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        claves = kwargs.pop('claves')
+
+        super(HuFormResponsable, self).__init__(*args, **kwargs)
+        self.fields['responsable'].queryset = User.objects.filter(id__in = claves)
+        for field in self.fields:
+            self.fields[field].error_messages = {'required':'Este campo es obligatorio'}
+    class Meta:
+        model = Hu
+        fields = ("responsable",)
 
 
 
+class Historia(models.Model):
+    nombre = models.CharField(max_length=60)
+    usuario = models.CharField(max_length=60)
+    fecha = models.CharField(max_length=50)
+    descripcion = models.CharField(max_length=200)
+    hu = models.ForeignKey(Hu, related_name='hishu', null=False)
+
+    def __unicode__(self):
+        return self.nombre
 
 
-
-
+class AsignarHuSprintForm(forms.ModelForm):
+    class Meta:
+        model= Sprint
+        fields = ("hu",)
 
 class Files (models.Model):
     nombre = models.CharField(max_length=60)
@@ -273,18 +403,19 @@ class Trabajo(models.Model):
     def obtener_nombre_archivo(instance, filename):
         return "Archivos subidos/%s_%s" % (str(time()).replace('.'',''_'),filename)
     nombre = models.CharField(max_length=60)
-    horas = models.PositiveIntegerField(default=0)
+    horas = models.CharField(max_length=60)
     fecha = models.CharField(max_length=60)
     nota = models.TextField(max_length=200)
     actor = models.CharField(max_length=60)
     archivo = models.OneToOneField(Files,related_name='archivo', null=True)
-#    hu = models.ForeignKey(Hu, related_name='historiatrabajo', null=False)
+    hu = models.ForeignKey(Hu, related_name='historiatrabajo', null=False)
     filename = models.CharField(max_length=60, null=True)
     size = models.IntegerField(null=True)
-    flujo = models.CharField(max_length=60, null=True)
-    actividad = models.CharField(max_length=60, null=True)
-    estado = models.CharField(max_length=60, null=True)
-    sprint = models.CharField(max_length=60, null=True)
+    flujo = models.CharField(max_length=60)
+    actividad = models.CharField(max_length=60)
+    estado = models.CharField(max_length=60)
+    sprint = models.CharField(max_length=60)
+
 
     def __unicode__(self):
         return self.nombre
@@ -294,3 +425,15 @@ class TrabajoForm(forms.ModelForm):
         model = Trabajo
         fields = ("nombre","horas","nota")
 
+class SprintFormAsignarHu(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        proyecto = kwargs.pop('proyecto')
+        claves = kwargs.pop('claves')
+        super(SprintFormAsignarHu, self).__init__(*args, **kwargs)
+        self.fields["hu"].widget = CheckboxSelectMultiple()
+        self.fields['hu'].queryset = Hu.objects.filter(proyecto = proyecto).filter(estadorevision = 'APR').exclude(id__in = claves  )
+        for field in self.fields:
+            self.fields[field].error_messages = {'required':'Este campo es obligatorio'}
+    class Meta:
+        model = Sprint
+        fields = ('hu',)

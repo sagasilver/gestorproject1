@@ -2,7 +2,6 @@ from django.contrib.auth.models import User
 from sgpa.models import Rol
 
 
-
 def obtenerPermisos(request):
     usuario = request.user
     roles = usuario.roles.all()

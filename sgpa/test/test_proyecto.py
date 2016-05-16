@@ -12,11 +12,11 @@ class GTGTestCase(TestCase):
         '''
 
         c = Client()
-        c.login(username='luis', password='luis')
+        c.login(username='gustavo', password='gustavo')
         print('\n------Ejecutando test para registrar un proyecto...-------\n')
 
 
-        resp = c.post('/usuario/crearproyecto',{"fechaInicio": "2014-05-07", "lider": 1, "nombre": "sgpa", "estado": "PEN", "fechaFin": "2015-05-07"})
+        resp = c.post('/usuario/crearproyecto',{"fechaInicio": "2014-05-07", "lider": 1, "nombre": "gestor project", "estado": "PEN", "fechaFin": "2016-05-07"})
         self.assertTrue(resp.status_code,200)
         print ('\n------Crea el proyecto si esta correctamente completado------git status\n')
 
@@ -26,7 +26,7 @@ class GTGTestCase(TestCase):
         '''
 
         c = Client()
-        c.login(username='luis', password='luis')
+        c.login(username='gustavo', password='gustavo')
         print('\n------Ejecutando test para modificar proyecto...-------')
 
         resp = c.get('/usuario/modificar_proyecto/45/')
@@ -38,7 +38,7 @@ class GTGTestCase(TestCase):
         self.assertTrue(resp.status_code, 404)
         print ('Test acceder a modificar proyecto existente')
 
-        resp = c.post('/usuario/modificar_proyecto/1/',{'nombre':'sgpa'})
+        resp = c.post('/usuario/modificar_proyecto/1/',{'nombre':'gestor project'})
         self.assertTrue(resp.status_code,200)
         print ('Modifica el proyecto\n')
 
@@ -48,7 +48,7 @@ class GTGTestCase(TestCase):
         '''
 
         c = Client()
-        c.login(username='luis', password='luis')
+        c.login(username='gustavo', password='gustavo')
         print('\n------Ejecutando test para ver detalle  proyecto...-------')
 
         resp = c.get('/usuario/detalle_proyecto/45/')

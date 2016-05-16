@@ -3,6 +3,7 @@ from django.test import Client
 from django.contrib.auth.models import User
 from django.contrib.auth import SESSION_KEY
 
+__author__ = 'luis'
 
 class TestInicio_sesion(TestCase):
     def setUp(self):

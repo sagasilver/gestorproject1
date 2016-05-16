@@ -18,7 +18,7 @@ class GTGTestCase(TestCase):
         self.assertTrue(u.check_password('testpw'))
         print('\n------Test para crear usuario correcto-------\n')
 
-        print('\n------Ejecutando test para contrasenha incorrecta-------\n')
+        print('\n------Ejecutando test para contraseña incorrecta-------\n')
         # Test para contrasenha incorrecta
         u.set_unusable_password()
         u.save()
@@ -28,7 +28,7 @@ class GTGTestCase(TestCase):
         self.assertTrue(u.check_password('testpw'))
         u.set_password(None)
         self.assertFalse(u.has_usable_password())
-        print('\n------Test para crear contrasenha incorrecta correcto-------\n')
+        print('\n------Test para crear contraseña incorrecta correcto-------\n')
 
         print('\n------Ejecutando test para identificar permiso-------\n')
         # Test para identificar permisos

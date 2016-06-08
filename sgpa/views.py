@@ -1105,8 +1105,8 @@ def nuevo_hu(request,codigo):
                     dato = Historia(usuario=usuario.username,nombre='Crear',fecha=fecha,descripcion='Se Crea el HU',hu=pro)
                     dato.save()
                     mensaje = "Se creo el hu: %s. \nFue creado por: %s" %(nombre, usuario.username)
-                    mail = EmailMessage('Creacion de un HU',mensaje,'smtp.gmail.com',['luiscapdevila@hotmail.es','lagd@live.com'])
-                    mail.send()
+                    #mail = EmailMessage('Creacion de un HU',mensaje,'smtp.gmail.com',['gustavootazu2010@hotmail.es','lagd@live.com'])
+                    #mail.send()
 
                     return HttpResponseRedirect(reverse('usuario:adminhu',args=(proyecto.id,)))
                 else:
@@ -1150,7 +1150,7 @@ def eliminar_hu(request, id_hu, codigo):
             hu.delete()
             usuario=request.user
             mensaje = "Se elimino el hu: %s. \nFue eliminado por: %s" %(hu.nombre, usuario.username)
-            mail = EmailMessage('Eliminacion  de un HU',mensaje,'smtp.gmail.com',['luiscapdevila@hotmail.es','lagd@live.com'])
+            mail = EmailMessage('Eliminacion  de un HU',mensaje,'smtp.gmail.com',['gustavootazu2010@hotmail.es','lagd@live.com'])
             mail.send()
         return HttpResponseRedirect(reverse('usuario:adminhu',args=(proyecto.id,)))
     else:
@@ -1181,7 +1181,7 @@ def modificar_hu_view( request, id_hu, codigo):
                 dato = Historia(usuario=usuario.username,nombre='Modificar',fecha=fecha,descripcion='Se Modifica al HU',hu=hu)
                 dato.save()
                 mensaje = "Se modifico el hu: %s. \nFue modificado por: %s" %(hu.nombre, usuario.username)
-                mail = EmailMessage('Modificacion de HU',mensaje,'smtp.gmail.com',['luiscapdevila@hotmail.es','lagd@live.com'])
+                mail = EmailMessage('Modificacion de HU',mensaje,'smtp.gmail.com',['gustavootazu2010@hotmail.es','lagd@live.com'])
                 mail.send()
                 return HttpResponseRedirect(reverse('usuario:adminhu',args=(proyecto.id,)))
         else:
@@ -1939,7 +1939,7 @@ def descargar(request,archivo_id):
     '''
     archivo = Files.objects.get(pk=archivo_id)
     response = HttpResponse()
-    response['Content-Disposition'] = 'attachment; filename="SGPA-Download"'
+    response['Content-Disposition'] = 'attachment; filename="sgpa-Download"'
     response.write(archivo.dato)
     return response
 

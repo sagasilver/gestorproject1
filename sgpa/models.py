@@ -243,6 +243,7 @@ class Hu(models.Model):
     observacion = models.TextField(max_length=200)
     valornegocio =  models.IntegerField(default=1)
     valortecnico = models.IntegerField(default=1)
+   # prioridad = models.IntegerField(default=1)
     flujo = models.ForeignKey(Flujo, related_name='flujo', null=True)
     hora = models.PositiveIntegerField(default=1)
     actividad = models.ForeignKey(Actividad,null=True)
@@ -257,6 +258,8 @@ class Hu(models.Model):
     estadoflujo = models.CharField(max_length=20,
                               choices=ESTADOFLUJO_CHOICES,
                               default='TOD')
+
+    prioridad = models.IntegerField(default=1)
     def __unicode__(self):
         return self.nombre
 
@@ -326,12 +329,12 @@ class EquipoRolForm(ModelForm):
 class HuForm(forms.ModelForm):
     class Meta:
         model= Hu
-        fields = ("nombre","observacion","valornegocio")
+        fields = ("nombre","observacion","valornegocio","valortecnico","prioridad")
 
 class HuModificarForm(forms.ModelForm):
     class Meta:
         model= Hu
-        fields = ("nombre","observacion","valornegocio","valortecnico")
+        fields = ("nombre","observacion","valornegocio","valortecnico","prioridad")
 
 class HuFormCambiarEstado(forms.ModelForm):
     class Meta:

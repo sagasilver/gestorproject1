@@ -68,9 +68,9 @@
                 <th>Sprint</th>
                 <th>Fecha de Inicio</th>
                 <th>Fecha de Finalizacion</th>
-                <th>Capacidad</th>
+                <th>Capacidad hs/h</th>
                 <th>Horas de HU</th>
-                <th>Capacidad restante</th>
+                <th>Capacidad restante hs</th>
                 <tr>
                     <td>{{sprint}}</td>
                     <td>{{sprint.fechaInicio}}</td>
@@ -88,6 +88,7 @@
             <th>Nombre</th>
             <th>Valor de negocio</th>
             <th>Valor tecnico</th>
+             <th>Prioridad</th>
             <th>Responsable</th>
             <th>Flujo</th>
             <th>Esfuerzo requerido</th>
@@ -96,6 +97,7 @@
                 <td>{{h}}</td>
                 <td>{{h.valornegocio}}</td>
                 <td>{{h.valortecnico}}</td>
+                 <td>{{h.prioridad}}</td>
                 <td>{{h.responsable}}   <a href="/usuario/editar_responsable/{{h.id}}/{{proyecto.id}}/{{sprint.id}}"><img src="/static/img/pencil3.png" width="20" height="20"/></a></td>
                 <td>{{h.flujo}}   <a href="/usuario/editar_flujo/{{h.id}}/{{proyecto.id}}/{{sprint.id}}"><img src="/static/img/pencil3.png" width="20" height="20"/></a></td>
                 <td>{{h.hora }}

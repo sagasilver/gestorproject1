@@ -1095,8 +1095,13 @@ def nuevo_hu(request,codigo):
                 formulario = HuForm(request.POST)
                 if formulario.is_valid():
                     nombre = formulario.cleaned_data['nombre']
+                    vn =formulario.cleaned_data['valornegocio']
+                    vt =formulario.cleaned_data['valortecnico']
+                    prioridad=formulario.cleaned_data['prioridad']
+                    priorizacion=((vn + prioridad + 2 * vt) / 4)
                     pro = formulario.save()
                     pro.proyecto_id = codigo
+                    pro.priorizacion=priorizacion
                     pro.save()
 
                     fecha=datetime.now()
@@ -1105,8 +1110,8 @@ def nuevo_hu(request,codigo):
                     dato = Historia(usuario=usuario.username,nombre='Crear',fecha=fecha,descripcion='Se Crea el HU',hu=pro)
                     dato.save()
                     mensaje = "Se creo el hu: %s. \nFue creado por: %s" %(nombre, usuario.username)
-                    #mail = EmailMessage('Creacion de un HU',mensaje,'smtp.gmail.com',['gustavootazu2010@hotmail.es','lagd@live.com'])
-                    #mail.send()
+                    mail = EmailMessage('Creacion de un HU',mensaje,'smtp.gmail.com',['gustavootazu2010@hotmail.es','lagd@live.com'])
+                    mail.send()
 
                     return HttpResponseRedirect(reverse('usuario:adminhu',args=(proyecto.id,)))
                 else:
@@ -1127,7 +1132,7 @@ def hu_admin(request,codigo):
     proyecto = Proyecto.objects.get(pk=codigo)
     permisos = obtenerPermisos(request)
     if "crear cliente" in permisos or "modificar cliente" in permisos or "eliminar cliente" in permisos:
-        hus = Hu.objects.all().filter(proyecto_id= codigo)
+        hus = Hu.objects.all().filter(proyecto_id= codigo).order_by('priorizacion')
         return render_to_response('administrar_hu.html', {'codigo':request.user.id,'hus': hus, 'permisos':permisos,'proyecto':proyecto},context_instance=RequestContext(request))
     else:
         raiz = "administracion"
@@ -1172,16 +1177,22 @@ def modificar_hu_view( request, id_hu, codigo):
     if "modificar usuario" in permisos:
         hu = Hu.objects.get(pk= id_hu)
         if request.method=="POST":
-            formulario= HuModificarForm(request.POST, request.FILES, instance= hu)
+            formulario=HuModificarForm(request.POST, request.FILES, instance=hu)
             if formulario.is_valid():
-                formulario.save()
+                vn = formulario.cleaned_data['valornegocio']
+                vt = formulario.cleaned_data['valortecnico']
+                prioridad = formulario.cleaned_data['prioridad']
+                priorizacion = ((vn + prioridad + 2 * vt) / 4)
+                pro = formulario.save()
+                pro.priorizacion = priorizacion
+                pro.save()
                 fecha=datetime.now()
                 fecha.strftime("%a %b %d %H:%M %Y")
                 usuario=request.user
                 dato = Historia(usuario=usuario.username,nombre='Modificar',fecha=fecha,descripcion='Se Modifica al HU',hu=hu)
                 dato.save()
                 mensaje = "Se modifico el hu: %s. \nFue modificado por: %s" %(hu.nombre, usuario.username)
-                mail = EmailMessage('Modificacion de HU',mensaje,'smtp.gmail.com',['gustavootazu2010@hotmail.es','lagd@live.com'])
+                mail = EmailMessage('Modificacion de HU',mensaje,'smtp.gmail.com',['gustavootazu81@gmail.es','lagd@live.com'])
                 mail.send()
                 return HttpResponseRedirect(reverse('usuario:adminhu',args=(proyecto.id,)))
         else:
@@ -1385,7 +1396,7 @@ def asignar_hu_a_sprint(request, id_proyecto, id_sprint):
         for h_s in h_sprint:
             id_sprints.append(h_s.id)
 
-    historias = Hu.objects.filter(proyecto_id = id_proyecto).filter(estadorevision = 'APR').exclude(id__in = id_sprints)
+    historias = Hu.objects.filter(proyecto_id = id_proyecto).filter(estadorevision = 'APR').exclude(id__in = id_sprints).order_by('priorizacion')
 
     if "crear proyecto" in permisos:
         if request.method=="POST":
@@ -1404,7 +1415,7 @@ def asignar_hu_a_sprint(request, id_proyecto, id_sprint):
 
         else:
             formulario= SprintFormAsignarHu(proyecto = proyecto, claves = id_sprints)
-            hus = Hu.objects.filter(proyecto = proyecto).filter(estadorevision = 'APR').exclude(id__in = id_sprints  )
+            hus = Hu.objects.filter(proyecto = proyecto).filter(estadorevision = 'APR').exclude(id__in = id_sprints  ).order_by('priorizacion')
         return render(request, 'asignar_hu_a_sprint.html', {'hus': hus,'codigo':request.user.id, 'permisos':permisos,'formulario':formulario,'proyecto':proyecto},context_instance=RequestContext(request))
     else:
         raiz = ""

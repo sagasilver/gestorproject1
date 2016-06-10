@@ -71,7 +71,9 @@
                 <thead>
                 <tr>
                     <th class="thead">Nombre del HU</th>
+                    <th class="thead">Priorizacion</th>
                     <th class="thead">Estado</th>
+
                     <th width="75px" class="tnuevo"><span class="pushbutton"><a href='/usuario/crearhu/{{proyecto.id}}'class="current"> <img src="/static/img/nuevo2.png" width="25" height="25" /></a></span></th>
                 </tr>
                 </thead>
@@ -79,6 +81,7 @@
                     <tbody>
                     <tr>
                         <td>{{h.nombre}}</td>
+                        <td>{{h.priorizacion}}</td>
                         {% if h.estadorevision == "PEN"%}
                             <td>Pendiente</td>
                         {% elif h.estadorevision == "APR" %}

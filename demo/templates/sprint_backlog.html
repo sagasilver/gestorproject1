@@ -80,15 +80,30 @@
                     <td>{{diferencia}}</td>
                 </tr>
         </table>
+
     <br><br><br>
     {%if not hus%}
         <center><font color="red">Sin Historias de Usuario</font></center>
     {%else%}
+          <table class="max">
+        <tr>
+            <th>Miembro</th>
+            <th>Esfuerzo destinado por dias</th>
+
+        </tr>
+        {%for miembro in equipo_actual%}
+            <tr>
+                <td>{{miembro}}</td>
+                <td>{{miembro.hora}} hora/s</td>
+            </tr>
+        {%endfor%}
+    </table>
+
         <table class="max">
             <th>Nombre</th>
             <th>Valor de negocio</th>
             <th>Valor tecnico</th>
-             <th>Prioridad</th>
+             <th>Priorizado</th>
             <th>Responsable</th>
             <th>Flujo</th>
             <th>Esfuerzo requerido</th>
@@ -97,7 +112,7 @@
                 <td>{{h}}</td>
                 <td>{{h.valornegocio}}</td>
                 <td>{{h.valortecnico}}</td>
-                 <td>{{h.prioridad}}</td>
+                 <td>{{h.priorizacion}}</td>
                 <td>{{h.responsable}}   <a href="/usuario/editar_responsable/{{h.id}}/{{proyecto.id}}/{{sprint.id}}"><img src="/static/img/pencil3.png" width="20" height="20"/></a></td>
                 <td>{{h.flujo}}   <a href="/usuario/editar_flujo/{{h.id}}/{{proyecto.id}}/{{sprint.id}}"><img src="/static/img/pencil3.png" width="20" height="20"/></a></td>
                 <td>{{h.hora }}

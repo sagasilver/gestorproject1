@@ -1110,7 +1110,7 @@ def nuevo_hu(request,codigo):
                     dato = Historia(usuario=usuario.username,nombre='Crear',fecha=fecha,descripcion='Se Crea el HU',hu=pro)
                     dato.save()
                     mensaje = "Se creo el hu: %s. \nFue creado por: %s" %(nombre, usuario.username)
-                    mail = EmailMessage('Creacion de un HU',mensaje,'smtp.gmail.com',['gustavootazu2010@hotmail.es','lagd@live.com'])
+                    mail = EmailMessage('Creacion de un HU',mensaje,'smtp.gmail.com',['gustavootazu81@gmail.com','rodrigoamarillasanabria@gmail.com'])
                     mail.send()
 
                     return HttpResponseRedirect(reverse('usuario:adminhu',args=(proyecto.id,)))
@@ -1132,7 +1132,7 @@ def hu_admin(request,codigo):
     proyecto = Proyecto.objects.get(pk=codigo)
     permisos = obtenerPermisos(request)
     if "crear cliente" in permisos or "modificar cliente" in permisos or "eliminar cliente" in permisos:
-        hus = Hu.objects.all().filter(proyecto_id= codigo).order_by('priorizacion')
+        hus = Hu.objects.all().filter(proyecto_id= codigo).order_by('-priorizacion')
         return render_to_response('administrar_hu.html', {'codigo':request.user.id,'hus': hus, 'permisos':permisos,'proyecto':proyecto},context_instance=RequestContext(request))
     else:
         raiz = "administracion"
@@ -1155,7 +1155,7 @@ def eliminar_hu(request, id_hu, codigo):
             hu.delete()
             usuario=request.user
             mensaje = "Se elimino el hu: %s. \nFue eliminado por: %s" %(hu.nombre, usuario.username)
-            mail = EmailMessage('Eliminacion  de un HU',mensaje,'smtp.gmail.com',['gustavootazu2010@hotmail.es','lagd@live.com'])
+            mail = EmailMessage('Eliminacion  de un HU',mensaje,'smtp.gmail.com',['gustavootazu81@gmail.com','rodrigoamarillasanabria@gmail.com'])
             mail.send()
         return HttpResponseRedirect(reverse('usuario:adminhu',args=(proyecto.id,)))
     else:
@@ -1192,7 +1192,7 @@ def modificar_hu_view( request, id_hu, codigo):
                 dato = Historia(usuario=usuario.username,nombre='Modificar',fecha=fecha,descripcion='Se Modifica al HU',hu=hu)
                 dato.save()
                 mensaje = "Se modifico el hu: %s. \nFue modificado por: %s" %(hu.nombre, usuario.username)
-                mail = EmailMessage('Modificacion de HU',mensaje,'smtp.gmail.com',['gustavootazu81@gmail.es','lagd@live.com'])
+                mail = EmailMessage('Modificacion de HU',mensaje,'smtp.gmail.com',['gustavootazu81@gmail.es','rodrigoamarillasanabria@gmail.com'])
                 mail.send()
                 return HttpResponseRedirect(reverse('usuario:adminhu',args=(proyecto.id,)))
         else:
@@ -1359,8 +1359,9 @@ def sprint_backlog(request, id_sprint, codigo):
     permisos = obtenerPermisos(request)
     proyecto = Proyecto.objects.get(pk=codigo)
     sprint = Sprint.objects.get(pk=id_sprint)
+    equipo_actual = Equipo.objects.filter(proyecto_id=codigo)
     equipo = Equipo.objects.filter(proyecto_id = codigo)
-    historias = Hu.objects.filter(proyecto_id = codigo).filter(id__in = sprint.hu.all())
+    historias = Hu.objects.filter(proyecto_id = codigo).filter(id__in = sprint.hu.all()).order_by('-priorizacion')
     total_hu = 0
     capacidad = 0
     diferencia = 0
@@ -1374,7 +1375,7 @@ def sprint_backlog(request, id_sprint, codigo):
 
     if "ver proyecto" in permisos:
 
-        return render(request, 'sprint_backlog.html', { 'proyecto':proyecto, 'codigo':request.user.id, 'sprint':sprint, 'permisos':permisos, 'capacidad':capacidad, 'total_hu':total_hu, 'diferencia':diferencia,'hus':historias})
+        return render(request, 'sprint_backlog.html', { 'proyecto':proyecto, 'codigo':request.user.id, 'sprint':sprint, 'permisos':permisos, 'capacidad':capacidad, 'total_hu':total_hu, 'diferencia':diferencia,'hus':historias,'equipo_actual':equipo_actual})
     else:
         raiz = ""
         return render_to_response('sinpermiso.html', {'raiz':raiz},context_instance=RequestContext(request))
@@ -1415,7 +1416,7 @@ def asignar_hu_a_sprint(request, id_proyecto, id_sprint):
 
         else:
             formulario= SprintFormAsignarHu(proyecto = proyecto, claves = id_sprints)
-            hus = Hu.objects.filter(proyecto = proyecto).filter(estadorevision = 'APR').exclude(id__in = id_sprints  ).order_by('priorizacion')
+            hus = Hu.objects.filter(proyecto = proyecto).filter(estadorevision = 'APR').exclude(id__in = id_sprints  ).order_by('-priorizacion')
         return render(request, 'asignar_hu_a_sprint.html', {'hus': hus,'codigo':request.user.id, 'permisos':permisos,'formulario':formulario,'proyecto':proyecto},context_instance=RequestContext(request))
     else:
         raiz = ""

@@ -113,7 +113,7 @@ WSGI_APPLICATION = 'demo.wsgi.application'
 TEMPLATE_DIRS = (
     os.path.join(os.path.dirname(__file__), 'templates'),
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-   # "home/luis/html",
+   # "home/gustavo/html",
     "/demo/templates",
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -140,8 +140,8 @@ LOGOUT_URL = reverse_lazy('logout')
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'djangouser92@gmail.com'
-EMAIL_HOST_PASSWORD = 'djangouser'
+EMAIL_HOST_USER = 'gustavootazu81@gmail.com'
+EMAIL_HOST_PASSWORD = '0981686641'
 EMAIL_PORT = 587
 
 # A sample logging configuration. The only tangible logging

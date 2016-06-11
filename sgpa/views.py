@@ -1195,7 +1195,7 @@ def modificar_hu_view( request, id_hu, codigo):
                 dato = Historia(usuario=usuario.username,nombre='Modificar',fecha=fecha,descripcion='Se Modifica al HU',hu=hu)
                 dato.save()
                 mensaje = "Se modifico el hu: %s. \nFue modificado por: %s" %(hu.nombre, usuario.username)
-                mail = EmailMessage('Modificacion de HU',mensaje,'smtp.gmail.com',['gustavootazu81@gmail.es','rodrigoamarillasanabria@gmail.com','Rfsgold@gmail.com'])
+                mail = EmailMessage('Modificacion de HU',mensaje,'smtp.gmail.com',['gustavootazu81@gmail.com','rodrigoamarillasanabria@gmail.com','Rfsgold@gmail.com'])
                 mail.send()
                 return HttpResponseRedirect(reverse('usuario:adminhu',args=(proyecto.id,)))
         else:

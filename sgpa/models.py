@@ -434,7 +434,7 @@ class SprintFormAsignarHu(forms.ModelForm):
         claves = kwargs.pop('claves')
         super(SprintFormAsignarHu, self).__init__(*args, **kwargs)
         self.fields["hu"].widget = CheckboxSelectMultiple()
-        self.fields['hu'].queryset = Hu.objects.filter(proyecto = proyecto).filter(estadorevision = 'APR').exclude(id__in = claves  )
+        self.fields['hu'].queryset = Hu.objects.filter(proyecto = proyecto).filter(estadorevision = 'APR').exclude(id__in = claves  ).order_by('-priorizacion')
         for field in self.fields:
             self.fields[field].error_messages = {'required':'Este campo es obligatorio'}
     class Meta:

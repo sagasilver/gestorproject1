@@ -806,7 +806,8 @@ def agregar_actividad(request,flujo_id):
 def ingresar_Proyecto(request,codigo):
     permisos = obtenerPermisos(request)
     usuario = User.objects.get(pk = codigo)
-    proyectos = Proyecto.objects.all().filter(lider_id= usuario.id).filter(estado = "ACTIVO")
+    equipo= Equipo.objects.all().filter(usuario_id = usuario.id)
+    proyectos = Proyecto.objects.all().filter(lider_id=usuario.id).filter(estado="ACTIVO")
     return render_to_response('ingresar_Proyecto.html', {'proyectos':proyectos,'permisos':permisos,'codigo':codigo}, context_instance=RequestContext(request))
 
 @login_required()
@@ -1419,7 +1420,7 @@ def asignar_hu_a_sprint(request, id_proyecto, id_sprint):
 
         else:
             formulario= SprintFormAsignarHu(proyecto = proyecto, claves = id_sprints)
-            hus = Hu.objects.filter(proyecto = proyecto).filter(estadorevision = 'APR').exclude(id__in = id_sprints  ).order_by('-priorizacion')
+            hus = Hu.objects.order_by('-priorizacion').filter(proyecto = proyecto).filter(estadorevision = 'APR').exclude(id__in = id_sprints  )
         return render(request, 'asignar_hu_a_sprint.html', {'hus': hus,'codigo':request.user.id, 'permisos':permisos,'formulario':formulario,'proyecto':proyecto},context_instance=RequestContext(request))
     else:
         raiz = ""

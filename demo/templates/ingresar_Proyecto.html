@@ -8,25 +8,55 @@
 
         <h1>Proyectos</h1>
     {%if proyectos %}
-        <div class="content">
-            <table class="max">
-                <thead>
-                <tr>
-                    <th class="thead">Mis proyectos Activos</th>
-                </tr>
-                </thead>
-                {% for proyecto in proyectos %}
-                    <tbody>
-                    <tr>
-                        <td><span><a href='/usuario/datos_Proyecto/{{ proyecto.id }}' class="current" ><img class="lo" src="/static/img/listaproyecto.png" width="15" height="15"/>{{ proyecto.nombre}}</a></span></td>
+         {%if equipos %}
+                <div class="content">
+                    <table class="max">
+                        <thead>
+                        <tr>
+                            <th class="thead">Mis proyectos Activos</th>
+                        </tr>
+                        </thead>
+                        {% for equipo in equipos %}
+                             {% for proyecto in proyectos %}
 
-                    </tr>
-                    </tbody>
-                {%endfor%}
-            </table>
-        </div>
-    {%else%}
-        <font color="red">Usted no tiene ningun proyecto ACTIVO asignado!!</font>
+                              {%if proyecto.id == equipo.proyecto_id %}
+
+                                      <tbody>
+                                        <tr>
+                                            <td><span><a href='/usuario/datos_Proyecto/{{ proyecto.id }}' class="current" ><img class="lo" src="/static/img/listaproyecto.png" width="15" height="15"/>{{ proyecto.nombre}}</a></span></td>
+
+                                       </tr>
+                                    </tbody>
+                              {%endif%}
+                          {%endfor%}
+                        {%endfor%}
+                    </table>
+                </div>
+
+         {%elif proy_lider%}
+              <div class="content">
+                    <table class="max">
+                        <thead>
+                        <tr>
+                            <th class="thead">Mis proyectos Activos</th>
+                        </tr>
+                        </thead>
+
+                             {% for proyecto in proy_lider %}
+                                 <tbody>
+                                        <tr>
+                                            <td><span><a href='/usuario/datos_Proyecto/{{ proyecto.id }}' class="current" ><img class="lo" src="/static/img/listaproyecto.png" width="15" height="15"/>{{ proyecto.nombre}}</a></span></td>
+
+                                       </tr>
+                                    </tbody>
+                          {%endfor%}
+
+                    </table>
+                </div>
+
+         {%else%}
+                <font color="red">Usted no tiene ningun proyecto ACTIVO asignado!!</font>
+         {%endif%}
     {%endif%}
 </nav>
 

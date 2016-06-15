@@ -807,8 +807,9 @@ def ingresar_Proyecto(request,codigo):
     permisos = obtenerPermisos(request)
     usuario = User.objects.get(pk = codigo)
     equipo= Equipo.objects.all().filter(usuario_id = usuario.id)
-    proyectos = Proyecto.objects.all().filter(lider_id=usuario.id).filter(estado="ACTIVO")
-    return render_to_response('ingresar_Proyecto.html', {'proyectos':proyectos,'permisos':permisos,'codigo':codigo}, context_instance=RequestContext(request))
+    proyecto1 = Proyecto.objects.all().filter(lider_id=usuario.id).filter(estado="ACTIVO")
+    proyectos = Proyecto.objects.all().filter(estado="ACTIVO")
+    return render_to_response('ingresar_Proyecto.html', {'proyectos':proyectos,'proy_lider':proyecto1,'permisos':permisos,'codigo':codigo,'equipos':equipo}, context_instance=RequestContext(request))
 
 @login_required()
 def datos_Proyecto(request, id_proyecto):

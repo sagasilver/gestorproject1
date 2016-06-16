@@ -1,6 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Pontano+Sans);
 body {
-background: ##adf6e0;
+background: #adf6e0;
 background-image: url("/static/img/fondo3.jpg");
 
 /*background-image: url("/static/img/fondo3.jpg");*/
@@ -2644,7 +2644,7 @@ margin-top: 30px;
 	margin: -.5em 0 0 0;
 }
 .item1 > a:before {
-	background-position: 0 0;
+	background-position:9px 9px;
 
 }
 .item2 > a:before {

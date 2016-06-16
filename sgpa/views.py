@@ -1793,7 +1793,7 @@ def historial_hu(request,id_hu,codigo):
     hu = Hu.objects.get(pk=id_hu)
     historia = Historia.objects.all().filter(hu_id = id_hu)
     if "cambiar estado cliente" in permisos:
-            return render( request,'historialhu.html',{'codigo':request.user.id,'proyecto':proyecto,'historia':historia,'hu':hu})
+            return render( request,'historialhu.html',{'codigo':request.user.id,'proyecto':proyecto,'historia':historia,'hu':hu,'permisos':permisos})
     else:
         raiz = ""
         return render_to_response('sinpermiso.html', {'raiz':raiz},context_instance=RequestContext(request))

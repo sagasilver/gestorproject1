@@ -8,7 +8,9 @@
 </div>
 <div id="wrapper">
 
-	{%if 'asignar equipo' in permisos %}:
+	<ul class="menu">
+
+		{%if 'asignar equipo' in permisos %}:
 		    <li class="item1"><a href="#">Equipo</a>
 			   <ul>
 				<li class="subitem1"><a href="/usuario/equipo_trabajo/{{proyecto.id}}">Agregar Miembro</a></li>

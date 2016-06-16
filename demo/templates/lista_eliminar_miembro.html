@@ -33,8 +33,8 @@
 		</li>
         <li class="item3"><a href="#">Flujo</a>
 			<ul>
-				<li class="subitem1"><a href="#">Agregar Flujo</a></li>
-				<li class="subitem2"><a href="#">Ver Flujo </a></li>
+				<li class="subitem1"><a href="/usuario/agregar_flujo/{{proyecto.id}}">Agregar Flujo</a></li>
+				<li class="subitem2"><a href="/usuario/gestionar_flujo/{{proyecto.id}}">Ver Flujo </a></li>
 			</ul>
 		</li>
 	</ul>
@@ -88,7 +88,7 @@
     <center><font color="red">El proyecto no cuenta con ningun miembro de equipo</font></center>
     {%endif%}
 
-
+     <a class="button-highlight button" href= '/usuario/datos_Proyecto/{{proyecto.id}}' >Atras</a>
 </nav>
 {% endblock %}
 {% endif %}

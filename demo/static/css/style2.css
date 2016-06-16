@@ -2730,7 +2730,7 @@ margin-top: 30px;
 position: relative;
 float:left;
 width: 6cm;
-height: 5cm;
+height: 6cm;
 }
 .contenedor-hu input{
     float: left;
@@ -2739,38 +2739,35 @@ height: 5cm;
     padding: 5px 5px;
     width: 35px;
     height: 35px;
-    margin: 3.5cm 15px;
-
-
-
+    margin: 4.3cm 15px;
 }
 .hu{
 background-color: white;
 margin: 0 25px;
     width: 4cm;
-    height: 4cm;
+    height: 5cm;
     padding: 3px 10px;
-  border: green 2px solid;
+  border: mediumblue 2px solid;
   box-shadow: 0 8px 8px 1px #ccc;
 }
 input[type=checkbox] {
 	box-shadow: 0 2px 8px 1px #ccc;
 }
 div.contenedor-hu:hover{
-background-color: #CFDFD4;
+background-color:darkgray;
 }
 
 .cabezera{
 width: 161px;
 text-align: center;
-background-color: green;
+background-color: mediumblue;
 padding:5px 5px;
 left: -10px;
 top: -3px;
 position: relative;
 }
 .cabezera h1{
-color: white;
+color:white;
 font-size: 15px;
 }
 
@@ -2843,11 +2840,33 @@ color: black;
 font-size: 11px;
 font-family: Arial, Helvetica, sans-serif;
 }
+
+.contenedor-priorizacion{
+width: 120px;
+position: relative;
+top: -70px;
+left: 15px;
+text-align: center;
+}
+.contenedor-priorizacion h1{
+color: black;
+font-size: 11px;
+font-family: Arial, Helvetica, sans-serif;
+}
 .valorNegocio{
 width: 120px;
 position: relative;
 top: -40px;
 left: -26px;
+text-align: center;
+
+
+}
+.priorizado{
+width: 120px;
+position: relative;
+top: -70px;
+left: 10px;
 text-align: center;
 
 

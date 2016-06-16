@@ -1848,15 +1848,24 @@ def flujo_proyecto( request,id_proyecto):
     '''
     proyecto = Proyecto.objects.get(pk=id_proyecto)
     permisos = obtenerPermisos(request)
-    sprint = Sprint.objects.get(proyecto= id_proyecto , estado = "ACT")
-    hu = sprint.hu.all()
-    flujos = Flujo.objects.all()
+    hu = Hu.objects.filter(proyecto_id = id_proyecto).filter(estadodesarrolllo = 'PRO')
+    flujos = proyecto.flujo.all()
+    hu_sprint = []
+    sprint = Sprint.objects.filter(proyecto_id = id_proyecto)
+    for s in sprint:
+        if s.estado == 'ACT':
+            fecha = datetime.now()
+            fecha_f = datetime.strptime(s.fechaFin, "%Y-%m-%d")
+            if fecha_f > fecha:
+                hu_sprint = s.hu.all()
+            else:
+                s.estado = 'INA'
+                s.save()
     if "ver proyecto" in permisos:
-        return render_to_response('flujo_proyecto.html', {'flujos':flujos,'hu':hu,'proyecto':proyecto,'permisos':permisos},context_instance=RequestContext(request))
+        return render_to_response('flujo_proyecto.html', {'hu_sprint':hu_sprint,'flujos':flujos,'hu':hu,'proyecto':proyecto,'permisos':permisos},context_instance=RequestContext(request))
     else:
         raiz = ""
         return render_to_response('sinpermiso.html', {'raiz':raiz},context_instance=RequestContext(request))
-
 
 
 

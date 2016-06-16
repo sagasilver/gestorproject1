@@ -1,6 +1,72 @@
-</html>{% extends 'Base.html' %}
+{% extends 'administracion.html' %}
+{%block titulo%}Kanban{%endblock%}
 {% block contenido %}
+<div class="histo-detalle">
+    <a href="/"><font color="#3D9A13"> home </font></a><img src="/static/img/flechaverde.png" width="12" height="10" />
+    <a href="/usuario/ingresar_Proyecto/{{codigo}}"><font color="#3D9A13"> Proyectos </font></a><img src="/static/img/flechaverde.png" width="12" height="10" />
+    <a href="/usuario/datos_Proyecto/{{proyecto.id}}"><font color="#3D9A13"> {{proyecto}} </font></a><img src="/static/img/flechaverde.png" width="12" height="10" />
+    <a href="/usuario/detalle_equipo/{{proyecto.id}}"><font color="#3D9A13"> Kanban </font></a>
+</div>
+
+<div id="wrapper">
+
+	<ul class="menu">
+		{%if 'asignar equipo' in permisos %}:
+		    <li class="item1"><a href="#">Equipo</a>
+			   <ul>
+				<li class="subitem1"><a href="/usuario/equipo_trabajo/{{proyecto.id}}">Agregar Miembro</a></li>
+                <li class="subitem1"><a href="/usuario/lista_eliminar_miembro/{{proyecto.id}}">Eliminar Miembro</a></li>
+				<li class="subitem2"><a href="/usuario/detalle_equipo/{{proyecto.id}}">Ver Equipo </a></li>
+			</ul>
+		   </li>
+        {%endif%}
+		<li class="item2"><a href="#">Historia de Usuario</a>
+			<ul>
+				<li class="subitem1"><a href='/usuario/adminhu/{{proyecto.id}}'>Administrar HU </a></li>
+			</ul>
+		</li>
+		<li class="item3"><a href="#">Sprint </a>
+			<ul>
+				<li class="subitem1"><a href="/usuario/activarsprint/{{proyecto.id}}">Crear Sprint</a></li>
+				<li class="subitem2"><a href="/usuario/gestionarsprint/{{proyecto.id}}">Ver Sprint </a></li>
+			</ul>
+		</li>
+        <li class="item3"><a href="#">Flujo</a>
+			<ul>
+				<li class="subitem1"><a href="/usuario/agregar_flujo/{{proyecto.id}}">Agregar Flujo</a></li>
+				<li class="subitem2"><a href="/usuario/flujo_proyecto/{{proyecto.id}}">Ver Kanban </a></li>
+			</ul>
+		</li>
+	</ul>
+
+</div>
+
+<!--initiate accordion-->
+<script type="text/javascript">
+	$(function() {
+
+	    var menu_ul = $('.menu > li > ul'),
+	           menu_a  = $('.menu > li > a');
+
+	    menu_ul.hide();
+
+	    menu_a.click(function(e) {
+	        e.preventDefault();
+	        if(!$(this).hasClass('active')) {
+	            menu_a.removeClass('active');
+	            menu_ul.filter(':visible').slideUp('normal');
+	            $(this).addClass('active').next().stop(true,true).slideDown('normal');
+	        } else {
+	            $(this).removeClass('active');
+	            $(this).next().stop(true,true).slideUp('normal');
+	        }
+	    });
+
+	});
+</script>
+
 <br>
+
 <nav class="detalle">
     <h1>Kanban</h1>
     <br>
@@ -36,6 +102,7 @@
                                                             <li><a href="#" class="current" ><center>{{h}}</center></a>
                                                                 <div class="subs">
                                                                     <div class="col">
+                                                                    {% if h in hu_sprint %}
                                                                         {% if actividad.orden == 1%}
                                                                             <ul>
                                                                                 <li ><a href='/usuario/agregar_trabajo/{{ h.id }}/{{proyecto.id}}'><img src="/static/img/detalle.png" width="25" height="25"/>Agregrar Trabajo</a></li>
@@ -55,6 +122,12 @@
 
                                                                             </ul>
                                                                         {% endif %}
+                                                                    {%else%}
+                                                                            <ul>
+                                                                                <li><a href='/usuario/descarga_view/{{ h.id }}'><img src="/static/img/descarga.jpg" width="25" height="25"/> Descargar Archivos</a></li>
+                                                                                <li><a href='/usuario/ver_trabajo/{{ h.id }}'><img src="/static/img/editar2.png" width="25" height="25" /> Ver Historial de trabajo</a></li>
+                                                                            </ul>
+                                                                    {%endif%}
                                                                     </div>
                                                                 </div>
                                                             </li>
@@ -74,6 +147,7 @@
                                                             <li><a href="#" class="current" ><center>{{h}}</center></a>
                                                                 <div class="subs">
                                                                     <div class="col">
+                                                                    {% if h in hu_sprint %}
                                                                         <ul>
                                                                             <li ><a href='/usuario/agregar_trabajo/{{ h.id }}/{{proyecto.id}}'><img src="/static/img/detalle.png" width="25" height="25"/>Agregrar Trabajo</a></li>
                                                                             <li><a href='/usuario/descarga_view/{{ h.id }}'><img src="/static/img/descarga.jpg" width="25" height="25"/> Descargar Archivos</a></li>
@@ -81,8 +155,13 @@
                                                                             <li><a href='/usuario/avanzar/{{ h.id }}/{{proyecto.id}}'><img src="/static/img/flechaverde.png" width="25" height="25" /> Avanzar HU</a></li>
                                                                             <li><a href='/usuario/retroceder/{{ h.id }}/{{proyecto.id}}'><img src="/static/img/flecha.png" width="25" height="25" /> Retroceder HU</a></li>
                                                                             <li><a href='/usuario/cambiar_flujo/{{ h.id }}/{{proyecto.id}}'><img src="/static/img/cambiar.png" width="25" height="25" /> Cambiar Flujo</a></li>
-
                                                                         </ul>
+                                                                    {%else%}
+                                                                            <ul>
+                                                                                <li><a href='/usuario/descarga_view/{{ h.id }}'><img src="/static/img/descarga.jpg" width="25" height="25"/> Descargar Archivos</a></li>
+                                                                                <li><a href='/usuario/ver_trabajo/{{ h.id }}'><img src="/static/img/editar2.png" width="25" height="25" /> Ver Historial de trabajo</a></li>
+                                                                            </ul>
+                                                                    {%endif%}
                                                                     </div>
                                                                 </div>
                                                             </li>
@@ -92,7 +171,6 @@
                                         {% endif %}
                                     {% endfor %}
                                     </table>
-
                                 </td>
                                 <td>
                                 <table class="fl">
@@ -104,15 +182,32 @@
                                                             <li><a href="#" class="current" ><center>{{h}}</center></a>
                                                                 <div class="subs">
                                                                     <div class="col">
-                                                                        <ul>
-                                                                            <li ><a href='/usuario/agregar_trabajo/{{ h.id }}/{{proyecto.id}}'><img src="/static/img/detalle.png" width="25" height="25"/>Agregrar Trabajo</a></li>
-                                                                            <li><a href='/usuario/descarga_view/{{ h.id }}'><img src="/static/img/descarga.jpg" width="25" height="25"/> Descargar Archivos</a></li>
-                                                                            <li><a href='/usuario/ver_trabajo/{{ h.id }}'><img src="/static/img/editar2.png" width="25" height="25" /> Ver Historial de trabajo</a></li>
-                                                                            <li><a href='/usuario/avanzar/{{ h.id }}/{{proyecto.id}}'><img src="/static/img/flechaverde.png" width="25" height="25" /> Avanzar HU</a></li>
-                                                                            <li><a href='/usuario/retroceder/{{ h.id }}/{{proyecto.id}}'><img src="/static/img/flecha.png" width="25" height="25" /> Retroceder HU</a></li>
-                                                                            <li><a href='/usuario/cambiar_flujo/{{ h.id }}/{{proyecto.id}}'><img src="/static/img/cambiar.png" width="25" height="25" /> Cambiar Flujo</a></li>
-
-                                                                        </ul>
+                                                                    {% if h in hu_sprint %}
+                                                                        {% if actividad.orden == flujo.cantidad %}
+                                                                            <ul>
+                                                                                <li ><a href='/usuario/agregar_trabajo/{{ h.id }}/{{proyecto.id}}'><img src="/static/img/detalle.png" width="25" height="25"/>Agregrar Trabajo</a></li>
+                                                                                <li><a href='/usuario/descarga_view/{{ h.id }}'><img src="/static/img/descarga.jpg" width="25" height="25"/> Descargar Archivos</a></li>
+                                                                                <li><a href='/usuario/ver_trabajo/{{ h.id }}'><img src="/static/img/editar2.png" width="25" height="25" /> Ver Historial de trabajo</a></li>
+                                                                                <li><a href='/usuario/retroceder/{{ h.id }}/{{proyecto.id}}'><img src="/static/img/flecha.png" width="25" height="25" /> Retroceder HU</a></li>
+                                                                                <li><a href='/usuario/cambiar_flujo/{{ h.id }}/{{proyecto.id}}'><img src="/static/img/cambiar.png" width="25" height="25" /> Cambiar Flujo</a></li>
+                                                                                <li><a href='/usuario/finalizar/{{ h.id }}/{{proyecto.id}}'><img src="/static/img/eliminar.png" width="25" height="25" /> Finalizar HU</a></li>
+                                                                            </ul>
+                                                                        {%else%}
+                                                                            <ul>
+                                                                                <li ><a href='/usuario/agregar_trabajo/{{ h.id }}/{{proyecto.id}}'><img src="/static/img/detalle.png" width="25" height="25"/>Agregrar Trabajo</a></li>
+                                                                                <li><a href='/usuario/descarga_view/{{ h.id }}'><img src="/static/img/descarga.jpg" width="25" height="25"/> Descargar Archivos</a></li>
+                                                                                <li><a href='/usuario/ver_trabajo/{{ h.id }}'><img src="/static/img/editar2.png" width="25" height="25" /> Ver Historial de trabajo</a></li>
+                                                                                <li><a href='/usuario/avanzar/{{ h.id }}/{{proyecto.id}}'><img src="/static/img/flechaverde.png" width="25" height="25" /> Avanzar HU</a></li>
+                                                                                <li><a href='/usuario/retroceder/{{ h.id }}/{{proyecto.id}}'><img src="/static/img/flecha.png" width="25" height="25" /> Retroceder HU</a></li>
+                                                                                <li><a href='/usuario/cambiar_flujo/{{ h.id }}/{{proyecto.id}}'><img src="/static/img/cambiar.png" width="25" height="25" /> Cambiar Flujo</a></li>
+                                                                            </ul>
+                                                                        {%endif%}
+                                                                    {%else%}
+                                                                            <ul>
+                                                                                <li><a href='/usuario/descarga_view/{{ h.id }}'><img src="/static/img/descarga.jpg" width="25" height="25"/> Descargar Archivos</a></li>
+                                                                                <li><a href='/usuario/ver_trabajo/{{ h.id }}'><img src="/static/img/editar2.png" width="25" height="25" /> Ver Historial de trabajo</a></li>
+                                                                            </ul>
+                                                                    {%endif%}
                                                                     </div>
                                                                 </div>
                                                             </li>
@@ -133,7 +228,7 @@
             </tr>
     </table></div>
     {%endfor%}
-        <br>
-        <a href="javascript:window.history.back();" class="button-highlight button">Atras</a>
+    <br>
+    <a href="javascript:window.history.back();" class="button-highlight button">Atras</a>
 </nav>
 {% endblock %}

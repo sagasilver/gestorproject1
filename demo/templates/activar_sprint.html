@@ -8,14 +8,15 @@
 </div>
 <div id="wrapper">
 
-	<ul class="menu">
-		<li class="item1"><a href="#">Equipo</a>
-			<ul>
+	{%if 'asignar equipo' in permisos %}:
+		    <li class="item1"><a href="#">Equipo</a>
+			   <ul>
 				<li class="subitem1"><a href="/usuario/equipo_trabajo/{{proyecto.id}}">Agregar Miembro</a></li>
-				<li class="subitem1"><a href="/usuario/lista_eliminar_miembro/{{proyecto.id}}">Eliminar Miembro</a></li>
-                <li class="subitem2"><a href="/usuario/detalle_equipo/{{proyecto.id}}">Ver Equipo </a></li>
+                <li class="subitem1"><a href="/usuario/lista_eliminar_miembro/{{proyecto.id}}">Eliminar Miembro</a></li>
+				<li class="subitem2"><a href="/usuario/detalle_equipo/{{proyecto.id}}">Ver Equipo </a></li>
 			</ul>
-		</li>
+		   </li>
+        {%endif%}
 		<li class="item2"><a href="#">Historia de Usuario</a>
 			<ul>
 				<li class="subitem1"><a href='/usuario/adminhu/{{proyecto.id}}'>Administrar HU </a></li>

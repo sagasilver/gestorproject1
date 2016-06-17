@@ -54,6 +54,7 @@
     {%else%}
     <center><font color="red">No hay Usuarios  registrados, presiona</font> <a href='/usuario/crear_usuario' class="current">Aqui </a><font color="red">para crear uno nuevo</font></center>
     {%endif%}
+ <a href="{% url 'usuario:administracion' %}javascript:window.history.back();" class="button-highlight button">Atras</a>
 
 </nav>
 

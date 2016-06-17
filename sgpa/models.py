@@ -257,6 +257,9 @@ class Hu(models.Model):
     estadoflujo = models.CharField(max_length=20,
                               choices=ESTADOFLUJO_CHOICES,
                               default='TOD')
+
+    prioridad = models.IntegerField(default=1)
+    priorizacion=models.IntegerField(default=1)
     def __unicode__(self):
         return self.nombre
 
@@ -326,12 +329,12 @@ class EquipoRolForm(ModelForm):
 class HuForm(forms.ModelForm):
     class Meta:
         model= Hu
-        fields = ("nombre","observacion","valornegocio")
+        fields = ("nombre","observacion","valornegocio","valortecnico","prioridad","hora")
 
 class HuModificarForm(forms.ModelForm):
     class Meta:
         model= Hu
-        fields = ("nombre","observacion","valornegocio","valortecnico")
+        fields = ("nombre","observacion","valornegocio","valortecnico","prioridad","hora")
 
 class HuFormCambiarEstado(forms.ModelForm):
     class Meta:
@@ -431,7 +434,7 @@ class SprintFormAsignarHu(forms.ModelForm):
         claves = kwargs.pop('claves')
         super(SprintFormAsignarHu, self).__init__(*args, **kwargs)
         self.fields["hu"].widget = CheckboxSelectMultiple()
-        self.fields['hu'].queryset = Hu.objects.filter(proyecto = proyecto).filter(estadorevision = 'APR').exclude(id__in = claves  )
+        self.fields['hu'].queryset = Hu.objects.filter(proyecto = proyecto).filter(estadorevision = 'APR').exclude(id__in = claves  ).order_by('-priorizacion')
         for field in self.fields:
             self.fields[field].error_messages = {'required':'Este campo es obligatorio'}
     class Meta:

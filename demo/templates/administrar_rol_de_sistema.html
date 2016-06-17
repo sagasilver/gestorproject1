@@ -51,6 +51,7 @@
     {%else%}
         <font color="red">No hay roles registrados, presiona</font> <a href="{% url 'usuario:crearrolsistema' %}" class="current">Aqui </a><font color="red">para crear uno nuevo</font>
     {%endif%}
+     <a href="{% url 'usuario:administracion' %}javascript:window.history.back();" class="button-highlight button">Atras</a>
 </nav>
 
 {%endblock%}

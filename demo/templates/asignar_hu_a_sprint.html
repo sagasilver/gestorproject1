@@ -15,13 +15,15 @@
 <div id="wrapper">
 
 	<ul class="menu">
-		<li class="item1"><a href="#">Equipo</a>
-			<ul>
+		{%if 'asignar equipo' in permisos %}:
+		    <li class="item1"><a href="#">Equipo</a>
+			   <ul>
 				<li class="subitem1"><a href="/usuario/equipo_trabajo/{{proyecto.id}}">Agregar Miembro</a></li>
-				<li class="subitem1"><a href="/usuario/lista_eliminar_miembro/{{proyecto.id}}">Eliminar Miembro</a></li>
-                <li class="subitem2"><a href="/usuario/detalle_equipo/{{proyecto.id}}">Ver Equipo </a></li>
+                <li class="subitem1"><a href="/usuario/lista_eliminar_miembro/{{proyecto.id}}">Eliminar Miembro</a></li>
+				<li class="subitem2"><a href="/usuario/detalle_equipo/{{proyecto.id}}">Ver Equipo </a></li>
 			</ul>
-		</li>
+		   </li>
+        {%endif%}
 		<li class="item2"><a href="#">Historia de Usuario</a>
 			<ul>
 				<li class="subitem1"><a href='/usuario/adminhu/{{proyecto.id}}'>Administrar HU </a></li>
@@ -90,10 +92,13 @@
                         {%else%}
                         <h1 class="h">{{h.hora}}</h1><div class="hora"><h1>horas</h1></div></div>
                         {%endif%}
-                    <div class="contenedor-valorNegocio"><h1>Valor negocio</h1></div>
-                    <div class="contenedor-valorTecnico"><h1>valor tecnico</h1></div>
+                    <div class="contenedor-valorNegocio"><h1>Valor Negocio</h1></div>
+                    <div class="contenedor-valorTecnico"><h1>Valor Tecnico</h1></div>
+
                     <div class="valorNegocio"><h1>{{h.valornegocio}}</h1></div>
                     <div class="valorTecnico"><h1>{{h.valortecnico}}</h1></div>
+                     <div class="contenedor-priorizacion"><h1>Priorizado</h1></div>
+                     <div class="priorizado"><h1>{{h.priorizacion}}</h1></div>
                 {%endif%}
 
             {%endfor%}

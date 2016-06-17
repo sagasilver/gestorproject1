@@ -9,13 +9,16 @@
 <div id="wrapper">
 
 	<ul class="menu">
-		<li class="item1"><a href="#">Equipo</a>
-			<ul>
+
+		{%if 'asignar equipo' in permisos %}:
+		    <li class="item1"><a href="#">Equipo</a>
+			   <ul>
 				<li class="subitem1"><a href="/usuario/equipo_trabajo/{{proyecto.id}}">Agregar Miembro</a></li>
-				<li class="subitem1"><a href="/usuario/lista_eliminar_miembro/{{proyecto.id}}">Eliminar Miembro</a></li>
-                <li class="subitem2"><a href="/usuario/detalle_equipo/{{proyecto.id}}">Ver Equipo </a></li>
+                <li class="subitem1"><a href="/usuario/lista_eliminar_miembro/{{proyecto.id}}">Eliminar Miembro</a></li>
+				<li class="subitem2"><a href="/usuario/detalle_equipo/{{proyecto.id}}">Ver Equipo </a></li>
 			</ul>
-		</li>
+		   </li>
+        {%endif%}
 		<li class="item2"><a href="#">Historia de Usuario</a>
 			<ul>
 				<li class="subitem1"><a href='/usuario/adminhu/{{proyecto.id}}'>Administrar HU </a></li>
@@ -29,8 +32,8 @@
 		</li>
         <li class="item3"><a href="#">Flujo</a>
 			<ul>
-				<li class="subitem1"><a href="#">Agregar Flujo</a></li>
-				<li class="subitem2"><a href="#">Ver Flujo </a></li>
+				<li class="subitem1"><a href="/usuario/agregar_flujo/{{proyecto.id}}">Agregar Flujo</a></li>
+				<li class="subitem2"><a href="/usuario/gestionar_flujo/{{proyecto.id}}">Ver Flujo </a></li>
 			</ul>
 		</li>
 	</ul>
@@ -66,6 +69,8 @@
 <form action='' method="post"> {% csrf_token%}
 
         <table class="max">
+
+
             <tr>
                 <th>Fecha de Inicio</th>
                 <td><input id="fechaInicio" type="date" min="{{proyecto.fechaMod}}" max="{{proyecto.fechaFin}}" name="fechaInicio"  required="True"></td>
@@ -76,6 +81,7 @@
             </tr>
 
         </table>
+
 
     <button class="button button-action" type="submit" name="Guardar" />Guardar</button>
     <a class="button button-caution" href= '/usuario/datos_Proyecto/{{proyecto.id}}' >Cancelar</a>

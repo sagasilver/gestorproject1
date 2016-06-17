@@ -52,6 +52,7 @@
     {%else%}
         <font color="red">No hay clientes registrados, presiona</font> <a href="{% url 'usuario:crearcliente' %}" class="current">Aqui </a><font color="red">para crear un cliente</font>
     {%endif%}
+  <a href="{% url 'usuario:administracion' %}javascript:window.history.back();" class="button-highlight button">Atras</a>
 </nav>
 
 {%endblock%}

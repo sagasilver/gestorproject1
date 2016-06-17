@@ -10,13 +10,15 @@
 <div id="wrapper">
 
 	<ul class="menu">
-		<li class="item1"><a href="#">Equipo</a>
-			<ul>
+		{%if 'asignar equipo' in permisos %}:
+		    <li class="item1"><a href="#">Equipo</a>
+			   <ul>
 				<li class="subitem1"><a href="/usuario/equipo_trabajo/{{proyecto.id}}">Agregar Miembro</a></li>
-				<li class="subitem1"><a href="/usuario/lista_eliminar_miembro/{{proyecto.id}}">Eliminar Miembro</a></li>
-                <li class="subitem2"><a href="/usuario/detalle_equipo/{{proyecto.id}}">Ver Equipo </a></li>
+                <li class="subitem1"><a href="/usuario/lista_eliminar_miembro/{{proyecto.id}}">Eliminar Miembro</a></li>
+				<li class="subitem2"><a href="/usuario/detalle_equipo/{{proyecto.id}}">Ver Equipo </a></li>
 			</ul>
-		</li>
+		   </li>
+        {%endif%}
 		<li class="item2"><a href="#">Historia de Usuario</a>
 			<ul>
 				<li class="subitem1"><a href='/usuario/adminhu/{{proyecto.id}}'>Administrar HU </a></li>
@@ -68,9 +70,9 @@
                 <th>Sprint</th>
                 <th>Fecha de Inicio</th>
                 <th>Fecha de Finalizacion</th>
-                <th>Capacidad</th>
+                <th>Capacidad hs/h</th>
                 <th>Horas de HU</th>
-                <th>Capacidad restante</th>
+                <th>Capacidad restante hs</th>
                 <tr>
                     <td>{{sprint}}</td>
                     <td>{{sprint.fechaInicio}}</td>
@@ -80,14 +82,30 @@
                     <td>{{diferencia}}</td>
                 </tr>
         </table>
+
     <br><br><br>
     {%if not hus%}
         <center><font color="red">Sin Historias de Usuario</font></center>
     {%else%}
+          <table class="max">
+        <tr>
+            <th>Desarrolladores disponibles</th>
+            <th>Esfuerzo destinado por dias</th>
+
+        </tr>
+        {%for miembro in equipo_actual%}
+            <tr>
+                <td>{{miembro}}</td>
+                <td>{{miembro.hora}} hora/s</td>
+            </tr>
+        {%endfor%}
+    </table>
+
         <table class="max">
             <th>Nombre</th>
             <th>Valor de negocio</th>
             <th>Valor tecnico</th>
+             <th>Priorizado</th>
             <th>Responsable</th>
             <th>Flujo</th>
             <th>Esfuerzo requerido</th>
@@ -96,6 +114,7 @@
                 <td>{{h}}</td>
                 <td>{{h.valornegocio}}</td>
                 <td>{{h.valortecnico}}</td>
+                 <td>{{h.priorizacion}}</td>
                 <td>{{h.responsable}}   <a href="/usuario/editar_responsable/{{h.id}}/{{proyecto.id}}/{{sprint.id}}"><img src="/static/img/pencil3.png" width="20" height="20"/></a></td>
                 <td>{{h.flujo}}   <a href="/usuario/editar_flujo/{{h.id}}/{{proyecto.id}}/{{sprint.id}}"><img src="/static/img/pencil3.png" width="20" height="20"/></a></td>
                 <td>{{h.hora }}
@@ -113,6 +132,7 @@
 
     <div class="boton_agregar_hu">
     <a class="button button-action" href="/usuario/asignarhusprint/{{proyecto.id}}/{{sprint.id}}" name="Guardar">Agregar Hu</a>
+        <a class="button-highlight button" href= '/usuario/datos_Proyecto/{{proyecto.id}}' >Atras</a>
     </div>>
 
 </nav>

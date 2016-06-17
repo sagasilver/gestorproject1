@@ -9,7 +9,7 @@ class SGPATestCase(TestCase):
 	def test_crear_cliente(self):
 	
 	        c = Client()
-	        c.login(username='gustavo', password='gustavo')
+	        c.login(username='fabio', password='123')
 		print('\n------Ejecutando test para crear un cliente-------\n')
 
 	        resp = c.get('/usuario/crear_cliente/1')

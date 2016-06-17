@@ -806,8 +806,10 @@ def agregar_actividad(request,flujo_id):
 def ingresar_Proyecto(request,codigo):
     permisos = obtenerPermisos(request)
     usuario = User.objects.get(pk = codigo)
-    proyectos = Proyecto.objects.all().filter(lider_id= usuario.id).filter(estado = "ACTIVO")
-    return render_to_response('ingresar_Proyecto.html', {'proyectos':proyectos,'permisos':permisos,'codigo':codigo}, context_instance=RequestContext(request))
+    equipo= Equipo.objects.all().filter(usuario_id = usuario.id)
+    proyecto1 = Proyecto.objects.all().filter(lider_id=usuario.id).filter(estado="ACTIVO")
+    proyectos = Proyecto.objects.all().filter(estado="ACTIVO")
+    return render_to_response('ingresar_Proyecto.html', {'proyectos':proyectos,'proy_lider':proyecto1,'permisos':permisos,'codigo':codigo,'equipos':equipo}, context_instance=RequestContext(request))
 
 @login_required()
 def datos_Proyecto(request, id_proyecto):
@@ -1095,8 +1097,13 @@ def nuevo_hu(request,codigo):
                 formulario = HuForm(request.POST)
                 if formulario.is_valid():
                     nombre = formulario.cleaned_data['nombre']
+                    vn =formulario.cleaned_data['valornegocio']
+                    vt =formulario.cleaned_data['valortecnico']
+                    prioridad=formulario.cleaned_data['prioridad']
+                    priorizacion=((vn + prioridad + 2 * vt) / 4)
                     pro = formulario.save()
                     pro.proyecto_id = codigo
+                    pro.priorizacion=priorizacion
                     pro.save()
 
                     fecha=datetime.now()
@@ -1105,7 +1112,7 @@ def nuevo_hu(request,codigo):
                     dato = Historia(usuario=usuario.username,nombre='Crear',fecha=fecha,descripcion='Se Crea el HU',hu=pro)
                     dato.save()
                     mensaje = "Se creo el hu: %s. \nFue creado por: %s" %(nombre, usuario.username)
-                    mail = EmailMessage('Creacion de un HU',mensaje,'smtp.gmail.com',['luiscapdevila@hotmail.es','lagd@live.com'])
+                    mail = EmailMessage('Creacion de un HU',mensaje,'smtp.gmail.com',['gustavootazu81@gmail.com','rodrigoamarillasanabria@gmail.com','Rfsgold@gmail.com'])
                     mail.send()
 
                     return HttpResponseRedirect(reverse('usuario:adminhu',args=(proyecto.id,)))
@@ -1127,7 +1134,7 @@ def hu_admin(request,codigo):
     proyecto = Proyecto.objects.get(pk=codigo)
     permisos = obtenerPermisos(request)
     if "crear cliente" in permisos or "modificar cliente" in permisos or "eliminar cliente" in permisos:
-        hus = Hu.objects.all().filter(proyecto_id= codigo)
+        hus = Hu.objects.all().filter(proyecto_id= codigo).order_by('-priorizacion')
         return render_to_response('administrar_hu.html', {'codigo':request.user.id,'hus': hus, 'permisos':permisos,'proyecto':proyecto},context_instance=RequestContext(request))
     else:
         raiz = "administracion"
@@ -1150,7 +1157,7 @@ def eliminar_hu(request, id_hu, codigo):
             hu.delete()
             usuario=request.user
             mensaje = "Se elimino el hu: %s. \nFue eliminado por: %s" %(hu.nombre, usuario.username)
-            mail = EmailMessage('Eliminacion  de un HU',mensaje,'smtp.gmail.com',['luiscapdevila@hotmail.es','lagd@live.com'])
+            mail = EmailMessage('Eliminacion  de un HU',mensaje,'smtp.gmail.com',['gustavootazu81@gmail.com','rodrigoamarillasanabria@gmail.com','Rfsgold@gmail.com'])
             mail.send()
         return HttpResponseRedirect(reverse('usuario:adminhu',args=(proyecto.id,)))
     else:
@@ -1172,16 +1179,25 @@ def modificar_hu_view( request, id_hu, codigo):
     if "modificar usuario" in permisos:
         hu = Hu.objects.get(pk= id_hu)
         if request.method=="POST":
-            formulario= HuModificarForm(request.POST, request.FILES, instance= hu)
+            formulario=HuModificarForm(request.POST, request.FILES, instance=hu)
             if formulario.is_valid():
-                formulario.save()
+                vn = formulario.cleaned_data['valornegocio']
+                vt = formulario.cleaned_data['valortecnico']
+                prioridad = formulario.cleaned_data['prioridad']
+                priorizacion = ((vn + prioridad + 2 * vt) / 4)
+                pro = formulario.save()
+                pro.priorizacion = priorizacion
+                pro.estadorevision='PEN'
+                pro.estadodesarrolllo='PRO'
+                pro.estadoflujo='TOD'
+                pro.save()
                 fecha=datetime.now()
                 fecha.strftime("%a %b %d %H:%M %Y")
                 usuario=request.user
                 dato = Historia(usuario=usuario.username,nombre='Modificar',fecha=fecha,descripcion='Se Modifica al HU',hu=hu)
                 dato.save()
                 mensaje = "Se modifico el hu: %s. \nFue modificado por: %s" %(hu.nombre, usuario.username)
-                mail = EmailMessage('Modificacion de HU',mensaje,'smtp.gmail.com',['luiscapdevila@hotmail.es','lagd@live.com'])
+                mail = EmailMessage('Modificacion de HU',mensaje,'smtp.gmail.com',['gustavootazu81@gmail.com','rodrigoamarillasanabria@gmail.com','Rfsgold@gmail.com'])
                 mail.send()
                 return HttpResponseRedirect(reverse('usuario:adminhu',args=(proyecto.id,)))
         else:
@@ -1348,8 +1364,9 @@ def sprint_backlog(request, id_sprint, codigo):
     permisos = obtenerPermisos(request)
     proyecto = Proyecto.objects.get(pk=codigo)
     sprint = Sprint.objects.get(pk=id_sprint)
+    equipo_actual = Equipo.objects.filter(proyecto_id=codigo)
     equipo = Equipo.objects.filter(proyecto_id = codigo)
-    historias = Hu.objects.filter(proyecto_id = codigo).filter(id__in = sprint.hu.all())
+    historias = Hu.objects.filter(proyecto_id = codigo).filter(id__in = sprint.hu.all()).order_by('-priorizacion')
     total_hu = 0
     capacidad = 0
     diferencia = 0
@@ -1363,7 +1380,7 @@ def sprint_backlog(request, id_sprint, codigo):
 
     if "ver proyecto" in permisos:
 
-        return render(request, 'sprint_backlog.html', { 'proyecto':proyecto, 'codigo':request.user.id, 'sprint':sprint, 'permisos':permisos, 'capacidad':capacidad, 'total_hu':total_hu, 'diferencia':diferencia,'hus':historias})
+        return render(request, 'sprint_backlog.html', { 'proyecto':proyecto, 'codigo':request.user.id, 'sprint':sprint, 'permisos':permisos, 'capacidad':capacidad, 'total_hu':total_hu, 'diferencia':diferencia,'hus':historias,'equipo_actual':equipo_actual})
     else:
         raiz = ""
         return render_to_response('sinpermiso.html', {'raiz':raiz},context_instance=RequestContext(request))
@@ -1385,7 +1402,7 @@ def asignar_hu_a_sprint(request, id_proyecto, id_sprint):
         for h_s in h_sprint:
             id_sprints.append(h_s.id)
 
-    historias = Hu.objects.filter(proyecto_id = id_proyecto).filter(estadorevision = 'APR').exclude(id__in = id_sprints)
+    historias = Hu.objects.filter(proyecto_id = id_proyecto).filter(estadorevision = 'APR').exclude(id__in = id_sprints).order_by('priorizacion')
 
     if "crear proyecto" in permisos:
         if request.method=="POST":
@@ -1404,7 +1421,7 @@ def asignar_hu_a_sprint(request, id_proyecto, id_sprint):
 
         else:
             formulario= SprintFormAsignarHu(proyecto = proyecto, claves = id_sprints)
-            hus = Hu.objects.filter(proyecto = proyecto).filter(estadorevision = 'APR').exclude(id__in = id_sprints  )
+            hus = Hu.objects.order_by('-priorizacion').filter(proyecto = proyecto).filter(estadorevision = 'APR').exclude(id__in = id_sprints  )
         return render(request, 'asignar_hu_a_sprint.html', {'hus': hus,'codigo':request.user.id, 'permisos':permisos,'formulario':formulario,'proyecto':proyecto},context_instance=RequestContext(request))
     else:
         raiz = ""
@@ -1776,7 +1793,7 @@ def historial_hu(request,id_hu,codigo):
     hu = Hu.objects.get(pk=id_hu)
     historia = Historia.objects.all().filter(hu_id = id_hu)
     if "cambiar estado cliente" in permisos:
-            return render( request,'historialhu.html',{'codigo':request.user.id,'proyecto':proyecto,'historia':historia,'hu':hu})
+            return render( request,'historialhu.html',{'codigo':request.user.id,'proyecto':proyecto,'historia':historia,'hu':hu,'permisos':permisos})
     else:
         raiz = ""
         return render_to_response('sinpermiso.html', {'raiz':raiz},context_instance=RequestContext(request))
@@ -1831,26 +1848,42 @@ def flujo_proyecto( request,id_proyecto):
     '''
     proyecto = Proyecto.objects.get(pk=id_proyecto)
     permisos = obtenerPermisos(request)
-    sprint = Sprint.objects.get(proyecto= id_proyecto , estado = "ACT")
-    hu = sprint.hu.all()
-    flujos = Flujo.objects.all()
+    hu = Hu.objects.filter(proyecto_id = id_proyecto).filter(estadodesarrolllo = 'PRO')
+    flujos = proyecto.flujo.all()
+    hu_sprint = []
+    sprint = Sprint.objects.filter(proyecto_id = id_proyecto)
+    for s in sprint:
+        if s.estado == 'ACT':
+            fecha = datetime.now()
+            fecha_f = datetime.strptime(s.fechaFin, "%Y-%m-%d")
+            if fecha_f > fecha:
+                hu_sprint = s.hu.all()
+            else:
+                s.estado = 'INA'
+                s.save()
     if "ver proyecto" in permisos:
-        return render_to_response('flujo_proyecto.html', {'flujos':flujos,'hu':hu,'proyecto':proyecto,'permisos':permisos},context_instance=RequestContext(request))
+        return render_to_response('flujo_proyecto.html', {'hu_sprint':hu_sprint,'flujos':flujos,'hu':hu,'proyecto':proyecto,'permisos':permisos},context_instance=RequestContext(request))
     else:
         raiz = ""
         return render_to_response('sinpermiso.html', {'raiz':raiz},context_instance=RequestContext(request))
 
 
 
-
 @login_required()
 def agregar_trabajo(request,id_hu,codigo):
     '''
-    Permite agregar un trabajo a una historia de usuario
-    :param request:
-    :param id_hu:
-    :param codigo:
-    :return:vuelve al modulo de administracion de hu
+    Permite agregar un trabajo a un hu en el tablero kanabn de un proyecto en el sistema.
+    Solo un usuario con el permiso: "agregar trabajo", puede ingresar a este modulo.
+
+    @param request: request
+
+    @type request: HttpRequest
+
+    @param id_proyecto: codigo del proyecto
+
+    @type id_proyecto: ID de proyecto
+
+    @return: request, 'agregar_trabajo.html', {'formulario': formulario,'proyecto':proyecto,'permisos':permisos})
     '''
     permisos = obtenerPermisos(request)
     if "crear proyecto" in permisos:
@@ -1866,7 +1899,7 @@ def agregar_trabajo(request,id_hu,codigo):
                 if formulario.is_valid():
                     if request.POST.get("archivo") != None:
                         nom  = request.POST.get("archivo")
-                        nombre = "/home/rodri/" + nom
+                        nombre = "/home/gustavo/" + nom
                         f = open(nombre,"rb+")
                         archivo = Files(nombre =f.name,dato =  f.read())
                         archivo.save()
@@ -1879,8 +1912,8 @@ def agregar_trabajo(request,id_hu,codigo):
                     user = User.objects.get(pk=hu.responsable_id)
                     trabajo.actor = user.username
                     trabajo.hu = hu
-                    fecha= datetime.now()
-                    fecha.strftime('%d-%m-%Y')
+                    fecha=date.today()
+                    fecha.strftime("%Y-%m-%d")
                     trabajo.fecha = fecha
                     if request.POST.get("archivo") != None:
                         trabajo.filename = nom
@@ -1890,13 +1923,11 @@ def agregar_trabajo(request,id_hu,codigo):
                     trabajo.flujo = flujo.nombre
                     trabajo.actividad = actividad.nombre
                     trabajo.estado = hu.estadoflujo
-
                     trabajo.save()
-
+                    hu.horat+=trabajo.horas
+                    hu.save()
 
                     return HttpResponseRedirect(reverse('usuario:flujo_proyecto',args=(proyecto.id,)))
-                else:
-                    return render(request, 'nuevoProyecto.html', {'formulario': formulario,'permisos':permisos})
         else:
             formulario = TrabajoForm()
             return render(request, 'agregar_trabajo.html', {'formulario': formulario,'proyecto':proyecto,'permisos':permisos})
@@ -1905,18 +1936,52 @@ def agregar_trabajo(request,id_hu,codigo):
         return render_to_response('sinpermiso.html', {'raiz':raiz},context_instance=RequestContext(request))
 
 
+
 @login_required()
-def ver_trabajo_view( request, id_hu):
+def ver_trabajo_view( request, id_hu, orden):
     '''
-    Permite ver el historial de trabajo de un HU
-    :param request:
-    :param id_hu:
-    :return:
+    Permite ver el historial de trabajos de un hu en el sistema.
+    Solo un usuario con el permiso: "ver trabajo", puede ingresar a este modulo.
+
+    @param request: request
+
+    @type request: HttpRequest
+
+    @param id_hu: codigo del hu
+
+    @type id_hu: ID de hu
+
+    @param orden: campo para ordenar
+
+    @type orden: atributo de trabajo
+
+    @return: request, 'ver_trabajo.html', { 'trabajos':trabajos}
     '''
     permisos = obtenerPermisos(request)
     if "ver proyecto" in permisos:
         h = Hu.objects.get(pk=id_hu)
-        trabajos = Trabajo.objects.all().filter(hu = id_hu)
+        if orden == '1':
+            trabajos = Trabajo.objects.all().filter(hu = id_hu).order_by('nombre')
+        if orden == '2':
+            trabajos = Trabajo.objects.all().filter(hu = id_hu).order_by('fecha')
+        if orden == '3':
+            trabajos = Trabajo.objects.all().filter(hu = id_hu).order_by('nota')
+        if orden == '4':
+            trabajos = Trabajo.objects.all().filter(hu = id_hu).order_by('horas')
+        if orden == '5':
+            trabajos = Trabajo.objects.all().filter(hu = id_hu).order_by('actor')
+        if orden == '6':
+            trabajos = Trabajo.objects.all().filter(hu = id_hu).order_by('hu')
+        if orden == '7':
+            trabajos = Trabajo.objects.all().filter(hu = id_hu).order_by('flujo')
+        if orden == '8':
+            trabajos = Trabajo.objects.all().filter(hu = id_hu).order_by('actividad')
+        if orden == '9':
+            trabajos = Trabajo.objects.all().filter(hu = id_hu).order_by('estado')
+        if orden == '10':
+            trabajos = Trabajo.objects.all().filter(hu = id_hu).order_by('sprint')
+        if orden == '11':
+            trabajos = Trabajo.objects.all().filter(hu = id_hu).order_by('filename')
         return render_to_response('ver_trabajo.html', { 'trabajos':trabajos,'h':h},context_instance=RequestContext(request))
     else:
         raiz = ""
@@ -1939,18 +2004,29 @@ def descargar(request,archivo_id):
     '''
     archivo = Files.objects.get(pk=archivo_id)
     response = HttpResponse()
-    response['Content-Disposition'] = 'attachment; filename="SGPA-Download"'
+    response['Content-Disposition'] = 'attachment; filename="sgpa-Download"'
     response.write(archivo.dato)
     return response
 
 @login_required()
 def avanzar(request,id_hu,codigo):
     '''
-    Permite avanzar un hu dentro del flujo del proyecto. El hu avanza una actividad tras otra
-    :param request:
-    :param id_hu:
-    :param codigo:
-    :return:vuelve al modulo de administracion de hu
+    Permite avanzar el estado de un hu dentro del kanban en el sistema.
+    Solo un usuario con el permiso: "avanzar hu", puede ingresar a este modulo.
+
+    @param request: request
+
+    @type request: HttpRequest
+
+    @param id_hu: codigo del hu
+
+    @type id_hu: ID de hu
+
+    @param codigo: codigo del proyecto
+
+    @type codigo: ID de proyecto
+
+    @return: request, HttpResponseRedirect(reverse('usuario:flujo_proyecto',args=(proyecto.id,)))
     '''
     permisos = obtenerPermisos(request)
     if "crear proyecto" in permisos:
@@ -1972,8 +2048,8 @@ def avanzar(request,id_hu,codigo):
         trabajo.nota = 'Cambio de Estado del HU'
         trabajo.actor = user.username
         trabajo.hu = hu
-        fecha=datetime.now()
-        fecha.strftime('%d-%m-%Y')
+        fecha=date.today()
+        fecha.strftime("%Y-%m-%d")
         trabajo.fecha = fecha
         trabajo.flujo = flujo.nombre
         trabajo.actividad = actividad.nombre
@@ -1983,7 +2059,7 @@ def avanzar(request,id_hu,codigo):
 
         for a in actividades:
             if a.orden == siguiente:
-                actividad = a
+                activ = a
         if hu.estadoflujo == 'TOD':
             hu.estadoflujo = 'DOI'
         else:
@@ -1991,8 +2067,13 @@ def avanzar(request,id_hu,codigo):
                 hu.estadoflujo = 'DON'
             else:
                 hu.estadoflujo = 'TOD'
-                hu.actividad = actividad
+                hu.actividad = activ
         hu.save()
+        if hu.estadoflujo == 'DON'and actividad.orden == flujo.cantidad:
+            destino = User.objects.get(pk = proyecto.lider_id)
+            mensaje = "El hu: %s ya esta listo para ser finalizado" %(hu.nombre)
+            mail = EmailMessage('Hu listo Para su Finalizacion',mensaje,'smtp.gmail.com',[destino.email])
+            mail.send()
         return HttpResponseRedirect(reverse('usuario:flujo_proyecto',args=(proyecto.id,)))
     else:
         raiz = "proyecto"
@@ -2001,11 +2082,22 @@ def avanzar(request,id_hu,codigo):
 @login_required()
 def retroceder(request,id_hu,codigo):
     '''
-    Permite retroceder un hu dentro del flujo del proyecto
-    :param request:
-    :param id_hu:
-    :param codigo:
-    :return:vuelve al modulo de administracion de hu
+    Permite retroceder el estado de un hu dentro del kanban en el sistema.
+    Solo un usuario con el permiso: "avanzar hu", puede ingresar a este modulo.
+
+    @param request: request
+
+    @type request: HttpRequest
+
+    @param id_hu: codigo del hu
+
+    @type id_hu: ID de hu
+
+    @param codigo: codigo del proyecto
+
+    @type codigo: ID de proyecto
+
+    @return: request, HttpResponseRedirect(reverse('usuario:flujo_proyecto',args=(proyecto.id,)))
     '''
     permisos = obtenerPermisos(request)
     if "crear proyecto" in permisos:
@@ -2027,8 +2119,8 @@ def retroceder(request,id_hu,codigo):
         trabajo.nota = 'Cambio de Estado del HU'
         trabajo.actor = user.username
         trabajo.hu = hu
-        fecha=datetime.now()
-        fecha.strftime('%d-%m-%Y')
+        fecha=date.today()
+        fecha.strftime("%Y-%m-%d")
         trabajo.fecha = fecha
         trabajo.flujo = flujo.nombre
         trabajo.actividad = actividad.nombre
@@ -2053,6 +2145,24 @@ def retroceder(request,id_hu,codigo):
 
 @login_required()
 def cambiar_flujo(request, id_hu, id_proyecto):
+    '''
+    Permite cambiar el flujo de un hu dentro del kanban en el sistema.
+    Solo un usuario con el permiso: "cambiar flujo", puede ingresar a este modulo.
+
+    @param request: request
+
+    @type request: HttpRequest
+
+    @param id_hu: codigo del hu
+
+    @type id_hu: ID de hu
+
+    @param id_proyecto: codigo del proyecto
+
+    @type id_proyecto: ID de proyecto
+
+    @return: request, HttpResponseRedirect(reverse('usuario:flujo_proyecto',args=(proyecto.id,)))
+    '''
     permisos = obtenerPermisos(request)
     proyecto = Proyecto.objects.get(pk = id_proyecto)
     hu = Hu.objects.get(pk = id_hu)
@@ -2089,8 +2199,8 @@ def cambiar_flujo(request, id_hu, id_proyecto):
                 trabajo.nota = 'Cambio de Flujo del HU'
                 trabajo.actor = user.username
                 trabajo.hu = hu
-                fecha=datetime.now()
-                fecha.strftime('%d-%m-%Y')
+                fecha=date.today()
+                fecha.strftime("%Y-%m-%d")
                 trabajo.fecha = fecha
                 trabajo.flujo = flujo.nombre
                 trabajo.actividad = actividad.nombre
@@ -2099,7 +2209,7 @@ def cambiar_flujo(request, id_hu, id_proyecto):
                 sprint = Sprint.objects.get(proyecto= id_proyecto , estado = "ACT")
                 hu = sprint.hu.all()
 
-                return render(request,'flujo_proyecto.html', {'flujos':flujos,'hu':hu,'proyecto':proyecto,'permisos':permisos},context_instance=RequestContext(request))
+                return HttpResponseRedirect(reverse('usuario:flujo_proyecto',args=(proyecto.id,)))
         else:
             formulario= HuFormFlujo(proyecto = proyecto, instance = hu)
 

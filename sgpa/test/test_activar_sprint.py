@@ -1,5 +1,5 @@
 
-from django.test import TestCase
+from django.test import Test
 from django.contrib.auth.models import User
 from sgpa.models import Proyecto
 from django.test import Client

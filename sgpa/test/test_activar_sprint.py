@@ -1,16 +1,15 @@
 
 from django.test import TestCase
-from django.contrib.auth.models import User
-from sgpa.models import Proyecto
-from django.test import Client
+from sgpa.models import Sprint
+
 
 
 class SGPATestCase(TestCase):
 	def test_activar_sprint(self):
-	
-	        c = Client()
-	        c.login(username='gustavo', password='gustavo')
-		print('\n------Ejecutando test para activar sprint-------\n')
 
-	        resp = c.get('/usuario/activar_sprint/1')
-	        self.assertTrue(resp.status_code, 200)
+         print('\n------Ejecutando test para activar sprint...-------')
+         s = Sprint(duracion = 1, fechaInicio= '01-12-2016', fechaFin='12-12-2016', nombre='sprint', estado = 'INA')
+         s.save()
+         s.estado= 'ACT'
+         s.save()
+         self.assertEqual(s.estado,'ACT')

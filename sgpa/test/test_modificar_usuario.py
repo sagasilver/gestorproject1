@@ -12,7 +12,8 @@ class SGPATestCase(TestCase):
         	'''
         	print('\n------Ejecutando test para modificar usuario...-------\n')
 
-        	usuario2 = User.objects.create_user('testuser33', 'test@example.com', 'testpw')
-        	usuario2.is_active=False
-        	resp = self.client.get('/usuario/modificar_usuario/1?')
-        	self.assertEqual(resp.status_code, 301)
+        	usuario1 = User.objects.create_user('pepe', 'test@example.com', 'abc')
+                usuario2 = User.objects.create_user('lalo', 'test@example.com', 'deg')
+                usuario2.email = 'modificado@example.com'
+                usuario2.save()
+        	self.assertNotEqual(usuario2.email,usuario1.email)

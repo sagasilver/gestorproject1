@@ -2,30 +2,44 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0811dd7f-5ce1-4a59-90ce-1dabdcb87eee" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sgpa/test/test_detalle_cliente.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sgpa/test/test_detalle_proyecto.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sgpa/test/test_detalle_rol_proyecto.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sgpa/test/test_detalle_rol_sistema.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sgpa/test/test_detalle_usuario.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sgpa/test/test_eliminar_cliente.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sgpa/test/test_eliminar_hu.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sgpa/test/test_eliminar_proyecto.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sgpa/test/test_eliminar_rol_proyecto.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sgpa/test/test_eliminar_rol_sistema.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sgpa/test/test_eliminar_usuario.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sgpa/test/test_identificar_permiso.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sgpa/test/test_modificar_cliente.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sgpa/test/test_modificar_hu.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sgpa/test/test_modificar_proyecto.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sgpa/test/test_modificar_rol_proyecto.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sgpa/test/test_modificar_rol_sistema.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sgpa/test/test_modificar_usuario.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sgpa/test/test_ver_hu.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gestorproject1.iml" afterPath="$PROJECT_DIR$/.idea/gestorproject1.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sgpa/test/test_clave_incorrecta.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sgpa/test/test_logout.py" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sgpa/test/test_proyecto.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sgpa/test/test_usuario.py" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/sgpa/test/test_ver_hu.py" afterPath="$PROJECT_DIR$/sgpa/test/test_detalle_hu.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/settings.py" afterPath="$PROJECT_DIR$/demo/settings.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/templates/agregar_trabajo.html" afterPath="$PROJECT_DIR$/demo/templates/agregar_trabajo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/templates/nuevo_proyecto.html" afterPath="$PROJECT_DIR$/demo/templates/nuevo_proyecto.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sgpa/test/__init__.py" afterPath="$PROJECT_DIR$/sgpa/test/__init__.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sgpa/test/test_activar_sprint.py" afterPath="$PROJECT_DIR$/sgpa/test/test_activar_sprint.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sgpa/test/test_crear_cliente.py" afterPath="$PROJECT_DIR$/sgpa/test/test_crear_cliente.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sgpa/test/test_crear_hu.py" afterPath="$PROJECT_DIR$/sgpa/test/test_crear_hu.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sgpa/test/test_crear_proyecto.py" afterPath="$PROJECT_DIR$/sgpa/test/test_crear_proyecto.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sgpa/test/test_crear_rol_proyecto.py" afterPath="$PROJECT_DIR$/sgpa/test/test_crear_rol_proyecto.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sgpa/test/test_crear_rol_sistema.py" afterPath="$PROJECT_DIR$/sgpa/test/test_crear_rol_sistema.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sgpa/test/test_crear_sprint.py" afterPath="$PROJECT_DIR$/sgpa/test/test_crear_sprint.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sgpa/test/test_crear_usuario.py" afterPath="$PROJECT_DIR$/sgpa/test/test_crear_usuario.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sgpa/test/test_desplegar_kanban.py" afterPath="$PROJECT_DIR$/sgpa/test/test_desplegar_kanban.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sgpa/test/test_detalle_cliente.py" afterPath="$PROJECT_DIR$/sgpa/test/test_detalle_cliente.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sgpa/test/test_detalle_proyecto.py" afterPath="$PROJECT_DIR$/sgpa/test/test_detalle_proyecto.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sgpa/test/test_detalle_rol_proyecto.py" afterPath="$PROJECT_DIR$/sgpa/test/test_detalle_rol_proyecto.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sgpa/test/test_detalle_rol_sistema.py" afterPath="$PROJECT_DIR$/sgpa/test/test_detalle_rol_sistema.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sgpa/test/test_detalle_usuario.py" afterPath="$PROJECT_DIR$/sgpa/test/test_detalle_usuario.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sgpa/test/test_eliminar_cliente.py" afterPath="$PROJECT_DIR$/sgpa/test/test_eliminar_cliente.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sgpa/test/test_eliminar_hu.py" afterPath="$PROJECT_DIR$/sgpa/test/test_eliminar_hu.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sgpa/test/test_eliminar_proyecto.py" afterPath="$PROJECT_DIR$/sgpa/test/test_eliminar_proyecto.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sgpa/test/test_eliminar_rol_proyecto.py" afterPath="$PROJECT_DIR$/sgpa/test/test_eliminar_rol_proyecto.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sgpa/test/test_eliminar_rol_sistema.py" afterPath="$PROJECT_DIR$/sgpa/test/test_eliminar_rol_sistema.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sgpa/test/test_eliminar_usuario.py" afterPath="$PROJECT_DIR$/sgpa/test/test_eliminar_usuario.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sgpa/test/test_identificar_permiso.py" afterPath="$PROJECT_DIR$/sgpa/test/test_identificar_permiso.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sgpa/test/test_login.py" afterPath="$PROJECT_DIR$/sgpa/test/test_login.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sgpa/test/test_modificar_cliente.py" afterPath="$PROJECT_DIR$/sgpa/test/test_modificar_cliente.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sgpa/test/test_modificar_hu.py" afterPath="$PROJECT_DIR$/sgpa/test/test_modificar_hu.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sgpa/test/test_modificar_proyecto.py" afterPath="$PROJECT_DIR$/sgpa/test/test_modificar_proyecto.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sgpa/test/test_modificar_rol_proyecto.py" afterPath="$PROJECT_DIR$/sgpa/test/test_modificar_rol_proyecto.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sgpa/test/test_modificar_rol_sistema.py" afterPath="$PROJECT_DIR$/sgpa/test/test_modificar_rol_sistema.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sgpa/test/test_modificar_usuario.py" afterPath="$PROJECT_DIR$/sgpa/test/test_modificar_usuario.py" />
     </list>
     <ignored path="gestionproject1.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,6 +54,9 @@
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/gestionproject1$manage.coverage" NAME="manage Coverage Results" MODIFIED="1462208041048" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/gestorproject1$Unittests_in_test__1_.coverage" NAME="Unittests in test (1) Coverage Results" MODIFIED="1466182738992" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sgpa/test" />
+    <SUITE FILE_PATH="coverage/gestorproject1$Unittests_in_test.coverage" NAME="Unittests in test Coverage Results" MODIFIED="1466202979322" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sgpa/test" />
+    <SUITE FILE_PATH="coverage/gestorproject1$manage.coverage" NAME="manage Coverage Results" MODIFIED="1466207923064" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -52,9 +69,99 @@
     <favorites_list name="gestionproject1" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="test_detalle_cliente.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/sgpa/test/test_detalle_cliente.py">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="test_eliminar_usuario.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sgpa/test/test_eliminar_usuario.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test_identificar_permiso.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sgpa/test/test_identificar_permiso.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test_login.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sgpa/test/test_login.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test_logout.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sgpa/test/test_logout.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test_modificar_cliente.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sgpa/test/test_modificar_cliente.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test_modificar_hu.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sgpa/test/test_modificar_hu.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test_modificar_proyecto.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sgpa/test/test_modificar_proyecto.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test_modificar_rol_proyecto.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sgpa/test/test_modificar_rol_proyecto.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test_modificar_rol_sistema.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sgpa/test/test_modificar_rol_sistema.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test_modificar_usuario.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/sgpa/test/test_modificar_usuario.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -65,41 +172,90 @@
       </file>
     </leaf>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="rodrigo" />
+      </map>
+    </option>
+    <option name="PUSH_TAGS">
+      <GitPushTagMode />
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/demo/urls.py" />
-        <option value="$PROJECT_DIR$/demo/views.py" />
-        <option value="$PROJECT_DIR$/gestorproject1/admin.py" />
-        <option value="$PROJECT_DIR$/sgpa/admin.py" />
-        <option value="$PROJECT_DIR$/demo/settings.py" />
-        <option value="$PROJECT_DIR$/demo/templates/ingresar.html" />
-        <option value="$PROJECT_DIR$/sgpa/urls.py" />
-        <option value="$PROJECT_DIR$/sgpa/models.py" />
-        <option value="$PROJECT_DIR$/sgpa/views.py" />
-        <option value="$PROJECT_DIR$/sgpa/test/test_login.py" />
-        <option value="$PROJECT_DIR$/sgpa/test/test_proyecto.py" />
-        <option value="$PROJECT_DIR$/sgpa/test/test_usuario.py" />
-        <option value="$PROJECT_DIR$/sgpa/wsgi.py" />
-        <option value="$PROJECT_DIR$/demo/templates/Base.html" />
-        <option value="$PROJECT_DIR$/demo/static/css/style.css" />
+        <option value="$PROJECT_DIR$/demo/templates/modificar_hu.html" />
+        <option value="$PROJECT_DIR$/demo/templates/nuevoHu.html" />
         <option value="$PROJECT_DIR$/demo/static/css/style2.css" />
+        <option value="$PROJECT_DIR$/demo/templates/agregar_flujo.html" />
+        <option value="$PROJECT_DIR$/demo/templates/agregar_actividad.html" />
+        <option value="$PROJECT_DIR$/demo/templates/administrar_hu.html" />
+        <option value="$PROJECT_DIR$/demo/templates/activar_sprint.html" />
+        <option value="$PROJECT_DIR$/demo/templates/equipo_trabajo.html" />
+        <option value="$PROJECT_DIR$/demo/templates/detalle_equipo.html" />
+        <option value="$PROJECT_DIR$/demo/templates/lista_eliminar_miembro.html" />
+        <option value="$PROJECT_DIR$/demo/templates/sprint_backlog.html" />
+        <option value="$PROJECT_DIR$/demo/templates/agregar_archivo.html" />
+        <option value="$PROJECT_DIR$/sgpa/views.py" />
+        <option value="$PROJECT_DIR$/demo/templates/flujo_proyecto.html" />
+        <option value="$PROJECT_DIR$/demo/templates/nuevo_proyecto.html" />
+        <option value="$PROJECT_DIR$/demo/templates/nuevoProyecto.html" />
+        <option value="$PROJECT_DIR$/sgpa/urls.py" />
+        <option value="$PROJECT_DIR$/demo/templates/agregar_trabajo.html" />
+        <option value="$PROJECT_DIR$/sgpa/test/test_proyecto.py" />
+        <option value="$PROJECT_DIR$/sgpa/test/test_clave_incorrecta.py" />
+        <option value="$PROJECT_DIR$/sgpa/test/test_crear_cliente.py" />
+        <option value="$PROJECT_DIR$/sgpa/test/test_crear_hu.py" />
+        <option value="$PROJECT_DIR$/sgpa/test/test_crear_proyecto.py" />
+        <option value="$PROJECT_DIR$/sgpa/test/test_activar_sprint.py" />
+        <option value="$PROJECT_DIR$/sgpa/test/test_crear_rol_proyecto.py" />
+        <option value="$PROJECT_DIR$/sgpa/test/test_crear_rol_sistema.py" />
+        <option value="$PROJECT_DIR$/sgpa/test/test_crear_sprint.py" />
+        <option value="$PROJECT_DIR$/sgpa/test/test_crear_usuario.py" />
+        <option value="$PROJECT_DIR$/sgpa/test/test_desplegar_kanban.py" />
+        <option value="$PROJECT_DIR$/sgpa/test/test_detalle_cliente.py" />
+        <option value="$PROJECT_DIR$/sgpa/test/test_detalle_hu.py" />
+        <option value="$PROJECT_DIR$/sgpa/test/test_detalle_proyecto.py" />
+        <option value="$PROJECT_DIR$/sgpa/test/test_detalle_rol_proyecto.py" />
+        <option value="$PROJECT_DIR$/sgpa/test/test_detalle_rol_sistema.py" />
+        <option value="$PROJECT_DIR$/sgpa/test/test_detalle_usuario.py" />
+        <option value="$PROJECT_DIR$/sgpa/test/test_eliminar_cliente.py" />
+        <option value="$PROJECT_DIR$/sgpa/test/test_eliminar_hu.py" />
+        <option value="$PROJECT_DIR$/sgpa/test/test_eliminar_proyecto.py" />
+        <option value="$PROJECT_DIR$/sgpa/test/test_eliminar_rol_proyecto.py" />
+        <option value="$PROJECT_DIR$/sgpa/test/test_eliminar_rol_sistema.py" />
+        <option value="$PROJECT_DIR$/sgpa/test/test_eliminar_usuario.py" />
+        <option value="$PROJECT_DIR$/sgpa/test/test_identificar_permiso.py" />
+        <option value="$PROJECT_DIR$/sgpa/test/test_login.py" />
+        <option value="$PROJECT_DIR$/sgpa/test/test_logout.py" />
+        <option value="$PROJECT_DIR$/sgpa/test/test_modificar_cliente.py" />
+        <option value="$PROJECT_DIR$/sgpa/test/test_modificar_hu.py" />
+        <option value="$PROJECT_DIR$/sgpa/test/test_modificar_rol_proyecto.py" />
+        <option value="$PROJECT_DIR$/sgpa/test/test_modificar_rol_sistema.py" />
+        <option value="$PROJECT_DIR$/sgpa/test/test_modificar_usuario.py" />
+        <option value="$PROJECT_DIR$/demo/settings.py" />
+        <option value="$PROJECT_DIR$/sgpa/test/test_modificar_proyecto.py" />
       </list>
     </option>
   </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolGruntFileManager" detection-done="true" />
+  <component name="JsBuildToolPackageJson" detection-done="true" />
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="61" />
+    <option name="x" value="65" />
     <option name="y" value="24" />
-    <option name="width" value="1305" />
+    <option name="width" value="1301" />
     <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -127,8 +283,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -179,15 +333,32 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gestorproject1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gestorproject1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="demo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Escritorio/gestorproject1" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Escritorio/is2/SGPA-v6.1-16e18dd8db80f822b018846eb1e2a1660f551692" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="ToolWindowTerminal.ShowToolbar" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -199,6 +370,29 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.manage">
+    <configuration default="false" name="Test: sgpa" type="DjangoTestsConfigurationType" factoryName="Django tests" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="gestorproject1" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="TARGET" value="sgpa" />
+      <option name="SETTINGS_FILE" value="$PROJECT_DIR$/sgpa/test/test_crear_proyecto.py" />
+      <option name="CUSTOM_SETTINGS" value="true" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method />
+    </configuration>
+    <configuration default="false" name="manage-pysrc.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/gestorproject1/html/manage-pysrc.html">
+      <method />
+    </configuration>
     <configuration default="false" name="manage" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -215,6 +409,29 @@
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/manage.py" />
       <option name="PARAMETERS" value="runserver" />
       <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittests in test" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/sgpa/test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="gestorproject1" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="$PROJECT_DIR$/sgpa/test" />
+      <option name="TEST_TYPE" value="TEST_FOLDER" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
       <method />
     </configuration>
     <configuration default="true" type="DjangoTestsConfigurationType" factoryName="Django tests">
@@ -471,13 +688,19 @@
       <option name="customRunCommand" value="" />
       <method />
     </configuration>
-    <list size="2">
+    <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Django server.gestionproject1" />
-      <item index="1" class="java.lang.String" itemvalue="Python.manage" />
+      <item index="1" class="java.lang.String" itemvalue="Django tests.Test: sgpa" />
+      <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.manage-pysrc.html" />
+      <item index="3" class="java.lang.String" itemvalue="Python.manage" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests in test" />
     </list>
     <recent_temporary>
-      <list size="1">
+      <list size="4">
         <item index="0" class="java.lang.String" itemvalue="Python.manage" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in test" />
+        <item index="2" class="java.lang.String" itemvalue="Django tests.Test: sgpa" />
+        <item index="3" class="java.lang.String" itemvalue="JavaScript Debug.manage-pysrc.html" />
       </list>
     </recent_temporary>
   </component>
@@ -495,321 +718,347 @@
       <option name="presentableId" value="Default" />
       <updated>1462185907580</updated>
     </task>
+    <task id="LOCAL-00001" summary="test para desplegar kanban">
+      <created>1463670545799</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1463670545799</updated>
+    </task>
+    <task id="LOCAL-00002" summary="asignar responsables">
+      <created>1463759557787</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1463759557787</updated>
+    </task>
+    <task id="LOCAL-00003" summary="arreglado hu, valor negocio, valor tecnico, prioridad">
+      <created>1465416387493</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1465416387493</updated>
+    </task>
+    <task id="LOCAL-00004" summary="configurando settings para conexion al correo">
+      <created>1465529736440</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1465529736440</updated>
+    </task>
+    <task id="LOCAL-00005" summary="actualizando clase HU">
+      <created>1465529797900</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1465529797900</updated>
+    </task>
+    <task id="LOCAL-00006" summary="modificacion del metodo nuevo_hu, modificar_hu,eliminar_hu">
+      <created>1465529905881</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1465529905881</updated>
+    </task>
+    <task id="LOCAL-00007" summary="modificacion interfaz sprint_backlog">
+      <created>1465529976382</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1465529976382</updated>
+    </task>
+    <task id="LOCAL-00008" summary="actualizacion template detalle_hu">
+      <created>1465530032358</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1465530032358</updated>
+    </task>
+    <task id="LOCAL-00009" summary="actualizacion template asignar_hu_a_sprintf">
+      <created>1465530101819</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1465530101819</updated>
+    </task>
+    <task id="LOCAL-00010" summary="actualizacion template administrar_hu">
+      <created>1465530188117</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1465530188117</updated>
+    </task>
+    <task id="LOCAL-00011" summary="actualizacion template activar_sprint">
+      <created>1465530255336</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1465530255336</updated>
+    </task>
+    <task id="LOCAL-00012" summary="actualizando sprint_backlog para imprimir desarrolladores&#10;">
+      <created>1465600188609</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1465600188609</updated>
+    </task>
+    <task id="LOCAL-00013" summary="arreglado modificacion de hu">
+      <created>1465654375666</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1465654375666</updated>
+    </task>
+    <task id="LOCAL-00014" summary="arreglo de correo">
+      <created>1465654595397</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1465654595397</updated>
+    </task>
+    <task id="LOCAL-00015" summary="arreglo de priorizacion de hu.">
+      <created>1465939897101</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1465939897101</updated>
+    </task>
+    <task id="LOCAL-00016" summary="arreglo permisos de usuarios para el ingreso al proyecto">
+      <created>1465957706267</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1465957706267</updated>
+    </task>
+    <task id="LOCAL-00017" summary="actualizado permiso asignar equipo&#10;">
+      <created>1466103519432</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1466103519432</updated>
+    </task>
+    <task id="LOCAL-00018" summary="actualizando vista2&#10;">
+      <created>1466110746878</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1466110746878</updated>
+    </task>
+    <task id="LOCAL-00019" summary="boton de salida y entrada&#10;">
+      <created>1466117155799</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1466117155799</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="Unittests_in_test - 2016.05.18 at 22h 17m 50s.xml">
+      <configuration name="Unittests in test" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_test - 2016.06.17 at 12h 52m 49s.xml">
+      <configuration name="Unittests in test" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_test - 2016.06.17 at 18h 36m 21s.xml">
+      <configuration name="Unittests in test" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_test_(1) - 2016.05.19 at 12h 22m 43s.xml">
+      <configuration name="Unittests in test (1)" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_test_(1) - 2016.06.17 at 12h 58m 59s.xml">
+      <configuration name="Unittests in test (1)" configurationId="tests" />
+    </history-entry>
+  </component>
+  <component name="TodoView" selected-index="3">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="61" y="24" width="1305" height="744" extended-state="6" />
+    <frame x="65" y="24" width="1301" height="744" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24904214" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3243028" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32935917" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32258064" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32935917" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37741935" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13870968" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44677418" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25737053" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="test para desplegar kanban" />
+    <MESSAGE value="asignar responsables" />
+    <MESSAGE value="arreglado hu, valor negocio, valor tecnico, prioridad" />
+    <MESSAGE value="configurando settings para conexion al correo" />
+    <MESSAGE value="actualizando clase HU" />
+    <MESSAGE value="modificacion del metodo nuevo_hu, modificar_hu,eliminar_hu" />
+    <MESSAGE value="modificacion interfaz sprint_backlog" />
+    <MESSAGE value="actualizacion template detalle_hu" />
+    <MESSAGE value="actualizacion template asignar_hu_a_sprintf" />
+    <MESSAGE value="actualizacion template administrar_hu" />
+    <MESSAGE value="actualizacion template activar_sprint" />
+    <MESSAGE value="actualizando sprint_backlog para imprimir desarrolladores&#10;" />
+    <MESSAGE value="arreglado modificacion de hu" />
+    <MESSAGE value="arreglo de correo" />
+    <MESSAGE value="arreglo de priorizacion de hu." />
+    <MESSAGE value="arreglo permisos de usuarios para el ingreso al proyecto" />
+    <MESSAGE value="actualizado permiso asignar equipo&#10;" />
+    <MESSAGE value="actualizando vista2&#10;" />
+    <MESSAGE value="boton de salida y entrada&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="boton de salida y entrada&#10;" />
+  </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/manage.py">
+    <entry file="file://$PROJECT_DIR$/demo/templates/ver_trabajo.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo/static/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="182" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo/static/css/jquery.jqplot.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo/static/css/style2.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2565">
-          <caret line="171" column="28" selection-start-line="171" selection-start-column="28" selection-end-line="171" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo/templates/Base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo/.idea/.name">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gestionproject1/manage.py" />
-    <entry file="file://$PROJECT_DIR$/sgpa/test/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo/.idea/.name">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo/templates/ingresar.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo/templates/privado.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-225">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="195">
+          <caret line="13" column="12" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sgpa/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sgpa/settings.py" />
-    <entry file="file://$PROJECT_DIR$/sgpa/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="9" selection-start-line="1" selection-start-column="9" selection-end-line="1" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sgpa/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sgpa/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4125">
-          <caret line="280" column="1" selection-start-line="280" selection-start-column="1" selection-end-line="280" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sgpa/util.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sgpa/test/test_login.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-75">
-          <caret line="1" column="25" selection-start-line="1" selection-start-column="25" selection-end-line="1" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sgpa/test/test_proyecto.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sgpa/test/test_usuario.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="240">
+          <caret line="16" column="19" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sgpa/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="17" column="32" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
+        <state relative-caret-position="78">
+          <caret line="1925" column="33" selection-start-line="1925" selection-start-column="33" selection-end-line="1925" selection-end-column="33" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/demo/urls.py">
+    <entry file="file://$PROJECT_DIR$/demo/templates/agregar_archivo.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+        <state relative-caret-position="450">
+          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/demo/settings.py">
+    <entry file="file://$PROJECT_DIR$/demo/templates/nuevo_proyecto.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="311">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/demo/wsgi.py">
+    <entry file="file://$PROJECT_DIR$/demo/templates/agregar_trabajo.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="435">
+          <caret line="29" column="10" selection-start-line="29" selection-start-column="10" selection-end-line="29" selection-end-column="10" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/demo/views.py">
+    <entry file="file://$PROJECT_DIR$/demo/static/img/flecha3.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/static/css/imagenes/kanban.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/static/img/flechaverde.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/templates/nuevoProyecto.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+        <state relative-caret-position="360">
+          <caret line="24" column="10" selection-start-line="24" selection-start-column="10" selection-end-line="24" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sgpa/test/test_ver_hu.py" />
+    <entry file="file://$PROJECT_DIR$/sgpa/test/test_usuario.py" />
+    <entry file="file://$PROJECT_DIR$/sgpa/test/test_avanzar_hu.py" />
+    <entry file="file://$PROJECT_DIR$/../myprojectenv/local/lib/python2.7/site-packages/django/contrib/auth/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../myprojectenv/local/lib/python2.7/site-packages/django/middleware/csrf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sgpa/test/test_proyecto.py" />
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pycharm/utrunner.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="70">
+          <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/script.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sgpa/wsgi.py" />
-    <entry file="file://$PROJECT_DIR$/demo/static/img/go.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo/static/js/tabla.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo/static/js/menu.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-765">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo/static/js/menuhorizontal.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo/static/js/menuvertical.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo/static/js/MIT-LICENSE.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo/static/js/optionsTutorial.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo/static/js/seguridad.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo/templates/Base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="10" column="43" selection-start-line="10" selection-start-column="43" selection-end-line="10" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo/static/css/style2.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="366">
-          <caret line="171" column="28" selection-start-line="171" selection-start-column="28" selection-end-line="171" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo/static/css/jquery.jqplot.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo/static/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="182" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="60">
+          <caret line="4" column="43" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="43" />
         </state>
       </provider>
     </entry>
@@ -817,11 +1066,236 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-190">
+          <caret line="128" column="6" selection-start-line="128" selection-start-column="6" selection-end-line="128" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sgpa/test/test_activar_sprint.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sgpa/test/test_clave_incorrecta.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sgpa/test/test_crear_cliente.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="29" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sgpa/test/test_crear_hu.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sgpa/test/test_crear_proyecto.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sgpa/test/test_crear_rol_proyecto.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sgpa/test/test_crear_rol_sistema.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sgpa/test/test_crear_sprint.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="10" column="81" selection-start-line="10" selection-start-column="81" selection-end-line="10" selection-end-column="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sgpa/test/test_crear_usuario.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sgpa/test/test_desplegar_kanban.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="11" column="53" selection-start-line="11" selection-start-column="53" selection-end-line="11" selection-end-column="53" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sgpa/test/test_detalle_cliente.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="12" column="53" selection-start-line="12" selection-start-column="53" selection-end-line="12" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sgpa/test/test_detalle_hu.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sgpa/test/test_detalle_proyecto.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="12" column="53" selection-start-line="12" selection-start-column="53" selection-end-line="12" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sgpa/test/test_detalle_rol_proyecto.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="11" column="53" selection-start-line="11" selection-start-column="53" selection-end-line="11" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sgpa/test/test_detalle_rol_sistema.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="11" column="53" selection-start-line="11" selection-start-column="53" selection-end-line="11" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sgpa/test/test_detalle_usuario.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="11" column="53" selection-start-line="11" selection-start-column="53" selection-end-line="11" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sgpa/test/test_eliminar_cliente.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sgpa/test/test_eliminar_hu.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sgpa/test/test_eliminar_proyecto.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sgpa/test/test_eliminar_rol_proyecto.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sgpa/test/test_eliminar_rol_sistema.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sgpa/test/test_eliminar_usuario.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sgpa/test/test_identificar_permiso.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sgpa/test/test_login.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sgpa/test/test_logout.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sgpa/test/test_modificar_cliente.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sgpa/test/test_modificar_hu.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sgpa/test/test_modificar_proyecto.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sgpa/test/test_modificar_rol_proyecto.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sgpa/test/test_modificar_rol_sistema.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sgpa/test/test_modificar_usuario.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />

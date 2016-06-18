@@ -1,16 +1,16 @@
 
 from django.test import TestCase
-from django.contrib.auth.models import User
-from sgpa.models import Proyecto
-from django.test import Client
-
+from sgpa.models import Rol
 
 class SGPATestCase(TestCase):
-	def test_modificar_Rol_Sistema(self):
-	
-	        c = Client()
-	        c.login(username='gustavo', password='gustavo')
-		print('\n------Ejecutando test para modificar Rol Sistema-------\n')
+	def test_modificar_rol_sistema(self):
+        	'''
+        	Test para modificar rol de sistema
+        	'''
+        	print('\n------Ejecutando test para modificar rol sistema...-------\n')
 
-	        resp = c.get('/usuario/modificar_rol_sistema/1')
-	        self.assertTrue(resp.status_code, 200)
+        	rol1 = Rol(nombre='Rol1', descripcion='Rol de Sistema')
+                rol2 = Rol(nombre='Rol2', descripcion='Rol de Sistema')
+                rol2.descripcion = 'Rol modificado'
+                rol2.save()
+        	self.assertNotEqual(rol1.descripcion,rol2.descripcion)

@@ -1,16 +1,14 @@
 
 from django.test import TestCase
-from django.contrib.auth.models import User
-from sgpa.models import Proyecto
-from django.test import Client
+from sgpa.models import Cliente
+
 
 
 class SGPATestCase(TestCase):
 	def test_crear_cliente(self):
-	
-	        c = Client()
-	        c.login(username='fabio', password='123')
-		print('\n------Ejecutando test para crear un cliente-------\n')
+         print('\n------Ejecutando test para crear cliente-------\n')
+         c = Cliente(nombre= 'cliente', correo='asd@ejemplo.com')
+         c.save()
+         self.assertTrue(Cliente.objects.exists())
 
-	        resp = c.get('/usuario/crear_cliente/1')
-	        self.assertTrue(resp.status_code, 200)
+

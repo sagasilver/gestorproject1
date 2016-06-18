@@ -14,4 +14,5 @@ class SGPATestCase(TestCase):
         	u = User.objects.create_user('testuser', 'test@example.com', 'testpw')
         	self.assertTrue(u.has_usable_password())
         	self.assertFalse(u.check_password('bad'))
-        	self.assertTrue(u.check_password('testpw'))
+        	self.assertTrue(User.objects.exists())
+

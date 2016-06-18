@@ -9,7 +9,7 @@ class SGPATestCase(TestCase):
 	def test_crear_Rol_Sistema(self):
 	
 	        c = Client()
-	        c.login(username='gustavo', password='gustavo')
+	        c.login(username='gustavo', password='123')
 		print('\n------Ejecutando test para crear Rol Sistema-------\n')
 
 	        resp = c.get('/usuario/crear_rol_sistema/1')

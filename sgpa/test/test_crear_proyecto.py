@@ -1,20 +1,15 @@
-__author__ = 'luis'
+
 from django.test import TestCase
-from django.contrib.auth.models import User
-from sgpa.models import Proyecto
-from django.test import Client
+from sgpa.models import Proyecto, Cliente
+
 
 
 class SGPATestCase(TestCase):
 	def test_crear_proyecto(self):
-	        '''
-	        test para comprobar que se crea un item
-	        '''
-	
-	        c = Client()
-	        c.login(username='gustavo', password='gustavo')
-	        print('\n------Ejecutando test para registrar un proyecto...-------\n')
-	
-	
-	        resp = c.post('/usuario/crearproyecto',{"fechaInicio": "2014-05-07", "lider": 1, "nombre": "sgpa", "estado": "PEN", "fechaFin": "2015-05-07"})
-	        self.assertTrue(resp.status_code,200)
+
+         print('\n------Ejecutando test para crear proyecto...-------')
+         c = Cliente(nombre= 'cliente', correo='asd@ejemplo.com')
+         c.save()
+         p = Proyecto(fechaInicio= '12-05-2016', fechaFin='20-06-2016',nombre = 'proyecto', cliente= c)
+         p.save()
+         self.assertTrue(Proyecto.objects.exists())

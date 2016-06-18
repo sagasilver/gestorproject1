@@ -1,6 +1,6 @@
 {% extends 'administracion.html' %}
 {% if user.is_active %}
- {% block titulo %}Nuevo Proyecto{% endblock %}
+ {% block titulo %}Nuevo Archivo{% endblock %}
 {% block privado%}{% endblock%}
 {% block contenido %}
 <div class="histo-detalle" xmlns="http://www.w3.org/1999/html">
@@ -10,15 +10,13 @@
 </div>
 <br>
 <nav class="detalle">
-    <h1>Agregar Trabajo de un Hu</h1>
+    <h1>Agregar Archivo adjunto</h1>
 <form method='post' action=''>{% csrf_token %}
 
 		<table class="max">
-            {{formulario}}
-            <tr>
-                        <th>Archivo Adjunto</th>
-                        <td><input id="archivo" type="file" name="archivo"></td>
-            </tr>
+
+             <tr><th><label for="id_archivo">Archivo:</label></th><td><input id="id_archivo" name="archivo" type="file" /></td></tr>
+
         </table>
 
            <button class="button button-action" type="submit" name="Guardar" />Guardar</button>
@@ -26,6 +24,7 @@
            <a class="button button-caution" href="/usuario/flujo_proyecto/{{proyecto.id}}">Cancelar</a>
 
 </form>
+
     </nav>
 {% endblock %}
 {% endif%}

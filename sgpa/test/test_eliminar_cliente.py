@@ -1,16 +1,16 @@
 
 from django.test import TestCase
-from django.contrib.auth.models import User
-from sgpa.models import Proyecto
-from django.test import Client
+from sgpa.models import Cliente
+
 
 
 class SGPATestCase(TestCase):
 	def test_eliminar_cliente(self):
-	
-	        c = Client()
-	        c.login(username='gustavo', password='gustavo')
-		print('\n------Ejecutando test para eliminar un cliente-------\n')
+         print('\n------Ejecutando test para eliminar cliente-------\n')
+         c = Cliente(nombre= 'cliente', correo='asd@ejemplo.com')
+         c.save()
+         a = Cliente.objects.get(pk = c.id)
+         a.delete()
+         self.assertFalse(Cliente.objects.exists())
 
-	        resp = c.get('/usuario/eliminar_cliente/1')
-	        self.assertTrue(resp.status_code, 200)
+

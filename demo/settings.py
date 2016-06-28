@@ -15,10 +15,10 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'demo1',
+        'NAME': 'base3',
         'HOST': 'localhost',
         'PORT': '5432',
-        'USER': 'admin',
+        'USER': 'postgres',
         'PASSWORD': 'admin',
     }
 }

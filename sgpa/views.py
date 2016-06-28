@@ -685,7 +685,18 @@ def administracion(request):
 
 @login_required()
 def gestionar_flujo(request):
+    '''
+    Modulo de administracion de flujos de sistema.
+    Permite acceder a las opciones de crear , modificar y eliminar flujos en el sistema.
+    Solo un usuario con el permiso: "crear flujo" o "eliminar flujo"
+    puede llevar a cabo esta operacion.
 
+    @param request: request
+
+    @type request: HttpRequest
+
+    @return: request, 'gestionar_flujo.html', {'flujos':flujos, 'permisos':permisos}
+    '''
     permisos = obtenerPermisos(request)
 
     if "crear flujo" in permisos or "ver flujo" in permisos or "modificar flujo" in permisos or "eliminar flujo" in permisos or "agregar flujo" in permisos:
@@ -698,6 +709,16 @@ def gestionar_flujo(request):
 
 @login_required()
 def nuevo_flujo(request):
+    '''
+    Permite crear un nuevo flujo en el sistema.
+    Solo un usuario con el permiso: "crear flujo", puede llevar a cabo esta operacion.
+
+    @param request: request
+
+    @type request: HttpRequest
+
+    @return: request, 'nuevoFlujo.html', {'form': formulario,'permisos':permisos}
+    '''
 
     permisos = obtenerPermisos(request)
 
@@ -718,10 +739,18 @@ def nuevo_flujo(request):
 
 def detalle_flujo_view( request, id_flujo):
     '''
-    Permite ver el detalle de un flujo
-    :param request:
-    :param id_flujo:
-    :return:
+    Permite ver los datos de un flujo.
+    Solo un usuario con el permiso: "ver flujo" puede llevar a cabo esta operacion.
+
+    @param request: request
+
+    @type request: HttpRequest
+
+    @param id_flujo: codigo del flujo
+
+    @type id_flujo: ID de flujo
+
+    @return: 'detalle_flujo.html', {'flujo': flujo, 'actividades':actividades,'permisos':permisos}
     '''
     permisos = obtenerPermisos(request)
     if "ver flujo" in  permisos:
@@ -733,9 +762,22 @@ def detalle_flujo_view( request, id_flujo):
         return render_to_response('sinpermiso.html', {'raiz':raiz},context_instance=RequestContext(request))
 
 
-
 @login_required()
 def modificar_flujo( request, id_flujo):
+    '''
+    Permite modificar los datos de un flujo en el sistema.
+    Solo un usuario con el permiso: "modificar flujo", puede llevar a cabo esta operacion.
+
+    @param request: request
+
+    @type request: HttpRequest
+
+    @param id_flujo: codigo del flujo a modificar
+
+    @type id_flujo: ID de flujo
+
+    @return: request, 'modificar_flujo.html', {'formulario':formulario,'permisos':permisos}
+    '''
     permisos = obtenerPermisos(request)
     if "modificar flujo" in permisos:
         flujo= Flujo.objects.get(pk= id_flujo)
@@ -756,10 +798,18 @@ def modificar_flujo( request, id_flujo):
 @login_required()
 def eliminar_flujo(request, codigo):
     '''
-    Elimina un flujo del sistema
-    :param request:
-    :param codigo:
-    :return:vuelve al modulo de gestion de flujos
+    Permite eliminar un flujo del sistema.
+    Solo un usuario con el permiso: "eliminar flujo", puede llevar a cabo esta operacion.
+
+    @param request: request
+
+    @type request: HttpRequest
+
+    @param codigo: codigo del flujo a eliminar
+
+    @type codigo: ID de flujo
+
+    @return: HttpResponseRedirect(reverse('usuario:gestionar_flujo'))
     '''
     permisos = obtenerPermisos(request)
     if "eliminar flujo" in permisos:
@@ -781,8 +831,23 @@ def eliminar_flujo(request, codigo):
         raiz = ""
         return render_to_response('sinpermiso.html', {'raiz':raiz},context_instance=RequestContext(request))
 
+
 @login_required()
 def agregar_actividad(request,flujo_id):
+    '''
+    Permite agregar una actividad a un flujo del sistema.
+    Solo un usuario con el permiso: "agregar actividad", puede llevar a cabo esta operacion.
+
+    @param request: request
+
+    @type request: HttpRequest
+
+    @param flujo_id: codigo del flujo
+
+    @type flujo_id: ID de flujo
+
+    @return: request, 'agregar_actividad.html',{'permmisos':permisos}
+    '''
     permisos = obtenerPermisos(request)
     if "agregar actividad" in permisos:
         if request.method == 'POST' and 'Cancelar' in request.POST:
@@ -794,6 +859,7 @@ def agregar_actividad(request,flujo_id):
             actividad = Actividad(nombre=request.POST.get('nombre'),estado_1='TO_DO',estado_2='DOING',estado_3='DONE',orden=cantidad+1)
             actividad.save()
             flujo.actividades.add(actividad)
+            flujo.cantidad=+1
             flujo.save()
             return HttpResponseRedirect(reverse('usuario:gestionar_flujo'))
         else:
@@ -802,8 +868,24 @@ def agregar_actividad(request,flujo_id):
         raiz = ""
         return render_to_response('sinpermiso.html',{'raiz':raiz}, context_instance=RequestContext(request))
 
+
 @login_required()
 def ingresar_Proyecto(request,codigo):
+    '''
+       Permite ingrear al modulo de desarrollo de un proyecto.
+       Solo un usuario con el permiso: "ingresar proyecto", puede llevar a cabo esta operacion.
+
+       @param request: request
+
+       @type request: HttpRequest
+
+       @param codigo: codigo del proyecto
+
+       @type codigo: ID de proyecto
+
+       @return: request, 'ingresar_Proyecto.html', {'proyectos':proyectos,'permisos':permisos,'codigo':codigo}
+       '''
+
     permisos = obtenerPermisos(request)
     usuario = User.objects.get(pk = codigo)
     equipo= Equipo.objects.all().filter(usuario_id = usuario.id)
@@ -1259,10 +1341,19 @@ def detalle_hu_view( request, id_hu, codigo):
 @login_required()
 def gestionar_sprint( request,codigo):
     '''
-    Permite gestionar un sprint.(Crear, modificar y activar sprints)
-    :param request:
-    :param codigo:
-    :return:
+    Modulo de administracion de sprint de un proyecto en el sistema.
+    Solo un usuario con el permiso: "crear sprint" o "ver sprint", puede ingresar a este modulo.
+    El sistema muestra una lista de todos los sprint de un proyecto del sistema.
+
+    @param request: request
+
+    @type request: HttpRequest
+
+    @param codigo: codigo del proyecto
+
+    @type codigo: ID de proyecto
+
+    @return: request, 'gestionar_sprint.html', {'hay_activo':hay_activo, 'proyecto': proyecto,'sprints':sprints, 'permisos':permisos}
     '''
     proyecto = Proyecto.objects.get(pk=codigo)
     permisos = obtenerPermisos(request)
@@ -1279,10 +1370,23 @@ def gestionar_sprint( request,codigo):
 @login_required()
 def iniciar( request,id_sprint, codigo):
     '''
-    Permite gestionar un sprint
-    :param request:
-    :param codigo:
-    :return:
+    Permite pasar a estado activo un sprint de un proyecto en el sistema.
+    Solo un usuario con el permiso: "iniciar sprint", puede ingresar a este modulo.
+    El sistema muestra una lista de todos los sprint de un proyecto del sistema.
+
+    @param request: request
+
+    @type request: HttpRequest
+
+    @param id_sprint: codigo del sprint
+
+    @type id_sprint: ID de sprint
+
+    @param codigo: codigo del proyecto
+
+    @type codigo: ID de proyecto
+
+    @return: request, HttpResponseRedirect(reverse('usuario:gestionarsprint', args = (codigo,)))
     '''
 
     proyecto = Proyecto.objects.get(pk=codigo)
@@ -1291,10 +1395,13 @@ def iniciar( request,id_sprint, codigo):
 
     if "ver proyecto" in permisos:
         sprint = Sprint.objects.get(pk = id_sprint)
-        sprint.estado = 'ACT'
+        if sprint.estado == 'INA':
+            sprint.estado = 'ACT'
+        else:
+            sprint.estado = 'INA'
         sprint.save()
         sprints = Sprint.objects.filter(proyecto_id = codigo).order_by('nombre')
-        return render_to_response('gestionar_sprint.html', {'hay_activo':hay_activo, 'proyecto': proyecto,'sprints':sprints, 'permisos':permisos},context_instance=RequestContext(request))
+        return HttpResponseRedirect(reverse('usuario:gestionarsprint', args = (codigo,)))
     else:
         raiz = ""
         return render_to_response('sinpermiso.html', {'raiz':raiz},context_instance=RequestContext(request))
@@ -1779,6 +1886,58 @@ def cambiar_estado_de_hu( request, id_hu, codigo):
         return render_to_response('sinpermiso.html',{'raiz':raiz}, context_instance=RequestContext(request))
 
 
+
+
+@login_required()
+def finalizar(request,id_hu,codigo):
+    '''
+    Permite pasar a estado finalizado un hu dentro del kanban en el sistema.
+    Solo un usuario con el permiso: "finalizar hu", puede ingresar a este modulo.
+
+    @param request: request
+
+    @type request: HttpRequest
+
+    @param id_hu: codigo del hu
+
+    @type id_hu: ID de hu
+
+    @param codigo: codigo del proyecto
+
+    @type codigo: ID de proyecto
+
+    @return: request, HttpResponseRedirect(reverse('usuario:flujo_proyecto',args=(proyecto.id,)))
+    '''
+    permisos = obtenerPermisos(request)
+    if "crear proyecto" in permisos:
+        proyecto =  Proyecto.objects.get(pk=codigo)
+        hu = Hu.objects.get(pk=id_hu)
+        trabajo = Trabajo()
+        sprints = Sprint.objects.all()
+        for sprint in sprints:
+            if hu.id in sprint.hu.all():
+                trabajo.sprint = sprint.nombre
+        user = User.objects.get(pk=hu.responsable_id)
+        flujo = Flujo.objects.get(pk=hu.flujo_id)
+        actividad = Actividad.objects.get(pk=hu.actividad_id)
+        trabajo.nombre = 'Finalizar'
+        trabajo.nota = 'Se Finalizo el HU'
+        trabajo.actor = user.username
+        trabajo.hu = hu
+        fecha=date.today()
+        fecha.strftime("%Y-%m-%d")
+        trabajo.fecha = fecha
+        trabajo.flujo = flujo.nombre
+        trabajo.actividad = actividad.nombre
+        trabajo.estado = hu.estadoflujo
+        trabajo.save()
+        hu.estadodesarrolllo = 'FIN'
+        hu.save()
+        return HttpResponseRedirect(reverse('usuario:flujo_proyecto',args=(proyecto.id,)))
+    else:
+        raiz = "proyecto"
+        return render_to_response('sinpermiso.html', {'raiz':raiz},context_instance=RequestContext(request))
+
 @login_required()
 def historial_hu(request,id_hu,codigo):
     '''
@@ -1924,7 +2083,7 @@ def agregar_trabajo(request,id_hu,codigo):
                     trabajo.actividad = actividad.nombre
                     trabajo.estado = hu.estadoflujo
                     trabajo.save()
-                    hu.horat+=trabajo.horas
+                    hu.hora_tra =+ trabajo.horas
                     hu.save()
 
                     return HttpResponseRedirect(reverse('usuario:flujo_proyecto',args=(proyecto.id,)))
@@ -1934,7 +2093,6 @@ def agregar_trabajo(request,id_hu,codigo):
     else:
         raiz = "proyecto"
         return render_to_response('sinpermiso.html', {'raiz':raiz},context_instance=RequestContext(request))
-
 
 
 @login_required()
@@ -1986,6 +2144,7 @@ def ver_trabajo_view( request, id_hu, orden):
     else:
         raiz = ""
         return render_to_response('sinpermiso.html', {'raiz':raiz},context_instance=RequestContext(request))
+
 
 
 @login_required()
@@ -2218,3 +2377,21 @@ def cambiar_flujo(request, id_hu, id_proyecto):
     else:
         raiz = ""
         return render_to_response('sinpermiso.html', {'raiz':raiz},context_instance=RequestContext(request))
+
+
+@login_required()
+def finalizar_proyecto(request, codigo):
+    '''
+    Permite finalizar un proyecto.
+
+    @param request: request
+
+    @type request: HttpRequest
+
+    @return: response
+    '''
+    permisos = obtenerPermisos(request)
+    proyecto = Proyecto.objects.get(pk=codigo)
+    proyecto.estado = 'FINALIZADO'
+    proyecto.save()
+    return HttpResponseRedirect(reverse('usuario:adminproyecto'))

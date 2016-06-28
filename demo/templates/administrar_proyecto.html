@@ -14,6 +14,7 @@
                 <tr>
                     <th class="thead">Nombre del proyecto</th>
                     <th class="thead">Estado</th>
+                    <th class="thead">Detalle</th>
                     <th width="75px" class="tnuevo"><span class="pushbutton"><a href="{% url 'usuario:crearproyecto' %}" class="current"> <img src="/static/img/nuevo2.png" width="25" height="25" /></a></span></th>
                 </tr>
                 </thead>
@@ -22,6 +23,7 @@
                     <tr>
                         <td>{{proyecto.nombre}}</td>
                         <td>{{proyecto.estado}}</td>
+
                         <td><ul id="nav">
                             <li><span class="pushbutton"><a href="#" class="current" ><span><img src="/static/img/botonmenu2.png" alt="detalle"title="ver detalle" width="25" height="25" ></span></a></span>
                                 {%if proyecto.estado == "PENDIENTE"%}
@@ -45,6 +47,7 @@
                                         </ul>
                                     </div>
                                 </div>
+                                    <td></td>
                                 {%elif proyecto.estado == "ACTIVO"%}
                                  <div class="subs">
 
@@ -53,6 +56,7 @@
 
 
                                             <li ><a href='/usuario/detalle_proyecto/{{ proyecto.id }}'><img src="/static/img/detalle.png" width="25" height="25"/> Ver</a></li>
+
                                         </ul>
                                     </div>
 
@@ -63,6 +67,12 @@
                                         </ul>
                                     </div>
                                 </div>
+
+                                    {% if proyecto.estado == "ACTIVO" %}
+                                        <td><a href="/usuario/finalizar_proyecto/{{ proyecto.id }}" class="current" ><span><img src="/static/img/activar.png" alt="detalle"title="Finalizar Proyecto" width="25" height="25" ></span></a></td>
+                                    {% else %}
+
+                                   {%endif%}
                                 {%elif proyecto.estado == "ANULADO"%}
                                  <div class="subs">
 
@@ -75,6 +85,7 @@
                                     </div>
 
                                 </div>
+                                    <td></td>
                                 {%else%}
                                 <div class="subs">
 
@@ -87,6 +98,11 @@
                                     </div>
 
                                 </div>
+
+                                    <td><a class="current" ><span><img src="/static/img/salir2.png" alt="detalle"title=" Proyecto Finalizado" width="25" height="25" ></span></a></td>
+
+
+
                                 {%endif%}
 
 
@@ -96,13 +112,13 @@
                         </ul></td>
                     </tr>
                     </tbody>
+
                 {%endfor%}
             </table>
         </div>
     {%else%}
         <font color="red">No hay proyectos registrados, presiona</font> <a href="{% url 'usuario:crearproyecto' %}" class="current">Aqui </a><font color="red">para crear un proyecto</font>
     {%endif%}
-     <a href="{% url 'usuario:administracion' %}javascript:window.history.back();" class="button-highlight button">Atras</a>
 </nav>
 
 {%endblock%}

@@ -41,10 +41,10 @@ class Flujo(models.Model):
     nombre = models.CharField(max_length=60, unique=True)
     descripcion = models.CharField(max_length=200, unique=True)
     actividades = models.ManyToManyField(Actividad, related_name='actividades')
+    cantidad = models.IntegerField(default=0)
 
     def __unicode__(self):
         return self.nombre
-
 
 class FlujoForm(forms.ModelForm):
     class Meta:
@@ -225,19 +225,22 @@ class ClienteFormCambioEstado(forms.ModelForm):
         fields = ("estado",)
 
 class Hu(models.Model):
-    ESTADO_CHOICES=(
-        ('PEN','Pendiante'),
-        ('APR','Aprobado'),
-        ('REC','Rechazado')
+    ESTADO_CHOICES = (
+        ('PEN', 'Pendiante'),
+        ('APR', 'Aprobado'),
+        ('REC', 'Rechazado')
     )
-    ESTADODESARROLLO_CHOICES=(
-        ('SUS','Suspender'),
-        ('PRO','Procesar')
+
+    ESTADODESARROLLO_CHOICES = (
+        ('SUS', 'Suspender'),
+        ('CAN', 'Cancelar'),
+        ('FIN', 'Finalizar'),
+        ('PRO', 'Procesar')
     )
-    ESTADOFLUJO_CHOICES=(
-        ('TOD','To Do'),
-        ('DOI','Doing'),
-        ('DON','Done')
+    ESTADOFLUJO_CHOICES = (
+        ('TOD', 'To Do'),
+        ('DOI', 'Doing'),
+        ('DON', 'Done')
     )
     nombre = models.CharField(max_length=32)
     observacion = models.TextField(max_length=200)
@@ -260,6 +263,7 @@ class Hu(models.Model):
 
     prioridad = models.IntegerField(default=1)
     priorizacion=models.IntegerField(default=1)
+    hora_tra = models.PositiveIntegerField(default=0)
     def __unicode__(self):
         return self.nombre
 
@@ -406,7 +410,7 @@ class Trabajo(models.Model):
     def obtener_nombre_archivo(instance, filename):
         return "Archivos subidos/%s_%s" % (str(time()).replace('.'',''_'),filename)
     nombre = models.CharField(max_length=60)
-    horas = models.CharField(max_length=60)
+    horas = models.PositiveIntegerField(default=0)
     fecha = models.CharField(max_length=60)
     nota = models.TextField(max_length=200)
     actor = models.CharField(max_length=60)
@@ -414,11 +418,10 @@ class Trabajo(models.Model):
     hu = models.ForeignKey(Hu, related_name='historiatrabajo', null=False)
     filename = models.CharField(max_length=60, null=True)
     size = models.IntegerField(null=True)
-    flujo = models.CharField(max_length=60)
-    actividad = models.CharField(max_length=60)
-    estado = models.CharField(max_length=60)
-    sprint = models.CharField(max_length=60)
-
+    flujo = models.CharField(max_length=60, null=True)
+    actividad = models.CharField(max_length=60, null=True)
+    estado = models.CharField(max_length=60, null=True)
+    sprint = models.CharField(max_length=60, null=True)
 
     def __unicode__(self):
         return self.nombre
@@ -427,6 +430,7 @@ class TrabajoForm(forms.ModelForm):
     class Meta:
         model = Trabajo
         fields = ("nombre","horas","nota")
+
 
 class SprintFormAsignarHu(forms.ModelForm):
     def __init__(self, *args, **kwargs):

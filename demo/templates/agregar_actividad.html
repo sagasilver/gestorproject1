@@ -8,12 +8,12 @@
 <form method='post' action=''>{% csrf_token %}
                 <table class="max">
                     <tr>
-                        <td bgcolor="#799AC0"><font color="black"> <strong>Nombre:</strong></font></td>
+                        <td bgcolor="#799AC0"><font color="white"> <strong>Nombre:</strong></font></td>
                         <td><input id="nombre" type="text" name="nombre" value=""></td>
                     </tr>
                 </table>
-                <button class="button button-action"type="submit" name="Guardar" />Guardar</button>
-                    <a class="button button-caution" href="{% url 'usuario:gestionar_flujo' %}">Cancelar
+                <button type="submit" name="Guardar" />Guardar</button>
+                    <a href="{% url 'usuario:gestionar_flujo' %}"><button type="button">Cancelar</button>
                </a>
             </form>
 

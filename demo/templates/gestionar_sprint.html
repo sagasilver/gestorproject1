@@ -5,32 +5,43 @@
 <nav class="detalle">
     <h1>Sprints</h1>
 <table class="max">
-   <tr>
-        <td><strong>Sprint</strong></td>
-        <td><strong>Duracion en dias</strong></td>
-        <td><strong>Estado</strong></td>
-   </tr>
-
-
-    {% for sprint in sprints %}
 
     <tr>
-        {%if sprint.estado == "INA"%}
-            <td><a href="/usuario/sprintbacklog/{{sprint.id}}/{{ proyecto.id }}" class="current" ><span>{{sprint.nombre}}</font></span></a></td>
+        <td><strong>Sprint</strong></td>
+        <td><strong>Fecha de Inicio</strong></td>
+        <td><strong>Fecha de Finalizacion</strong></td>
+        <td><strong>Duracion en dias</strong></td>
+        <td><strong>Estado</strong></td>
+        {%if not hay_activo %}
+        <td><strong>Acitvar</strong></td>
         {%else%}
-           <td><a href="#" class="current" ><span>{{sprint.nombre}}</font></span></a></td>
+        <td><strong>Finalizar</strong></td>
         {%endif%}
+
+   </tr>
+
+  {% for sprint in sprints %}
+
+    <tr>
+        <td><a href="/usuario/sprintbacklog/{{sprint.id}}/{{ proyecto.id }}" class="current" ><span>{{sprint.nombre}}</font></span></a></td>
+        <td><font color="green">{{sprint.fechaInicio}}</font></td>
+        <td><font color="green">{{sprint.fechaFin}}</font></td>
         <td><font color="green">{{sprint.duracion}}</font></td>
         <td><font color = "green">{{sprint.estado}}</font></td>
+
         {%if not hay_activo %}
-        {% if sprint.estado == "INA" %}
-            <td> <a href="/usuario/iniciar/{{sprint.id}}/{{ proyecto.id }}"class="current" ><span><button class="button button-action"><font color = "green">Activar Sprint</font></button></span></a></td>
+            {% if sprint.estado == "INA" %}
+                <td><a href="/usuario/iniciar/{{sprint.id}}/{{ proyecto.id }}" class="current" ><span><img src="/static/img/activar.png" alt="detalle"title="Activar Sprint" width="25" height="25" ></span></a></td>
+            {% endif %}
+        {% else %}
+            {% if sprint.estado == "ACT" %}
+                <td><a href="/usuario/iniciar/{{sprint.id}}/{{ proyecto.id }}" class="current" ><span><img src="/static/img/salir2.png" alt="detalle"title="Finalizar Sprint" width="25" height="25" ></span></a></td>
+            {% else %}
+                <td></td>
+            {% endif %}
         {% endif %}
-        {%endif%}
-
     </tr>
-
-   {% endfor %}
+  {% endfor %}
 </table>
 <a class="button button-highlight" href="/usuario/datos_Proyecto/{{ proyecto.id }}">Atras</a>
 

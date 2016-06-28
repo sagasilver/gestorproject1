@@ -227,6 +227,21 @@ def detalle_rol_sistema(request, codigo):
 
 @login_required()
 def modificar_rol_sistema(request, codigo):
+    '''
+        Permite modificar los datos y permisos de un rol de proyecto.
+        Solo un usuario con el permiso: "modificar rol proyecto", puede llevar a cabo esta operacion.
+
+        @param request: request
+
+        @type request: HttpRequest
+
+        @param codigo: codigo del rol a modificar
+
+        @type codigo: ID de rol de sistema
+
+        @return: request, 'modificar_rol_proyecto.html', {'formulario':formulario,'permisos':permisos}
+        '''
+
     permisos = obtenerPermisosSistema(request)
     if "modificar rol sistema" in permisos:
         rol= Rol.objects.get(pk= codigo)
@@ -295,11 +310,19 @@ def modificar_rol_sistema(request, codigo):
 @login_required()
 def eliminar_rol_sistema(request, codigo):
     '''
-    Elimina un rol del sistema
-    :param request:
-    :param codigo:
-    :return:vuelve al modulo de administracion de usuarios
-    '''
+        Permite eliminar un rol de proyecto.
+        Solo un usuario con el permiso: "eliminar rol proyecto", puede llevar a cabo esta operacion.
+
+        @param request: request
+
+        @type request: HttpRequest
+
+        @param codigo: codigo del rol a eliminar
+
+        @type codigo: ID de rol
+
+        @return: request, HttpResponseRedirect(reverse('usuario:adminrolproyecto'))
+        '''
     permisos = obtenerPermisosSistema(request)
     if "eliminar rol sistema" in permisos:
         rolesAsignados = obtenerRolesAsignados(request, codigo)
@@ -317,6 +340,19 @@ def eliminar_rol_sistema(request, codigo):
 
 @login_required()
 def administrar_rol_de_proyecto(request):
+    '''
+        Modulo de administracion de roles de proyecto.
+        Permite acceder a las opciones de crear , modificar y eliminar roles de proyecto.
+        Solo un usuario con el permiso: "crear rol proyecto" o "modificar rol proyecto" o "eliminar rol proyecto"
+        puede llevar a cabo esta operacion.
+
+        @param request: request
+
+        @type request: HttpRequest
+
+        @return: request, 'administrar_rol_de_proyecto.html',{'roles': roles, 'permisos':permisos}
+        '''
+
     permisos = obtenerPermisosSistema(request)
     if "crear rol proyecto" in permisos or "modificar rol proyecto" in permisos or "eliminar rol proyecto" in permisos or "ver rol proyecto" in permisos:
         roles = Rol.objects.filter(tipo="PROYECTO")
@@ -328,6 +364,16 @@ def administrar_rol_de_proyecto(request):
 
 @login_required()
 def nuevo_rol_de_proyecto(request):
+    '''
+        Permite crear un nuevo rol de proyecto.
+        Solo un usuario con el permiso: "crear rol proyecto" puede llevar a cabo esta operacion.
+
+        @param request: request
+
+        @type request: HttpRequest
+
+        @return: request, 'nuevoRolProyecto.html', {'form': formulario, 'permisos':permisos}
+        '''
     permisos = obtenerPermisosSistema(request)
     if "crear rol sistema" in permisos:
         if request.method == 'POST':
@@ -347,7 +393,20 @@ def nuevo_rol_de_proyecto(request):
 
 @login_required()
 def detalle_rol_proyecto(request, codigo):
+    '''
+       Permite ver los datos de un rol de proyecto.
+       Solo un usuario con el permiso: "ver rol proyecto" puede llevar a cabo esta operacion.
 
+       @param request: request
+
+       @type request: HttpRequest
+
+       @param codigo: codigo del rol
+
+       @type codigo: ID de rol de proyecto
+
+       @return: 'detalle_rol_proyecto.html', {'rol': rol,'permisos_rol':rol.permisos.all(),'permisos':permisos}
+       '''
     permisos = obtenerPermisosSistema(request)
     if "ver rol proyecto" in permisos:
         rol = Rol.objects.get(pk=codigo)
@@ -359,6 +418,21 @@ def detalle_rol_proyecto(request, codigo):
 
 @login_required()
 def modificar_rol_proyecto(request, codigo):
+    '''
+        Permite modificar los datos y permisos de un rol de proyecto.
+        Solo un usuario con el permiso: "modificar rol proyecto", puede llevar a cabo esta operacion.
+
+        @param request: request
+
+        @type request: HttpRequest
+
+        @param codigo: codigo del rol a modificar
+
+        @type codigo: ID de rol de sistema
+
+        @return: request, 'modificar_rol_proyecto.html', {'formulario':formulario,'permisos':permisos}
+        '''
+
     permisos = obtenerPermisosSistema(request)
     if "modificar rol proyecto" in permisos:
         rol= Rol.objects.get(pk= codigo)
@@ -378,10 +452,18 @@ def modificar_rol_proyecto(request, codigo):
 @login_required()
 def eliminar_rol_proyecto(request, codigo):
     '''
-    Elimina un rol del sistema
-    :param request:
-    :param codigo:
-    :return:vuelve al modulo de administracion de usuarios
+    Permite eliminar un rol de proyecto.
+    Solo un usuario con el permiso: "eliminar rol proyecto", puede llevar a cabo esta operacion.
+
+    @param request: request
+
+    @type request: HttpRequest
+
+    @param codigo: codigo del rol a eliminar
+
+    @type codigo: ID de rol
+
+    @return: request, HttpResponseRedirect(reverse('usuario:adminrolproyecto'))
     '''
     permisos = obtenerPermisosSistema(request)
     if "eliminar rol proyecto" in permisos:
@@ -401,8 +483,17 @@ def eliminar_rol_proyecto(request, codigo):
 
 @login_required()
 def proyecto_admin(request):
-    """permite acceder a la interfaz de opciones de administracion para proyectos,\n recibe un @param request que es la
-    peticion para realizar cierta operacion. \n@return retorna la lista de proyectos existentes en el sistema"""
+    '''
+        Modulo de administracion de proyectos en el sistema.
+        Solo un usuario con el permiso: "crear proyecto" o "modificar proyecto" o "eliminar proyecto", puede ingresar a este modulo.
+        El sistema muestra una lista de todos los proyecto del sistema.
+
+        @param request: request
+
+        @type request: HttpRequest
+
+        @return: request, 'administrar_proyecto.html', {'proyectos': proyectos, 'permisos':permisos}
+        '''
     permisos = obtenerPermisos(request)
     if "crear proyecto" in permisos or "modificar proyecto" in permisos or "eliminar proyecto" in permisos:
         proyectos = Proyecto.objects.all()
@@ -414,9 +505,16 @@ def proyecto_admin(request):
 
 @login_required()
 def registrarProyecto(request):
-    """Permite registrar un nuevo proyecto en el sistema. \nRecibe como @param un request que habilita
-    el formulario para completar los datos del proyecto, una vez completado todos los campos obligatorios
-    se crea el proyecto \ny @return a la interfaz proyecto, donde ya se visualiza en la lista el nuevo registro """
+    '''
+    Permite crear un nuevo proyecto en el sistema.
+    Solo un usuario con el permiso: "crear proyecto", puede llevar a cabo esta operacion.
+
+    @param request: request
+
+    @type request: HttpRequest
+
+    @return: request, 'nuevoProyecto.html', {'formulario': formulario,'clientes':clientes,'usuarios':usuarios,'permisos':permisos}
+    '''
     permisos = obtenerPermisos(request)
     if "crear proyecto" in permisos:
 
@@ -457,10 +555,18 @@ def registrarProyecto(request):
 @login_required()
 def modificar_proyecto_view(request, id_proyecto):
     '''
-    Permite modificar los datos de un proyecto
-    :param request:
-    :param id_proyecto:
-    :return:
+    Permite modificar los datos de un proyecto en el sistema.
+    Solo un usuario con el permiso: "modificar proyecto", puede llevar a cabo esta operacion.
+
+    @param request: request
+
+    @type request: HttpRequest
+
+    @param id_proyecto: codigo del proyecto a modificar
+
+    @type id_proyecto: ID de proyecto
+
+    @return: request, 'modificar_proyecto.html', {'formulario':formulario,'proyecto': proyecto, 'permisos':permisos}
     '''
     permisos = obtenerPermisos(request)
     if "modificar proyecto" in permisos:
@@ -498,11 +604,19 @@ def modificar_proyecto_view(request, id_proyecto):
 @login_required()
 def eliminar_proyecto(request, codigo):
     '''
-    Elimina un proyecto del sistema
-    :param request:
-    :param codigo:
-    :return:vuelve al modulo de administracion de Proyectos
-    '''
+       Permite eliminar un proyecto del sistema.
+       Solo un usuario con el permiso: "eliminar proyecto", puede llevar a cabo esta operacion.
+
+       @param request: request
+
+       @type request: HttpRequest
+
+       @param codigo: codigo del proyecto a eliminar
+
+       @type codigo: ID de proyecto
+
+       @return: HttpResponseRedirect(reverse('usuario:adminproyecto'))
+       '''
     permisos = obtenerPermisos(request)
     if "eliminar proyecto" in permisos:
         proyecto = Proyecto.objects.get(pk=codigo)
@@ -518,10 +632,18 @@ def eliminar_proyecto(request, codigo):
 @login_required()
 def detalle_proyecto_view_desarrollo( request, id_proyecto):
     '''
-    Permite ver el detalle de un proyecto
-    :param request:
-    :param id_proyecto:
-    :return:
+    Permite ver los datos de un proyecto.
+    Solo un usuario con el permiso: "ver proyecto" puede llevar a cabo esta operacion.
+
+    @param request: request
+
+    @type request: HttpRequest
+
+    @param id_proyecto: codigo del rol
+
+    @type id_proyecto: ID de rol de proyecto
+
+    @return: 'detalle_proyecto.html', {'proyecto': proyecto, 'cliente':cliente,'equipo':equipo,'permisos':permisos}
     '''
     permisos = obtenerPermisos(request)
     proyecto = Proyecto.objects.get(pk=id_proyecto)
@@ -533,10 +655,18 @@ def detalle_proyecto_view_desarrollo( request, id_proyecto):
 @login_required()
 def detalle_proyecto_view( request, id_proyecto):
     '''
-    Permite ver el detalle de un proyecto
-    :param request:
-    :param id_proyecto:
-    :return:
+    Permite ver los datos de un proyecto.
+    Solo un usuario con el permiso: "ver proyecto" puede llevar a cabo esta operacion.
+
+    @param request: request
+
+    @type request: HttpRequest
+
+    @param id_proyecto: codigo del rol
+
+    @type id_proyecto: ID de rol de proyecto
+
+    @return: 'detalle_proyecto.html', {'proyecto': proyecto, 'cliente':cliente,'equipo':equipo,'permisos':permisos}
     '''
     permisos = obtenerPermisos(request)
     if "ver proyecto" in permisos:
@@ -554,10 +684,18 @@ def detalle_proyecto_view( request, id_proyecto):
 @login_required()
 def detalle_usuario_view( request, id_usuario):
     '''
-    Permite ver el detalle de un usuario
-    :param request:
-    :param id_usuario:
-    :return:
+    Permite ver los datos de un usuario.
+    Solo un usuario con el permiso: "ver proyecto" puede llevar a cabo esta operacion.
+
+    @param request: request
+
+    @type request: HttpRequest
+
+    @param id_usuario: codigo del usuario
+
+    @type id_usuario: ID de usuario
+
+    @return: 'detalle_usuario.html', {'usuario': usuario,'permisos':permisos}
     '''
     permisos = obtenerPermisos(request)
     if "ver usuario" in permisos:
@@ -572,8 +710,17 @@ def detalle_usuario_view( request, id_usuario):
 
 @login_required()
 def cliente_admin(request):
-    """permite acceder a la interfaz de opciones de administracion para clientes,\n recibe un @param request que es la
-    peticion para realizar cierta operacion. \n@return retorna la lista de proyectos existentes en el sistema"""
+    '''
+    Modulo de administracion de clientes en el sistema.
+    Solo un usuario con el permiso: "crear cliente" o "modificar cliente" o "eliminar cliente", puede ingresar a este modulo.
+    El sistema muestra una lista de todos los cliente del sistema.
+
+    @param request: request
+
+    @type request: HttpRequest
+
+    @return: request, 'administrar_cliente.html', {'clientes': clientes, 'permisos':permisos}
+    '''
     permisos = obtenerPermisos(request)
     if "crear cliente" in permisos or "modificar cliente" in permisos or "eliminar cliente" in permisos:
         clientes = Cliente.objects.all()
@@ -585,6 +732,16 @@ def cliente_admin(request):
 
 @login_required()
 def nuevo_cliente(request):
+    '''
+        Permite crear un nuevo cliente en el sistema.
+        Solo un usuario con el permiso: "crear cliente", puede llevar a cabo esta operacion.
+
+        @param request: request
+
+        @type request: HttpRequest
+
+        @return: request, 'nuevoCliente.html', {'form': formulario,'permisos':permisos}
+        '''
     permisos = obtenerPermisos(request)
     if "crear cliente" in permisos:
         if request.method == 'POST':
@@ -603,6 +760,20 @@ def nuevo_cliente(request):
 
 @login_required()
 def detalle_cliente(request, codigo):
+    '''
+        Permite ver los datos de un cliente.
+        Solo un usuario con el permiso: "ver cliente" puede llevar a cabo esta operacion.
+
+        @param request: request
+
+        @type request: HttpRequest
+
+        @param codigo: codigo del cliente
+
+        @type codigo: ID de cliente
+
+        @return: 'detalle_cliente.html', {'cliente':cliente, 'usuarios': usuarios,'permisos':permisos}
+        '''
     permisos = obtenerPermisos(request)
     if "ver cliente" in permisos:
         cliente = Cliente.objects.get(pk = codigo)
@@ -617,10 +788,18 @@ def detalle_cliente(request, codigo):
 @login_required()
 def modificar_cliente_view( request, id_cliente):
     '''
-    Permite modificar los datos de un cliente
-    :param request:
-    :param id_cliente:
-    :return:
+    Permite modificar los datos de un proyecto en el sistema.
+    Solo un usuario con el permiso: "modificar cliente", puede llevar a cabo esta operacion.
+
+    @param request: request
+
+    @type request: HttpRequest
+
+    @param id_cliente: codigo del cliente a modificar
+
+    @type id_cliente: ID de cliente
+
+    @return: request, 'modificar_cliente.html', {'cliente':cliente,'permisos':permisos}
     '''
     permisos = obtenerPermisos(request)
     if "modificar cliente" in permisos:
@@ -651,11 +830,19 @@ def modificar_cliente_view( request, id_cliente):
 @login_required()
 def eliminar_cliente(request, codigo):
     '''
-    Elimina un usuario del sistema
-    :param request:
-    :param codigo:
-    :return:vuelve al modulo de administracion de cliente
-    '''
+    Permite eliminar un cliente del sistema.
+    Solo un usuario con el permiso: "eliminar cliente", puede llevar a cabo esta operacion.
+
+    @param request: request
+
+    @type request: HttpRequest
+
+    @param codigo: codigo del cliente a eliminar
+
+    @type codigo: ID de cliente
+
+    @return: HttpResponseRedirect(reverse('usuario:adminproyecto'))
+   '''
     permisos = obtenerPermisos(request)
     if "eliminar cliente" in permisos:
         cliente= Cliente.objects.get(pk= codigo)
@@ -677,6 +864,15 @@ def eliminar_cliente(request, codigo):
 
 @login_required()
 def administracion(request):
+    '''
+        Modulo de administracion del sistema.
+
+        @param request: request
+
+        @type request: HttpRequest
+
+        @return: request, 'administrar.html',{'permisos':permisos}
+        '''
     permisos = obtenerPermisos(request)
     if "crear usuario" in permisos or "modificar usuario" in permisos or "eliminar usuario" in permisos or "crear proyecto" in permisos or "modificar usuario" in permisos or "eliminar usuario" in permisos or "crear cliente" in permisos or "modificar cliente" in permisos or "eliminar cliente" in permisos or "crear rol" in permisos or "modificar rol" in permisos or "eliminar rol" in permisos:
         return render_to_response('administracion.html',{'permisos':permisos},context_instance=RequestContext(request))
@@ -895,6 +1091,20 @@ def ingresar_Proyecto(request,codigo):
 
 @login_required()
 def datos_Proyecto(request, id_proyecto):
+    '''
+        Permite ver todos los datos de un proyecto.
+        Solo un usuario con el permiso: "ver proyecto", puede llevar a cabo esta operacion.
+
+        @param request: request
+
+        @type request: HttpRequest
+
+        @param id_proyecto: codigo del proyecto
+
+        @type id_proyecto: ID de proyecto
+
+        @return: request, 'datos_Proyecto.html', { 'flujo':flujo,'hu':hu,'equipo':equipo,'proyecto':proyecto,'codigo':request.user.id,'permisos':permisos}
+        '''
     proyecto = Proyecto.objects.get(pk = id_proyecto)
     permisos = obtenerPermisosSistema(request)
     equipo = Equipo.objects.filter(proyecto = id_proyecto)
@@ -904,6 +1114,20 @@ def datos_Proyecto(request, id_proyecto):
 
 @login_required()
 def equipo_trabajo(request, id_proyecto):
+    '''
+        Permite agregar un miembro al equipo de trabajo de un proyecto.
+        Solo un usuario con el permiso: "agregar miembro", puede llevar a cabo esta operacion.
+
+        @param request: request
+
+        @type request: HttpRequest
+
+        @param id_proyecto: codigo del proyecto
+
+        @type id_proyecto: ID de proyecto
+
+        @return: request, 'equipo_trabajo.html',{'codigo':request.user.id,'form':formulario,'proyecto':proyecto,'permisos':permisos,'equipo_actual': equipo_actual,'equipo':equipo}
+        '''
     permisos = obtenerPermisos(request)
     equipo_actual = Equipo.objects.filter(proyecto = id_proyecto)
     equipo = Equipo.objects.filter(proyecto = id_proyecto)
@@ -934,10 +1158,18 @@ def equipo_trabajo(request, id_proyecto):
 @login_required()
 def lista_eliminar_miembro(request, id_proyecto):
     '''
+    Permite listar los miembros que se pueden eliminar del equipo de trabajo de un proyecto.
+    Solo un usuario con el permiso: "listar eliminar miembro", puede llevar a cabo esta operacion.
 
-    @param request:
-    @param id_proyecto:
-    @return:
+    @param request: request
+
+    @type request: HttpRequest
+
+    @param id_proyecto: codigo del proyecto
+
+    @type id_proyecto: ID de proyecto
+
+    @return: request, 'lista_eliminar_miembro.html',{'proyecto':proyecto, 'codigo':request.user.id,'permisos':permisos,'equipo': equipo}
     '''
     permisos = obtenerPermisos(request)
     equipo = Equipo.objects.filter(proyecto = id_proyecto)
@@ -950,6 +1182,24 @@ def lista_eliminar_miembro(request, id_proyecto):
 
 @login_required()
 def eliminar_miembro(request, proyect_id, usu_id):
+    '''
+        Permite eliminar un miembro del equipo de trabajo de un proyecto.
+        Solo un usuario con el permiso: "eliminar miembro", puede llevar a cabo esta operacion.
+
+        @param request: request
+
+        @type request: HttpRequest
+
+        @param id_proyecto: codigo del proyecto
+
+        @type id_proyecto: ID de proyecto
+
+        @param usu_id: codigo del usuario
+
+        @type usu_id: ID de usuario
+
+        @return: HttpResponseRedirect(reverse('usuario:lista_eliminar_miembro', args=(proyect_id,)))
+        '''
 
     permisos = obtenerPermisos(request)
     miembro = Equipo.objects.filter(proyecto = proyect_id).filter(usuario = usu_id)
@@ -965,10 +1215,18 @@ def eliminar_miembro(request, proyect_id, usu_id):
 @login_required()
 def detalle_equipo(request, id_proyecto):
     '''
+    Permite ver los datos de un miembro del equipo de trabajo.
+    Solo un usuario con el permiso: "ver miembro" puede llevar a cabo esta operacion.
 
-    @param request:
-    @param id_proyecto:
-    @return:
+    @param request: request
+
+    @type request: HttpRequest
+
+    @param id_proyecto: codigo del flujo
+
+    @type id_proyecto: ID de flujo
+
+    @return: 'detalle_equipo.html',{'proyecto':proyecto, 'codigo':request.user.id,'permisos':permisos,'equipo': equipo}
     '''
     permisos = obtenerPermisos(request)
     equipo = Equipo.objects.filter(proyecto = id_proyecto)
@@ -983,6 +1241,24 @@ def detalle_equipo(request, id_proyecto):
 
 @login_required()
 def equipo_rol(request, id_proyecto, id_equipo):
+    '''
+        Permite agregar un rol de proyecto a un miembro del equipo de trabajo.
+        Solo un usuario con el permiso: "agregar rol" puede llevar a cabo esta operacion.
+
+        @param request: request
+
+        @type request: HttpRequest
+
+        @param id_proyecto: codigo del proyecto
+
+        @type id_proyecto: ID de proyecto
+
+        @param id_equipo: codigo del equipo
+
+        @type id_equipo: ID de equipo
+
+        @return: request, 'asignar_rol_a_equipo.html', {"form": formulario,"proyecto":proyecto}
+        '''
     proyecto = Proyecto.objects.get(pk = id_proyecto)
     equipo = Equipo.objects.get(pk = id_equipo)
     permisos = obtenerPermisos(request)
@@ -1003,6 +1279,20 @@ def equipo_rol(request, id_proyecto, id_equipo):
 
 @login_required()
 def cambiar_estado_de_usuario(request, codigo):
+    '''
+        Permite cambair el estado de un usuario del sistema.
+        Solo un usuario con el permiso: "cambair estado usuario" puede llevar a cabo esta operacion.
+
+        @param request: request
+
+        @type request: HttpRequest
+
+        @param codigo: codigo del usuario
+
+        @type codigo: ID de usuario
+
+        @return: request, 'asignar_rol_a_equipo.html', {"form": formulario,"proyecto":proyecto}
+        '''
     usuario = User.objects.get(pk=codigo)
 
     permisos = obtenerPermisosSistema(request)
@@ -1024,11 +1314,25 @@ def cambiar_estado_de_usuario(request, codigo):
 
 @login_required()
 def asignar_rol_de_sistema_a_usuario(request, codigo):
- permisos = obtenerPermisos(request)
- usuario = User.objects.get(pk=codigo)
- if "asignar rol sistema" in permisos:
-    if request.method == "POST":
-        formulario= UsuarioFormAsignarRolSistema(request.POST, request.FILES, instance= usuario)
+    '''
+    Permite asignar un rol de sistema a un usuario del sistema.
+    Solo un usuario con el permiso: "cambair estado usuario" puede llevar a cabo esta operacion.
+
+    @param request: request
+
+    @type request: HttpRequest
+
+    @param codigo: codigo del usuario
+
+    @type codigo: ID de usuario
+
+    @return: request, 'asignar_rol_de_sitema.html', {"form": formulario,"proyecto":proyecto}
+    '''
+    permisos = obtenerPermisos(request)
+    usuario = User.objects.get(pk=codigo)
+    if "asignar rol sistema" in permisos:
+        if request.method == "POST":
+            formulario= UsuarioFormAsignarRolSistema(request.POST, request.FILES, instance= usuario)
         if formulario.is_valid():
             ua = formulario.save(commit=False)
             rsa = ua.roles.all()
@@ -1042,42 +1346,72 @@ def asignar_rol_de_sistema_a_usuario(request, codigo):
             print("Rol nuevo:",rsn)
 
             return HttpResponseRedirect(reverse('usuario:administrar'))
+        else:
+            formulario= UsuarioFormAsignarRolSistema(instance= usuario)
+        return render(request, 'asignar_rol_de_sistema.html', {"formulario": formulario,"usuario":usuario,'permisos':permisos})
     else:
-        formulario= UsuarioFormAsignarRolSistema(instance= usuario)
-    return render(request, 'asignar_rol_de_sistema.html', {
-        "formulario": formulario,"usuario":usuario,'permisos':permisos
-    })
- else:
         raiz = ""
         return render_to_response('sinpermiso.html',{'raiz':raiz}, context_instance=RequestContext(request))
 
 
 @login_required()
 def asignar_rol_de_proyecto(request, id_usuario, codigo):
- permisos = obtenerPermisos(request)
- usuario = User.objects.get(pk=id_usuario)
- proyecto = Proyecto.objects.get(pk=codigo)
- if "crear usuario" in permisos:
-    if request.method == "POST":
-        formulario= UsuarioFormAsignarRolSistema(request.POST, request.FILES, instance=usuario)
-        if formulario.is_valid():
-            usu= formulario.save()
-            roles = usuario.roles.all().exclude(tipo = "SISTEMA")
-            for r in (roles):
-                r.proyecto.add(proyecto)
-            return HttpResponseRedirect(reverse('usuario:equipo_rol', args=(proyecto.id,)))
+    '''
+    Permite asignar un rol de proyecto a un usuario del sistema.
+    Solo un usuario con el permiso: "cambair estado usuario" puede llevar a cabo esta operacion.
+
+    @param request: request
+
+    @type request: HttpRequest
+
+    @param id_usuario: codigo del usuario
+
+    @type id_usuario: ID de usuario
+
+    @param codigo: codigo del proyecto
+
+    @type codigo: ID de proyecto
+
+    @return: request, 'asignar_rol_a_equipo.html', {"form": formulario,"proyecto":proyecto}
+    '''
+
+    permisos = obtenerPermisos(request)
+    usuario = User.objects.get(pk=id_usuario)
+    proyecto = Proyecto.objects.get(pk=codigo)
+    if "crear usuario" in permisos:
+        if request.method == "POST":
+            formulario= UsuarioFormAsignarRolSistema(request.POST, request.FILES, instance=usuario)
+            if formulario.is_valid():
+                usu= formulario.save()
+                roles = usuario.roles.all().exclude(tipo = "SISTEMA")
+                for r in (roles):
+                    r.proyecto.add(proyecto)
+                return HttpResponseRedirect(reverse('usuario:equipo_rol', args=(proyecto.id,)))
+        else:
+            formulario= UsuarioFormAsignarRolSistema(instance= usuario)
+        return render(request, 'asignar_rol_a_equipo.html', {"formulario": formulario,"usuario":usuario})
     else:
-        formulario= UsuarioFormAsignarRolSistema(instance= usuario)
-    return render(request, 'asignar_rol_a_equipo.html', {
-        "formulario": formulario,"usuario":usuario
-    })
- else:
         raiz = ""
         return render_to_response('sinpermiso.html',{'raiz':raiz}, context_instance=RequestContext(request))
 
 
+
 @login_required()
 def asignar_cliente_a_usuario(request, codigo):
+ '''
+ Permite asignar un cliente a un usuario del sistema.
+ Solo un usuario con el permiso: "asignar cliente a usuario" puede llevar a cabo esta operacion.
+
+ @param request: request
+
+ @type request: HttpRequest
+
+ @param codigo: codigo del usuario
+
+ @type codigo: ID de usuario
+
+ @return: request, return render(request, 'asignar_cliente_a_usuario.html', {"formulario": formulario,"usuario":usuario})
+ '''
  permisos = obtenerPermisos(request)
  usuario = User.objects.get(pk=codigo)
  es_lider = Proyecto.objects.filter(lider=codigo)
@@ -1103,8 +1437,23 @@ def asignar_cliente_a_usuario(request, codigo):
 
 
 
+
 @login_required()
 def cambiar_estado_de_proyecto(request, codigo):
+    '''
+        Permite cambiar el estado de un proyecto del sistema.
+        Solo un usuario con el permiso: "cambair estado usuario" puede llevar a cabo esta operacion.
+
+        @param request: request
+
+        @type request: HttpRequest
+
+        @param codigo: codigo del proyecto
+
+        @type codigo: ID de proyecto
+
+        @return: request, 'cambiar_estado_de_proyecto.html', {'formulario':formulario,'proyecto':proyecto,'permisos':permisos}
+        '''
     proyecto = Proyecto.objects.get(pk=codigo)
     permisos = obtenerPermisos(request)
     if "cambiar estado proyecto" in permisos:
@@ -1123,6 +1472,20 @@ def cambiar_estado_de_proyecto(request, codigo):
 
 @login_required()
 def reasignar_lider_de_proyecto(request, codigo):
+    '''
+        Permite reasignar el lider de un proyecto del sistema.
+        Solo un usuario con el permiso: "reasignar lider" puede llevar a cabo esta operacion.
+
+        @param request: request
+
+        @type request: HttpRequest
+
+        @param codigo: codigo del proyecto
+
+        @type codigo: ID de proyecto
+
+        @return: request, 'reasignar_lider_de_proyecto.html', {'formulario':formulario,'proyecto':proyecto,'permisos':permisos}
+        '''
     proyecto = Proyecto.objects.get(pk=codigo)
 
     permisos = obtenerPermisos(request)
@@ -1144,6 +1507,20 @@ def reasignar_lider_de_proyecto(request, codigo):
 
 @login_required()
 def cambiar_estado_de_cliente(request, codigo):
+    '''
+        Permite cambiar el estado de un cliente del sistema.
+        Solo un usuario con el permiso: "cambair estado cliente" puede llevar a cabo esta operacion.
+
+        @param request: request
+
+        @type request: HttpRequest
+
+        @param codigo: codigo del cliente
+
+        @type codigo: ID de cliente
+
+        @return: request, 'cambiar_estado_de_proyecto.html', {'formulario':formulario,'proyecto':proyecto,'permisos':permisos}
+        '''
     cliente = Cliente.objects.get(pk=codigo)
 
     permisos = obtenerPermisos(request)
@@ -1165,10 +1542,18 @@ def cambiar_estado_de_cliente(request, codigo):
 @login_required()
 def nuevo_hu(request,codigo):
     '''
-    Crea un hu asiciado a unproyecto
-    :param request:
-    :param codigo:
-    :return:vuelve al modulo de administracion de hu
+    Permite un hu asociado al proyecto.
+    Solo un usuario con el permiso: "cambair estado cliente" puede llevar a cabo esta operacion.
+
+    @param request: request
+
+    @type request: HttpRequest
+
+    @param codigo: codigo del cliente
+
+    @type codigo: ID de cliente
+
+    @return: request, 'cambiar_estado_de_proyecto.html', {'formulario':formulario,'proyecto':proyecto,'permisos':permisos}
     '''
     permisos = obtenerPermisos(request)
     proyecto = Proyecto.objects.get(pk=codigo)
@@ -1211,8 +1596,17 @@ def nuevo_hu(request,codigo):
 
 @login_required()
 def hu_admin(request,codigo):
-    """permite acceder a la interfaz de opciones de administracion para historias de usuario,\n recibe un @param request que es la
-    peticion para realizar cierta operacion. \n@return retorna la lista de historias de usuario en el proyecto"""
+    '''
+    Modulo de administracion de hu de un proyecto en el sistema.
+    Solo un usuario con el permiso: "crear hu" o "modificar hu" o "eliminar hu", puede ingresar a este modulo.
+    El sistema muestra una lista de todos los hu de un proyecto del sistema.
+
+    @param request: request
+
+    @type request: HttpRequest
+
+    @return: request, 'administrar_hu.html', {'codigo':request.user.id,'hus': hus, 'permisos':permisos,'proyecto':proyecto}
+    '''
     proyecto = Proyecto.objects.get(pk=codigo)
     permisos = obtenerPermisos(request)
     if "crear cliente" in permisos or "modificar cliente" in permisos or "eliminar cliente" in permisos:
@@ -1226,10 +1620,22 @@ def hu_admin(request,codigo):
 @login_required()
 def eliminar_hu(request, id_hu, codigo):
     '''
-    Elimina un hu del sistema
-    :param request:
-    :param codigo:
-    :return:vuelve al modulo de administracion de Hu
+    Permite eliminar un hu del proyecto del sistema.
+    Solo un usuario con el permiso: "eliminar hu", puede llevar a cabo esta operacion.
+
+    @param request: request
+
+    @type request: HttpRequest
+
+    @param id_hu: codigo del hu a eliminar
+
+    @type id_hu: ID de hu
+
+    @param codigo: codigo del proyecto
+
+    @type codigo: ID de proyecto
+
+    @return: HttpResponseRedirect(reverse('usuario:adminhu',args=(proyecto.id,)))
     '''
     permisos = obtenerPermisos(request)
     if "eliminar proyecto" in permisos:
@@ -1250,10 +1656,22 @@ def eliminar_hu(request, id_hu, codigo):
 @login_required()
 def modificar_hu_view( request, id_hu, codigo):
     '''
-    Permite modificar los datos de una historia de Usuario
-    :param request:
-    :param id_hu:
-    :return:
+    Permite modificar un hu del proyecto del sistema.
+    Solo un usuario con el permiso: "modificar hu", puede llevar a cabo esta operacion.
+
+    @param request: request
+
+    @type request: HttpRequest
+
+    @param id_hu: codigo del hu a modificar
+
+    @type id_hu: ID de hu
+
+    @param codigo: codigo del proyecto
+
+    @type codigo: ID de proyecto
+
+    @return: request, 'modificar_hu.html', {'codigo':request.user.id, 'hu':hu,'permisos':permisos,'formulario':formulario,'proyecto':proyecto,'responsable':equipo}
     '''
     proyecto = Proyecto.objects.get(pk=codigo)
     permisos = obtenerPermisos(request)
@@ -1293,10 +1711,22 @@ def modificar_hu_view( request, id_hu, codigo):
 @login_required()
 def asignar_responsable(request,id_hu,codigo):
     '''
-    Asocia un usuario a una historia de usuario
-    :param request:
-    :param codigo:
-    :return:vuelve al modulo de administracion de hu
+    Permite asignar un responsble a un hu del proyecto del sistema.
+    Solo un usuario con el permiso: "asignar responsable", puede llevar a cabo esta operacion.
+
+    @param request: request
+
+    @type request: HttpRequest
+
+    @param id_hu: codigo del hu
+
+    @type id_hu: ID de hu
+
+    @param codigo: codigo del proyecto
+
+    @type codigo: ID de proyecto
+
+    @return: request, 'asignar_responsable.html',{'proyecto':proyecto,'responsable':responsable,'hu':hu}
     '''
     permisos = obtenerPermisos(request)
     proyecto = Proyecto.objects.get(pk=codigo)
@@ -1324,10 +1754,22 @@ def asignar_responsable(request,id_hu,codigo):
 @login_required()
 def detalle_hu_view( request, id_hu, codigo):
     '''
-    Permite ver el detalle de un HU
-    :param request:
-    :param id_proyecto, id_hu:
-    :return:
+    Permite ver los detalles de un hu de proyecto del sistema.
+    Solo un usuario con el permiso: "ver detalle hu", puede llevar a cabo esta operacion.
+
+    @param request: request
+
+    @type request: HttpRequest
+
+    @param id_hu: codigo del hu
+
+    @type id_hu: ID de hu
+
+    @param codigo: codigo del proyecto
+
+    @type codigo: ID de proyecto
+
+    @return: request, 'detalle_hu.html', {'permisos':permisos,'codigo':request.user.id, 'proyecto': proyecto, 'hu':hu}
     '''
     permisos = obtenerPermisos(request)
     if "ver proyecto" in permisos:
@@ -1410,10 +1852,22 @@ def iniciar( request,id_sprint, codigo):
 @login_required()
 def activar_sprint( request, codigo):
     '''
-    Permite activar un sprint
-    :param request:
-    :param codigo:
-    :return:
+    Permite pasar a estado activo un sprint de un proyecto en el sistema.
+    Solo un usuario con el permiso: "iniciar sprint", puede ingresar a este modulo.
+
+    @param request: request
+
+    @type request: HttpRequest
+
+    @param id_sprint: codigo del sprint
+
+    @type id_sprint: ID de sprint
+
+    @param codigo: codigo del proyecto
+
+    @type codigo: ID de proyecto
+
+    @return: request, 'activar_sprint.html', {'codigo':request.user.id, 'permisos':permisos,'proyecto': proyecto}
     '''
     permisos = obtenerPermisos(request)
     proyecto = Proyecto.objects.get(pk=codigo)
@@ -1462,11 +1916,23 @@ def activar_sprint( request, codigo):
 @login_required()
 def sprint_backlog(request, id_sprint, codigo):
     '''
-    Permite asignar los hu a un sprint
-    :param request:
-    :param id_sprint
-    :param codigo:
-    :return:
+    Permite visializar el sprint backlog de un sprint de un proyecto en el sistema.
+    Solo un usuario con el permiso: "sprint backlog", puede ingresar a este modulo.
+    El sistema muestra una lista de todos los hu de un sprint de un proyecto del sistema.
+
+    @param request: request
+
+    @type request: HttpRequest
+
+    @param id_sprint: codigo del sprint
+
+    @type id_sprint: ID de sprint
+
+    @param codigo: codigo del proyecto
+
+    @type codigo: ID de proyecto
+
+    @return: request, 'sprint_backlog.html', { 'proyecto':proyecto, 'codigo':request.user.id, 'sprint':sprint, 'permisos':permisos, 'capacidad':capacidad, 'total_hu':total_hu, 'diferencia':diferencia,'hus':historias}
     '''
     permisos = obtenerPermisos(request)
     proyecto = Proyecto.objects.get(pk=codigo)
@@ -1496,6 +1962,24 @@ def sprint_backlog(request, id_sprint, codigo):
 
 @login_required()
 def asignar_hu_a_sprint(request, id_proyecto, id_sprint):
+    '''
+        Permite asignar un hu a un sprint de un proyecto en el sistema.
+        Solo un usuario con el permiso: "asignar hu sprint", puede ingresar a este modulo.
+
+        @param request: request
+
+        @type request: HttpRequest
+
+        @param id_sprint: codigo del sprint
+
+        @type id_sprint: ID de sprint
+
+        @param id_proyecto: codigo del proyecto
+
+        @type id_proyecto: ID de proyecto
+
+        @return: request, 'asignar_hu_a_sprint.html', {'hus': hus,'codigo':request.user.id, 'permisos':permisos,'formulario':formulario,'proyecto':proyecto}
+        '''
     permisos = obtenerPermisos(request)
     proyecto = Proyecto.objects.get(pk = id_proyecto)
 
@@ -1536,6 +2020,28 @@ def asignar_hu_a_sprint(request, id_proyecto, id_sprint):
 
 @login_required()
 def editar_responsable(request, id_hu, id_proyecto, id_sprint):
+    '''
+        Permite reasignar un flujo a un hu en un sprint de un proyecto en el sistema.
+        Solo un usuario con el permiso: "editar flujo", puede ingresar a este modulo.
+
+        @param request: request
+
+        @type request: HttpRequest
+
+        @param id_hu: codigo del hu
+
+        @type id_hu: ID de hu
+
+        @param id_sprint: codigo del sprint
+
+        @type id_sprint: ID de sprint
+
+        @param id_proyecto: codigo del proyecto
+
+        @type id_proyecto: ID de proyecto
+
+        @return: request, 'editar_responsable_flujo.html', {'hu':hu,'hora_trabajo':hora_trabajo,'codigo':request.user.id,'sprint':sprint,'permisos':permisos,'form':form,'formulario':formulario,'proyecto':proyecto,'capacidad':capacidad, 'total_hu':total_hu, 'diferencia':diferencia}
+        '''
     permisos = obtenerPermisos(request)
     proyecto = Proyecto.objects.get(pk = id_proyecto)
     sprint = Sprint.objects.get(pk = id_sprint)
@@ -1585,6 +2091,28 @@ def HuFormEditarFlujo(POST, FILES, flujos, instance):
 
 @login_required()
 def editar_flujo(request, id_hu, id_proyecto, id_sprint):
+    '''
+        Permite reasignar un flujo a un hu en un sprint de un proyecto en el sistema.
+        Solo un usuario con el permiso: "editar flujo", puede ingresar a este modulo.
+
+        @param request: request
+
+        @type request: HttpRequest
+
+        @param id_hu: codigo del hu
+
+        @type id_hu: ID de hu
+
+        @param id_sprint: codigo del sprint
+
+        @type id_sprint: ID de sprint
+
+        @param id_proyecto: codigo del proyecto
+
+        @type id_proyecto: ID de proyecto
+
+        @return: request, 'editar_responsable_flujo.html', {'hu':hu,'hora_trabajo':hora_trabajo,'codigo':request.user.id,'sprint':sprint,'permisos':permisos,'form':form,'formulario':formulario,'proyecto':proyecto,'capacidad':capacidad, 'total_hu':total_hu, 'diferencia':diferencia}
+        '''
     permisos = obtenerPermisos(request)
     proyecto = Proyecto.objects.get(pk = id_proyecto)
     sprint = Sprint.objects.get(pk = id_sprint)
@@ -1636,7 +2164,28 @@ def editar_flujo(request, id_hu, id_proyecto, id_sprint):
 
 @login_required()
 def responsable(request, id_hu, codigo, id_sprint, hus):
+    '''
+        Permite asignar un responsable a un hu en un sprint de un proyecto en el sistema.
+        Solo un usuario con el permiso: "editar flujo", puede ingresar a este modulo.
 
+        @param request: request
+
+        @type request: HttpRequest
+
+        @param id_hu: codigo del hu
+
+        @type id_hu: ID de hu
+
+        @param id_sprint: codigo del sprint
+
+        @type id_sprint: ID de sprint
+
+        @param codigo: codigo del proyecto
+
+        @type codigo: ID de proyecto
+
+        @return: request, 'editar_responsable_flujo.html', {'hu':hu,'hora_trabajo':hora_trabajo,'codigo':request.user.id,'sprint':sprint,'permisos':permisos,'form':form,'formulario':formulario,'proyecto':proyecto,'capacidad':capacidad, 'total_hu':total_hu, 'diferencia':diferencia}
+        '''
 
     concat = ""
     hus_id_str = []
@@ -1694,6 +2243,28 @@ def responsable(request, id_hu, codigo, id_sprint, hus):
 
 @login_required()
 def flujo(request, id_hu, codigo, id_sprint, hus):
+    '''
+    Permite asignar un flujo a un hu en un sprint de un proyecto en el sistema.
+    Solo un usuario con el permiso: "editar flujo", puede ingresar a este modulo.
+
+    @param request: request
+
+    @type request: HttpRequest
+
+    @param id_hu: codigo del hu
+
+    @type id_hu: ID de hu
+
+    @param id_sprint: codigo del sprint
+
+    @type id_sprint: ID de sprint
+
+    @param codigo: codigo del proyecto
+
+    @type codigo: ID de proyecto
+
+    @return: request, 'asignar_responsable_flujo.html', {'hu':hu,'hora_trabajo':hora_trabajo,'codigo':request.user.id,'sprint':sprint,'permisos':permisos,'form':form,'formulario':formulario,'proyecto':proyecto,'capacidad':capacidad, 'total_hu':total_hu, 'diferencia':diferencia}
+    '''
 
 
     concat = ""
@@ -1762,10 +2333,22 @@ def flujo(request, id_hu, codigo, id_sprint, hus):
 @login_required()
 def asignar_flujo_sprint(request, id_sprint, codigo):
     '''
-    Permite asignar los flujos a un sprint
-    :param request:
-    :param codigo:
-    :return:
+    Permite asignar un flujo a un sprint de un proyecto en el sistema.
+    Solo un usuario con el permiso: "asignar flujo", puede ingresar a este modulo.
+
+    @param request: request
+
+    @type request: HttpRequest
+
+    @param id_sprint: codigo del sprint
+
+    @type id_sprint: ID de sprint
+
+    @param codigo: codigo del proyecto
+
+    @type codigo: ID de proyecto
+
+    @return: request, 'asignar_flujo_sprint.html', {'hu':hu,'hora_trabajo':hora_trabajo,'codigo':request.user.id,'sprint':sprint,'permisos':permisos,'form':form,'formulario':formulario,'proyecto':proyecto,'capacidad':capacidad, 'total_hu':total_hu, 'diferencia':diferencia}
     '''
     permisos = obtenerPermisos(request)
     proyecto = Proyecto.objects.get(pk=codigo)
@@ -1781,12 +2364,26 @@ def asignar_flujo_sprint(request, id_sprint, codigo):
 @login_required()
 def seleccionar_flujo(request, id_hu, id_sprint, codigo):
     '''
-    Permite seleccionar flujos para un HU dentro de un sprint
-    :param request:
-    :param id_hu:
-    :param id_sprint:
-    :param codigo:
-    :return:
+    Permite asignar un flujo a un hu de un sprint de un proyecto en el sistema.
+    Solo un usuario con el permiso: "seleccionar flujo", puede ingresar a este modulo.
+
+    @param request: request
+
+    @type request: HttpRequest
+
+    @param id_hu: codigo del hu
+
+    @type id_hu: ID de hu
+
+    @param id_sprint: codigo del sprint
+
+    @type id_sprint: ID de sprint
+
+    @param codigo: codigo del proyecto
+
+    @type codigo: ID de proyecto
+
+    @return: request, 'seleccionar_flujo.html', {'hu':hu,'hora_trabajo':hora_trabajo,'codigo':request.user.id,'sprint':sprint,'permisos':permisos,'form':form,'formulario':formulario,'proyecto':proyecto,'capacidad':capacidad, 'total_hu':total_hu, 'diferencia':diferencia}
     '''
     hu = Hu.objects.get(pk=id_hu)
     permisos = obtenerPermisos(request)
@@ -1811,11 +2408,22 @@ def seleccionar_flujo(request, id_hu, id_sprint, codigo):
 @login_required()
 def asignar_hu_sprint(request, id_sprint, codigo):
     '''
-    Permite asignar los hu a un sprint
-    :param request:
-    :param id_sprint
-    :param codigo:
-    :return:
+    Permite asignar un hu a un sprint de un proyecto en el sistema.
+    Solo un usuario con el permiso: "asignar hu", puede ingresar a este modulo.
+
+    @param request: request
+
+    @type request: HttpRequest
+
+    @param id_sprint: codigo del sprint
+
+    @type id_sprint: ID de sprint
+
+    @param codigo: codigo del proyecto
+
+    @type codigo: ID de proyecto
+
+    @return: request, 'editar_responsable_flujo.html', {'hu':hu,'hora_trabajo':hora_trabajo,'codigo':request.user.id,'sprint':sprint,'permisos':permisos,'form':form,'formulario':formulario,'proyecto':proyecto,'capacidad':capacidad, 'total_hu':total_hu, 'diferencia':diferencia}
     '''
     permisos = obtenerPermisos(request)
     proyecto = Proyecto.objects.get(pk=codigo)
@@ -1837,11 +2445,22 @@ def asignar_hu_sprint(request, id_sprint, codigo):
 @login_required()
 def detalle_sprint( request, id_sprint, codigo):
     '''
-    Permite ver el detalle de un sprint
-    :param request:
-    :param id_sprint:
-    :param codigo:
-    :return:
+    Permite ver los datos de un sprint de un proyecto en el sistema.
+    Solo un usuario con el permiso: "ver sprint", puede ingresar a este modulo.
+
+    @param request: request
+
+    @type request: HttpRequest
+
+    @param id_sprint: codigo del sprint
+
+    @type id_sprint: ID de sprint
+
+    @param codigo: codigo del proyecto
+
+    @type codigo: ID de proyecto
+
+    @return: request, 'detalle_sprint.html', {'permisos':permisos,'flujo':flujo,'hu':hu,'proyecto':proyecto}
     '''
     permisos = obtenerPermisos(request)
     sprint = Sprint.objects.get(pk=id_sprint)
@@ -1856,11 +2475,22 @@ def detalle_sprint( request, id_sprint, codigo):
 @login_required()
 def cambiar_estado_de_hu( request, id_hu, codigo):
     '''
-    Permite cambiar el estado de un hu
-    :param request:
-    :param  id_hu:
-    :param  codigo:
-    :return:vuelve al modulo de administracion de hu
+    Permite ver los datos de un sprint de un proyecto en el sistema.
+    Solo un usuario con el permiso: "ver sprint", puede ingresar a este modulo.
+
+    @param request: request
+
+    @type request: HttpRequest
+
+    @param id_hu: codigo del hu
+
+    @type id_hu: ID de hu
+
+    @param codigo: codigo del proyecto
+
+    @type codigo: ID de proyecto
+
+    @return: request, 'cambiar_estado_de_hu.html', {'hu':hu,'codigo':request.user.id,'formulario':formulario,'proyecto':proyecto,'permisos':permisos}
     '''
     proyecto = Proyecto.objects.get(pk=codigo)
     permisos = obtenerPermisos(request)
@@ -1941,11 +2571,22 @@ def finalizar(request,id_hu,codigo):
 @login_required()
 def historial_hu(request,id_hu,codigo):
     '''
-    Permite visualizar el historial de un HU
-    :param request:
-    :param  id_hu:
-    :param  codigo:
-    :return:''
+    Permite ver el historial de un hu en el sistema.
+    Solo un usuario con el permiso: "ver historial", puede ingresar a este modulo.
+
+    @param request: request
+
+    @type request: HttpRequest
+
+    @param id_hu: codigo del hu
+
+    @type id_hu: ID de hu
+
+    @param codigo: codigo del proyecto
+
+    @type codigo: ID de proyecto
+
+    @return: request, 'historialhu.html',{'codigo':request.user.id,'proyecto':proyecto,'historia':historia,'hu':hu}
     '''
     permisos = obtenerPermisos(request)
     proyecto = Proyecto.objects.get(pk=codigo)
@@ -1959,6 +2600,15 @@ def historial_hu(request,id_hu,codigo):
 
 
 def search(request):
+    '''
+        Herramienta para buscar en el sistema.
+
+        @param request: request
+
+        @type request: HttpRequest
+
+        @return: request, 'search.html'
+        '''
     query = request.GET.get('q', '')
     if query:
         qset = (
@@ -1977,10 +2627,18 @@ def search(request):
 login_required()
 def agregar_flujo(request, id_proyecto):
     '''
-    Permite agregar flujo a un proyecto
-    :param request:
-    :param  id_proyeto:
-    :return:
+    Permite asignar un flujo a un proyecto en el sistema.
+    Solo un usuario con el permiso: "agregar flujo", puede ingresar a este modulo.
+
+    @param request: request
+
+    @type request: HttpRequest
+
+    @param id_proyecto: codigo del proyecto
+
+    @type id_proyecto: ID de proyecto
+
+    @return: request, 'asignar_flujo_sprint.html', {'hu':hu,'hora_trabajo':hora_trabajo,'codigo':request.user.id,'sprint':sprint,'permisos':permisos,'form':form,'formulario':formulario,'proyecto':proyecto,'capacidad':capacidad, 'total_hu':total_hu, 'diferencia':diferencia}
     '''
     permisos = obtenerPermisos(request)
     if "asignar equipo" in permisos:
@@ -2000,10 +2658,18 @@ def agregar_flujo(request, id_proyecto):
 @login_required()
 def flujo_proyecto( request,id_proyecto):
     '''
-    Permite gestionar un flujo de un proyecto
-    :param request:
-    :param id_proyecto:
-    :return:
+    Permite visualizar el tablero kanabn de un proyecto en el sistema.
+    Solo un usuario con el permiso: "ver kanban", puede ingresar a este modulo.
+
+    @param request: request
+
+    @type request: HttpRequest
+
+    @param id_proyecto: codigo del proyecto
+
+    @type id_proyecto: ID de proyecto
+
+    @return: request, 'flujo_proyecto.html', {'hu_sprint':hu_sprint,'flujos':flujos,'hu':hu,'proyecto':proyecto,'permisos':permisos}
     '''
     proyecto = Proyecto.objects.get(pk=id_proyecto)
     permisos = obtenerPermisos(request)
@@ -2149,17 +2815,38 @@ def ver_trabajo_view( request, id_hu, orden):
 
 @login_required()
 def descarga_view(request, id_hu):
-        trabajos = Trabajo.objects.all().filter(hu_id = id_hu).exclude(archivo = None)
-        return render_to_response('descargar.html', { 'trabajos':trabajos},context_instance=RequestContext(request))
+    '''
+        Permite ver una lista de los archivos de trabajos de un hu en el sistema.
+        Solo un usuario con el permiso: "descargar view", puede ingresar a este modulo.
+
+        @param request: request
+
+        @type request: HttpRequest
+
+        @param id_hu: codigo del hu
+
+        @type id_hu: ID de hu
+
+        @return: request, 'descargar.html', { 'trabajos':trabajos}
+        '''
+    trabajos = Trabajo.objects.all().filter(hu_id = id_hu).exclude(archivo = None)
+    return render_to_response('descargar.html', { 'trabajos':trabajos},context_instance=RequestContext(request))
 
 @login_required()
 def descargar(request,archivo_id):
     '''
-    Permite descargar el archivo seleccionado, perteneciende a algun HU
-    :param request:
-    :param archivo_id
-    :param codigo:
-    :return:vuelve al modulo de administracion de hu
+    Permite ver una lista de los archivos de trabajos de un hu en el sistema.
+    Solo un usuario con el permiso: "descargar view", puede ingresar a este modulo.
+
+    @param request: request
+
+    @type request: HttpRequest
+
+    @param id_hu: codigo del hu
+
+    @type id_hu: ID de hu
+
+    @return: request, 'descargar.html', { 'trabajos':trabajos}
     '''
     archivo = Files.objects.get(pk=archivo_id)
     response = HttpResponse()
